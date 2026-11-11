@@ -1,0 +1,125 @@
+trade: restaurant
+title: 동네 식당
+version: 2
+axes: [location, suppliers, menu, pricing, customers, failures]
+nodes:
+  - id: loc-01
+    axis: location
+    text: "처음 이 자리를 고르신 이유가 무엇이었는지 편하게 말씀해 주시겠어요?"
+    follow_ups:
+      - id: loc-01-f1
+        text: "그때 다른 후보 자리도 보셨나요? 그 자리 대신 여기를 고르신 까닭이 궁금해요."
+      - id: loc-01-f2
+        text: "지금 다시 고르신다면 그때와 같은 기준으로 보실 것 같으세요?"
+  - id: sup-01
+    axis: suppliers
+    text: "가게를 하시면서 가장 오래 거래하신 곳은 어떤 곳이었나요? 상호 말고 품목으로 말씀해 주세요."
+    follow_ups:
+      - id: sup-01-f1
+        text: "그 거래처와 오래 가실 수 있었던 비결이 있다면 무엇일까요?"
+      - id: sup-01-f2
+        text: "외상이나 결제 날짜는 어떻게 맞추셨는지 여쭤봐도 될까요?"
+  - id: men-01
+    axis: menu
+    text: "지금 간판 메뉴는 처음에 어떻게 생겨났는지 그 이야기를 들려주시겠어요?"
+    follow_ups:
+      - id: men-01-f1
+        text: "처음 내놓으셨을 때와 지금, 맛이나 만드는 방법이 달라진 부분이 있나요?"
+      - id: men-01-f2
+        text: "손님들이 그 메뉴를 찾아오기 시작했다고 느끼신 때는 언제였나요?"
+  - id: pri-01
+    axis: pricing
+    wants_number: true
+    text: "처음 문을 여셨을 때와 비교해서 가격을 올리신 건 언제, 어떤 계기였나요?"
+    follow_ups:
+      - id: pri-01-f1
+        text: "가격을 올린 뒤에 손님들 반응은 어땠는지 기억나시는 대로 말씀해 주세요."
+      - id: pri-01-f2
+        text: "올리기 전에 손님들께 미리 알리거나 따로 준비하신 게 있으셨나요?"
+  - id: cus-01
+    axis: customers
+    text: "오래 오신 단골손님들은 어떻게 대하셨는지, 사장님만의 방식이 있었나요?"
+    follow_ups:
+      - id: cus-01-f1
+        text: "단골손님 덕분에 버틸 수 있었던 시기가 있었다면 말씀해 주시겠어요?"
+  - id: fai-01
+    axis: failures
+    text: "배달앱을 써 보셨다면, 처음 기대하셨던 것과 실제는 어떻게 달랐나요?"
+    follow_ups:
+      - id: fai-01-f1
+        text: "수수료나 포장비까지 따져 보셨을 때 실제로 남는 게 있었는지 궁금해요."
+      - id: fai-01-f2
+        text: "다시 시작하신다면 배달은 어떻게 하실 것 같으세요?"
+  - id: loc-02
+    axis: location
+    text: "장사하시는 동안 가게 주변에서 가장 크게 바뀐 것은 무엇이었나요?"
+    follow_ups:
+      - id: loc-02-f1
+        text: "그 변화가 손님 수에는 어떻게 나타났는지 말씀해 주세요."
+  - id: sup-02
+    axis: suppliers
+    text: "거래처와 거래가 끊기거나 갑자기 바꾸셔야 했던 일이 있었나요?"
+    follow_ups:
+      - id: sup-02-f1
+        text: "그 일 뒤로 거래처를 고르실 때 꼭 보시게 된 게 있나요?"
+  - id: men-02
+    axis: menu
+    text: "손님은 찾았지만 결국 메뉴판에서 없애신 메뉴가 있다면 왜 그러셨나요?"
+    follow_ups:
+      - id: men-02-f1
+        text: "계절마다 따로 내놓으신 메뉴가 있었다면 언제 시작하고 언제 접으셨나요?"
+      - id: men-02-f2
+        text: "새 메뉴를 넣을지 말지 정하실 때 무엇을 먼저 따져 보셨나요?"
+  - id: pri-02
+    axis: pricing
+    wants_number: true
+    text: "재료값이 크게 오른 때에는 가격을 올리는 것 말고 어떻게 버티셨나요?"
+    follow_ups:
+      - id: pri-02-f1
+        text: "양이나 반찬 가짓수를 손보신 적이 있다면 손님들이 알아차렸나요?"
+  - id: cus-02
+    axis: customers
+    text: "기억에 남는 까다로운 손님이 있었다면 그때 어떻게 하셨는지 들려주세요."
+    follow_ups:
+      - id: cus-02-f1
+        text: "그 일 뒤로 비슷한 손님을 대하는 방식이 달라지셨나요?"
+      - id: cus-02-f2
+        text: "처음 여셨을 때와 비교해 요즘 오시는 손님층은 어떻게 달라졌나요?"
+  - id: fai-02
+    axis: failures
+    wants_number: true
+    text: "가게를 넓히거나 두 번째 가게를 내는 것처럼 키워 보려다 손해를 보신 적이 있나요?"
+    follow_ups:
+      - id: fai-02-f1
+        text: "그 결정을 하실 때 미리 알았더라면 좋았을 게 있다면 무엇일까요?"
+  - id: loc-03
+    axis: location
+    only_if:
+      area_type: [station, office]
+    text: "점심 손님과 저녁 손님은 주로 어디에서 오셨는지 기억나시는 대로 말씀해 주세요."
+    follow_ups:
+      - id: loc-03-f1
+        text: "그 손님들이 눈에 띄게 줄거나 늘었던 때가 있었다면 무슨 일이 있었나요?"
+  - id: sup-03
+    axis: suppliers
+    text: "주 거래처를 바꾸신 적이 있다면 어떤 이유로 바꾸셨는지 들려주시겠어요?"
+    follow_ups:
+      - id: sup-03-f1
+        text: "바꾸고 나서 가격이나 품질이 실제로 나아졌는지 말씀해 주세요."
+  - id: cus-03
+    axis: customers
+    only_if:
+      area_type: [station, office]
+    wants_number: true
+    text: "출근길이나 점심시간처럼 손님이 몰리는 때에는 한 시간에 몇 분 정도 받으셨나요?"
+    follow_ups:
+      - id: cus-03-f1
+        text: "몰리는 시간에 손님을 빨리 받으시려고 따로 준비하신 게 있었나요?"
+  - id: fai-03
+    axis: failures
+    text: "직원을 뽑거나 장비를 들이실 때, 지금 생각하면 아쉬운 결정이 있으셨나요?"
+    follow_ups:
+      - id: fai-03-f1
+        text: "그 결정에서 가장 비싸게 치른 대가는 무엇이었는지 여쭤봐도 될까요?"
+      - id: fai-03-f2
+        text: "이 가게를 처음부터 다시 하신다면 무엇을 가장 다르게 하시겠어요?"

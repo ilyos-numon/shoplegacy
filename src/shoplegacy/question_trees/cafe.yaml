@@ -1,0 +1,114 @@
+trade: cafe
+title: 동네 카페
+version: 1
+axes: [location, suppliers, menu, pricing, customers, failures]
+nodes:
+  - id: loc-01
+    axis: location
+    text: "카페 자리를 처음 고르실 때 무엇을 가장 먼저 보셨는지 편하게 말씀해 주시겠어요?"
+    follow_ups:
+      - id: loc-01-f1
+        text: "창가나 테라스처럼 자리 모양이 손님 수에 영향을 준다고 느끼셨나요?"
+      - id: loc-01-f2
+        text: "지금 다시 고르신다면 그때와 같은 기준으로 보실 것 같으세요?"
+  - id: sup-01
+    axis: suppliers
+    text: "원두는 어떤 곳에서 받으셨는지, 상호 말고 볶는 방식이나 산지로 말씀해 주세요."
+    follow_ups:
+      - id: sup-01-f1
+        text: "직접 볶는 것과 받아 쓰는 것 사이에서 고민해 보신 적이 있으셨나요?"
+      - id: sup-01-f2
+        text: "원두를 바꾸셨을 때 손님들이 맛 차이를 알아차렸나요?"
+  - id: men-01
+    axis: menu
+    text: "손님들이 가장 많이 찾던 음료는 어떻게 메뉴판에 오르게 되었는지 들려주시겠어요?"
+    follow_ups:
+      - id: men-01-f1
+        text: "그 음료의 레시피를 정하기까지 몇 번이나 바꿔 보셨는지 궁금해요."
+      - id: men-01-f2
+        text: "계절마다 내놓으신 음료가 있었다면 언제 시작하고 언제 접으셨나요?"
+  - id: pri-01
+    axis: pricing
+    wants_number: true
+    text: "아메리카노 한 잔 가격은 처음에 얼마로 정하셨고, 어떤 기준으로 정하셨나요?"
+    follow_ups:
+      - id: pri-01-f1
+        text: "근처 카페들 가격을 보시고 일부러 다르게 정하신 부분이 있었나요?"
+  - id: cus-01
+    axis: customers
+    text: "자주 오시던 단골손님들은 어떤 분들이었고, 어떻게 기억해 두셨나요?"
+    follow_ups:
+      - id: cus-01-f1
+        text: "단골손님께만 따로 해 드린 작은 배려가 있었다면 말씀해 주시겠어요?"
+  - id: fai-01
+    axis: failures
+    text: "디저트나 브런치처럼 메뉴를 넓혀 보셨다가 기대만큼 안 된 적이 있으셨나요?"
+    follow_ups:
+      - id: fai-01-f1
+        text: "그때 재료를 버리거나 장비를 놀린 손해는 어느 정도였는지 여쭤봐도 될까요?"
+      - id: fai-01-f2
+        text: "다시 하신다면 그 메뉴를 어떻게 시험해 보고 들이실 것 같으세요?"
+  - id: loc-02
+    axis: location
+    text: "장사하시는 동안 근처에 다른 카페가 새로 생기면서 달라진 점이 있었나요?"
+    follow_ups:
+      - id: loc-02-f1
+        text: "그 뒤로 손님을 지키려고 새로 해 보신 것이 있다면 말씀해 주세요."
+  - id: sup-02
+    axis: suppliers
+    text: "우유나 시럽, 컵 같은 부자재는 어떻게 들이셨고, 끊기거나 늦은 적은 없었나요?"
+    follow_ups:
+      - id: sup-02-f1
+        text: "그 일 뒤로 재고를 얼마나 넉넉히 두시게 되었는지 궁금해요."
+  - id: men-02
+    axis: menu
+    text: "메뉴 수를 늘렸다가 다시 줄이신 적이 있다면 어떤 메뉴를 왜 빼셨나요?"
+    follow_ups:
+      - id: men-02-f1
+        text: "새 메뉴를 넣을지 말지 정하실 때 무엇을 먼저 따져 보셨나요?"
+  - id: pri-02
+    axis: pricing
+    wants_number: true
+    text: "원두값이나 우유값이 크게 오른 때에는 한 잔 원가가 대략 얼마나 올랐나요?"
+    follow_ups:
+      - id: pri-02-f1
+        text: "가격을 올리는 것 말고 버티려고 바꾸신 방법이 있었다면 말씀해 주세요."
+  - id: cus-02
+    axis: customers
+    wants_number: true
+    text: "매장에서 드시는 손님과 테이크아웃 손님은 대략 어떤 비율이었나요?"
+    follow_ups:
+      - id: cus-02-f1
+        text: "그 비율이 바뀌면서 좌석이나 동선을 손보신 적이 있으셨나요?"
+      - id: cus-02-f2
+        text: "음료 한 잔으로 오래 머무시는 손님은 어떻게 대하셨는지 궁금해요."
+  - id: fai-02
+    axis: failures
+    text: "좋은 기계를 들이거나 인테리어를 바꾸셨는데 생각만큼 손님이 늘지 않은 적이 있나요?"
+    follow_ups:
+      - id: fai-02-f1
+        text: "그 결정을 하실 때 미리 알았더라면 좋았을 게 있다면 무엇일까요?"
+  - id: loc-03
+    axis: location
+    text: "좌석 수와 매장 크기는 장사하시기에 알맞았는지, 아쉬운 점은 없었나요?"
+    follow_ups:
+      - id: loc-03-f1
+        text: "같은 자리에 카페를 내려는 분이 있다면 무엇부터 확인하라고 하시겠어요?"
+  - id: men-03
+    axis: menu
+    text: "디카페인이나 우유 대신 다른 음료처럼 손님 요청으로 생긴 선택지가 있었나요?"
+    follow_ups:
+      - id: men-03-f1
+        text: "그런 선택지를 두면서 재료 관리가 더 번거로워지지는 않으셨나요?"
+  - id: sup-03
+    axis: suppliers
+    text: "원두 거래처를 바꾸신 적이 있다면 어떤 이유로 바꾸셨는지 들려주시겠어요?"
+    follow_ups:
+      - id: sup-03-f1
+        text: "바꾸고 나서 맛이나 가격이 실제로 나아졌는지 말씀해 주세요."
+  - id: fai-03
+    axis: failures
+    text: "카페를 처음부터 다시 하신다면 무엇을 가장 다르게 하시겠어요?"
+    follow_ups:
+      - id: fai-03-f1
+        text: "그 가운데 가장 비싸게 치른 대가는 무엇이었는지 여쭤봐도 될까요?"
