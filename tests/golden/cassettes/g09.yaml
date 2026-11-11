@@ -1,0 +1,711 @@
+interactions:
+- request:
+    body: "{\"model\":\"qwen3.7-flash\",\"messages\":[{\"role\":\"system\",\"content\":\"\uB2F9\uC2E0\uC740
+      \uD3D0\uC5C5\uD55C \uAC00\uAC8C \uC0AC\uC7A5\uB2D8\uC758 \uC778\uD130\uBDF0
+      \uB2F5\uBCC0\uC744 \uD6C4\uBC30 \uCC3D\uC5C5\uC790\uC5D0\uAC8C \uC804\uD558\uB294
+      \uCE74\uB4DC \uBB38\uC7A5\uC73C\uB85C \uC62E\uAE41\uB2C8\uB2E4. \uCD95\uB9C8\uB2E4
+      \uB2F5\uBCC0 \uD55C \uAC1C\uB2F9 \uBB38\uC7A5 \uD55C \uAC1C\uB85C \uC62E\uAE41\uB2C8\uB2E4.
+      \uB450 \uB2F5\uBCC0\uC744 \uD55C \uBB38\uC7A5\uC73C\uB85C \uD569\uCE58\uC9C0
+      \uC54A\uC2B5\uB2C8\uB2E4. \uC0AC\uC7A5\uB2D8\uC774 \uC4F4 \uB2E8\uC5B4\xB7\uC22B\uC790\xB7\uD45C\uD604\uC744
+      \uADF8\uB300\uB85C \uC62E\uAE30\uACE0 \uBC14\uAFD4 \uB9D0\uD558\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4.
+      \uBB38\uC7A5 \uB05D \uC874\uB313\uB9D0 \uC5B4\uBBF8\uB97C \uB9DE\uCD94\uB294
+      \uAC83\uB9CC \uD5C8\uC6A9\uD569\uB2C8\uB2E4. \uB2F5\uBCC0\uC5D0 \uC5C6\uB294
+      \uC0AC\uC2E4\uC740 \uC4F0\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4. \uB9E8 \uC704 \uBA38\uB9AC\uB9D0\uC758
+      \uC5C5\uC885\xB7\uC0C1\uAD8C\xB7\uC6B4\uC601 \uC5F0\uC218\xB7\uD3D0\uC5C5 \uC5F0\uB3C4\uB3C4
+      \uB2F5\uBCC0\uC5D0 \uC5C6\uC73C\uBA74 \uBB38\uC7A5\uC5D0 \uC4F0\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4.
+      \uAD50\uD6C8\uC774\uB098 \uD3C9\uAC00\uB97C \uC9C0\uC5B4\uB0B4\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4.
+      \uC0C1\uD638, \uC0AC\uB78C \uC774\uB984, \uAC70\uB798\uCC98 \uC774\uB984, \uC804\uD654\uBC88\uD638,
+      \uC8FC\uC18C\uB294 \uC4F0\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4. JSON \uAC1D\uCCB4
+      \uD558\uB098\uB9CC \uCD9C\uB825\uD569\uB2C8\uB2E4. \uD0A4\uB294 \uCD95 \uC774\uB984,
+      \uAC12\uC740 \uBB38\uC7A5 \uBB38\uC790\uC5F4\uC758 \uBC30\uC5F4\uC785\uB2C8\uB2E4.
+      \uC608: {\\\"menu\\\": [\\\"\uB300\uD45C \uBA54\uB274\uB294 \uAE40\uCE58\uCC0C\uAC1C\uC600\uC5B4\uC694.\\\",
+      \\\"\uBA54\uB274\uB294 \uC5F4 \uAC00\uC9C0 \uC548\uCABD\uC73C\uB85C \uB2E8\uC21C\uD558\uAC8C
+      \uC720\uC9C0\uD588\uC5B4\uC694.\\\"]}\"},{\"role\":\"user\",\"content\":\"\uC5C5\uC885:
+      restaurant, \uC0C1\uAD8C: station, \uC6B4\uC601 7\uB144, \uD3D0\uC5C5 2023\uB144\\n\\n[location
+      / \uC785\uC9C0]\\n- \uC6B0\uB9AC \uAC00\uAC8C\uC740 \uC5ED \uADFC\uCC98 \uB300\uB85C\uBCC0\uC5D0
+      \uC788\uC5C8\uC5B4\uC694.\\n- \uC720\uB3D9 \uC778\uAD6C\uB294 \uC810\uC2EC\uC5D0
+      \uAC00\uC7A5 \uB9CE\uC558\uC5B4\uC694.\\n- \uC8FC\uC18C\uB294 [\uC8FC\uC18C]
+      \uC774\uC5C8\uC5B4\uC694.\\n\\n[suppliers / \uAC70\uB798\uCC98]\\n- \uAC70\uB798\uCC98
+      A\uC5D0\uC11C \uB9E4\uC8FC \uC7AC\uB8CC\uB97C \uBC1B\uC558\uC5B4\uC694.\\n-
+      \uC0AC\uC7A5\uB2D8 \uC0AC\uC7A5\uC774 \uC9C1\uC811 \uAC70\uB798\uCC98 B\uC5D0
+      \uC804\uD654\uD574\uC11C \uC8FC\uBB38\uD588\uC5B4\uC694.\\n\\n[menu / \uBA54\uB274]\\n-
+      \uB300\uD45C \uBA54\uB274\uB294 \uBE44\uBE54\uBC25\uC600\uC5B4\uC694.\\n- \uBA54\uB274\uB294
+      \uC5F4 \uAC00\uC9C0 \uC548\uCABD\uC73C\uB85C \uB2E8\uC21C\uD558\uAC8C \uC720\uC9C0\uD588\uC5B4\uC694.\\n\\n[pricing
+      / \uAC00\uACA9]\\n- \uBE44\uBE54\uBC25\uC740 9500\uC6D0\uC5D0 \uD314\uC558\uC5B4\uC694.\\n-
+      \uC6D0\uAC00\uC728\uC740 \uB300\uB7B5 \uC0BC\uC2ED \uD37C\uC13C\uD2B8 \uC815\uB3C4\uC600\uC5B4\uC694.\\n\\n[customers
+      / \uC190\uB2D8]\\n- \uB2E8\uACE8\uC740 \uC810\uC2EC\uC5D0 \uC624\uB294 \uC190\uB2D8\uC774
+      \uB9CE\uC558\uC5B4\uC694.\\n- \uC2E0\uADDC \uC190\uB2D8\uC740 \uC8FC\uB85C \uC9C0\uC778
+      \uC18C\uAC1C\uB85C \uC654\uC5B4\uC694.\\n\\n[failures / \uC2E4\uD328]\\n- \uC9C1\uC6D0
+      \uAD6C\uD558\uAE30\uAC00 \uC5B4\uB824\uC6E0\uB2E4.\\n- \uC0AC\uC7A5\uB2D8\uC5D0\uAC8C
+      \uBB38\uC758\uB294 [\uC804\uD654\uBC88\uD638] \uBC88\uD638\uB85C \uC654\uC5B4\uC694.\"}],\"temperature\":0.2,\"max_tokens\":1500,\"enable_thinking\":false,\"response_format\":{\"type\":\"json_object\"}}"
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '2027'
+      content-type:
+      - application/json
+      host:
+      - dashscope-intl.aliyuncs.com
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: https://dashscope-intl.aliyuncs.com/compatible-mode/v1/chat/completions
+  response:
+    body:
+      string: "{\"choices\":[{\"finish_reason\":\"stop\",\"index\":0,\"message\":{\"content\":\"{\\n
+        \ \\\"location\\\": [\\n    \\\"\uC6B0\uB9AC \uAC00\uAC8C\uC740 \uC5ED \uADFC\uCC98
+        \uB300\uB85C\uBCC0\uC5D0 \uC788\uC5C8\uC5B4\uC694.\\\",\\n    \\\"\uC720\uB3D9
+        \uC778\uAD6C\uB294 \uC810\uC2EC\uC5D0 \uAC00\uC7A5 \uB9CE\uC558\uC5B4\uC694.\\\"\\n
+        \ ],\\n  \\\"suppliers\\\": [\\n    \\\"\uAC70\uB798\uCC98 A\uC5D0\uC11C \uB9E4\uC8FC
+        \uC7AC\uB8CC\uB97C \uBC1B\uC558\uC5B4\uC694.\\\",\\n    \\\"\uC0AC\uC7A5\uB2D8
+        \uC0AC\uC7A5\uC774 \uC9C1\uC811 \uAC70\uB798\uCC98 B\uC5D0 \uC804\uD654\uD574\uC11C
+        \uC8FC\uBB38\uD588\uC5B4\uC694.\\\"\\n  ],\\n  \\\"menu\\\": [\\n    \\\"\uB300\uD45C
+        \uBA54\uB274\uB294 \uBE44\uBE54\uBC25\uC774\uC5C8\uC5B4\uC694.\\\",\\n    \\\"\uBA54\uB274\uB294
+        \uC5F4 \uAC00\uC9C0 \uC548\uCABD\uC73C\uB85C \uB2E8\uC21C\uD558\uAC8C \uC720\uC9C0\uD588\uC5B4\uC694.\\\"\\n
+        \ ],\\n  \\\"pricing\\\": [\\n    \\\"\uBE44\uBE54\uBC25\uC740 9500\uC6D0\uC5D0
+        \uD314\uC558\uC5B4\uC694.\\\",\\n    \\\"\uC6D0\uAC00\uC728\uC740 \uB300\uB7B5
+        \uC0BC\uC2ED \uD37C\uC13C\uD2B8 \uC815\uB3C4\uC600\uC5B4\uC694.\\\"\\n  ],\\n
+        \ \\\"customers\\\": [\\n    \\\"\uB2E8\uACE8\uC740 \uC810\uC2EC\uC5D0 \uC624\uB294
+        \uC190\uB2D8\uC774 \uB9CE\uC558\uC5B4\uC694.\\\",\\n    \\\"\uC2E0\uADDC \uC190\uB2D8\uC740
+        \uC8FC\uB85C \uC9C0\uC778 \uC18C\uAC1C\uB85C \uC654\uC5B4\uC694.\\\"\\n  ],\\n
+        \ \\\"failures\\\": [\\n    \\\"\uC9C1\uC6D0 \uAD6C\uD558\uAE30\uAC00 \uC5B4\uB824\uC6E0\uB2E4.\\\",\\n
+        \   \\\"\uC0AC\uC7A5\uB2D8\uC5D0\uAC8C \uBB38\uC758\uB294 [\uC804\uD654\uBC88\uD638]
+        \uBC88\uD638\uB85C \uC654\uC5B4\uC694.\\\"\\n  ]\\n}\",\"role\":\"assistant\"}}],\"created\":1793667645,\"id\":\"chatcmpl-25b9425c-155e-9397-9fe5-dfc28d188e5a\",\"model\":\"qwen3.7-flash\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":237,\"prompt_tokens\":463,\"prompt_tokens_details\":{\"cached_tokens\":0,\"text_tokens\":463},\"total_tokens\":700}}"
+    headers:
+      content-length:
+      - '1235'
+      content-type:
+      - application/json
+      date:
+      - Tue, 03 Nov 2026 01:00:47 GMT
+      req-arrive-time:
+      - '1793667645199'
+      req-cost-time:
+      - '2359'
+      resp-start-time:
+      - '1793667647559'
+      server:
+      - istio-envoy
+      set-cookie:
+      - acw_tc=25b9425c-155e-9397-9fe5-dfc28d188e5a19dc9af3a342e4bcc89d627ecbf2eba6;path=/;HttpOnly;Max-Age=1800
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin,Access-Control-Request-Method,Access-Control-Request-Headers, Accept-Encoding
+      x-dashscope-call-gateway:
+      - 'true'
+      x-dashscope-finished:
+      - 'true'
+      x-dashscope-timeout:
+      - '3600'
+      x-envoy-upstream-service-time:
+      - '2358'
+      x-request-id:
+      - 25b9425c-155e-9397-9fe5-dfc28d188e5a
+    status:
+      code: 200
+      message: OK
+- request:
+    body: "{\"model\":\"qwen3.7-flash\",\"messages\":[{\"role\":\"system\",\"content\":\"\uB2F9\uC2E0\uC740
+      \uD3D0\uC5C5\uD55C \uAC00\uAC8C \uC0AC\uC7A5\uB2D8\uC758 \uC778\uD130\uBDF0
+      \uB2F5\uBCC0\uC73C\uB85C \uB9CC\uB4E0 \uCE74\uB4DC \uBB38\uC7A5(\uC8FC\uC7A5)\uC744
+      \uAC80\uC99D\uD558\uB294 \uAC80\uC0AC\uAE30\uC785\uB2C8\uB2E4. \uC9C8\uBB38(\uCD95
+      \uC774\uB984), \uBC88\uD638\uAC00 \uBD99\uC740 \uADFC\uAC70 \uBC1C\uCDCC(\uC0AC\uC7A5\uB2D8
+      \uB2F5\uBCC0), \uBC88\uD638\uAC00 \uBD99\uC740 \uC8FC\uC7A5\uC744 \uC77D\uACE0
+      \uC8FC\uC7A5\uB9C8\uB2E4 \uD310\uC815\uD569\uB2C8\uB2E4.\\n1. supported: \uC8FC\uC7A5\uC758
+      \uB0B4\uC6A9\uC774 \uC5B4\uB5A4 \uADFC\uAC70 \uBC1C\uCDCC\uC5D0 \uC801\uD600
+      \uC788\uC73C\uBA74 true. \uD45C\uD604\xB7\uC5B4\uC21C\xB7\uC5B4\uBBF8\uAC00
+      \uB2EC\uB77C\uB3C4 \uAC19\uC740 \uB73B\uC774\uBA74 true \uC785\uB2C8\uB2E4.
+      \uC8FC\uC7A5\uC774 \uB450 \uBC1C\uCDCC\uC758 \uB0B4\uC6A9\uC744 \uD568\uAED8
+      \uB2F4\uC73C\uBA74 \uB458 \uB2E4 \uADFC\uAC70\uC5D0 \uC788\uC744 \uB54C true
+      \uC774\uACE0, citation \uC740 \uB354 \uB9CE\uC740 \uB0B4\uC6A9\uC744 \uB2F4\uC740
+      \uBC1C\uCDCC \uBC88\uD638\uC785\uB2C8\uB2E4. \uADFC\uAC70 \uC5B4\uB514\uC5D0\uB3C4
+      \uC5C6\uB294 \uC22B\uC790\xB7\uC774\uB984\xB7\uC7A5\uC18C\xB7\uC774\uC720\xB7\uC2DC\uC810\uC774
+      \uD558\uB098\uB77C\uB3C4 \uC788\uC73C\uBA74 false \uC785\uB2C8\uB2E4.\\n2. citation:
+      \uC8FC\uC7A5\uC744 \uB4B7\uBC1B\uCE68\uD558\uB294 \uADFC\uAC70 \uBC88\uD638(1\uBD80\uD130).
+      supported \uAC00 true \uC774\uBA74 citation \uC740 \uBC18\uB4DC\uC2DC \uADFC\uAC70
+      \uBC88\uD638\uC774\uACE0 null \uC774\uBA74 \uC548 \uB429\uB2C8\uB2E4. supported
+      \uAC00 false \uC774\uBA74 null \uC785\uB2C8\uB2E4.\\n3. answers_question: \uC8FC\uC7A5\uC774
+      \uADF8 \uCD95(\uC9C8\uBB38)\uC5D0 \uAD00\uD55C \uB0B4\uC6A9\uC774\uBA74 true.\\n4.
+      situation_covered: citation \uC774 \uC788\uC73C\uBA74 true, \uC5C6\uC73C\uBA74
+      false.\\nsituation \uC5D0\uB294 \uCD95 \uC774\uB984\uC744 \uD55C \uC904\uB85C
+      \uC801\uC2B5\uB2C8\uB2E4. \uBC18\uB4DC\uC2DC {\\\"situation\\\": \\\"<\uCD95
+      \uC774\uB984 \uD55C \uC904>\\\", \\\"verdicts\\\": [{\\\"index\\\": <\uC8FC\uC7A5
+      \uBC88\uD638 1\uBD80\uD130>, \\\"supported\\\": true|false, \\\"answers_question\\\":
+      true|false, \\\"situation_covered\\\": true|false, \\\"citation\\\": <\uADFC\uAC70
+      \uBC88\uD638 \uB610\uB294 null>}]} \uD615\uC2DD\uC758 JSON \uB9CC \uCD9C\uB825\uD558\uACE0,
+      \uC8FC\uC7A5\uB9C8\uB2E4 \uC815\uD655\uD788 \uD55C \uD56D\uBAA9\uC744 \uC8FC\uC7A5
+      \uBC88\uD638 \uC21C\uC11C\uB85C \uC501\uB2C8\uB2E4.\"},{\"role\":\"user\",\"content\":\"\uC9C8\uBB38:
+      \uAC00\uAC8C\uC758 \uC785\uC9C0\uC5D0 \uB300\uD574 \uC0AC\uC7A5\uB2D8\uC740
+      \uBB34\uC5C7\uC744 \uB9D0\uD588\uB098\uC694?\\n\uADFC\uAC70:\\n[\uADFC\uAC70
+      1] \uC6B0\uB9AC \uAC00\uAC8C\uC740 \uC5ED \uADFC\uCC98 \uB300\uB85C\uBCC0\uC5D0
+      \uC788\uC5C8\uC5B4\uC694.\\n[\uADFC\uAC70 2] \uC720\uB3D9 \uC778\uAD6C\uB294
+      \uC810\uC2EC\uC5D0 \uAC00\uC7A5 \uB9CE\uC558\uC5B4\uC694.\\n[\uADFC\uAC70 3]
+      \uC8FC\uC18C\uB294 [\uC8FC\uC18C] \uC774\uC5C8\uC5B4\uC694.\\n\uC8FC\uC7A5:\\n[\uC8FC\uC7A5
+      1] \uC6B0\uB9AC \uAC00\uAC8C\uC740 \uC5ED \uADFC\uCC98 \uB300\uB85C\uBCC0\uC5D0
+      \uC788\uC5C8\uC5B4\uC694.\\n[\uC8FC\uC7A5 2] \uC720\uB3D9 \uC778\uAD6C\uB294
+      \uC810\uC2EC\uC5D0 \uAC00\uC7A5 \uB9CE\uC558\uC5B4\uC694.\"}],\"temperature\":0.2,\"max_tokens\":600,\"enable_thinking\":false,\"response_format\":{\"type\":\"json_object\"}}"
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '2021'
+      content-type:
+      - application/json
+      cookie:
+      - acw_tc=25b9425c-155e-9397-9fe5-dfc28d188e5a19dc9af3a342e4bcc89d627ecbf2eba6
+      host:
+      - dashscope-intl.aliyuncs.com
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: https://dashscope-intl.aliyuncs.com/compatible-mode/v1/chat/completions
+  response:
+    body:
+      string: "{\"choices\":[{\"finish_reason\":\"stop\",\"index\":0,\"message\":{\"content\":\"{\\n\\\"situation\\\":
+        \\\"\uAC00\uAC8C\uC758 \uC785\uC9C0\uC5D0 \uB300\uD574 \uC0AC\uC7A5\uB2D8\uC740
+        \uBB34\uC5C7\uC744 \uB9D0\uD588\uB098\uC694?\\\",\\n\\\"verdicts\\\": [\\n
+        \ {\\n    \\\"index\\\": 1,\\n    \\\"supported\\\": true,\\n    \\\"answers_question\\\":
+        true,\\n    \\\"situation_covered\\\": true,\\n    \\\"citation\\\": 1\\n
+        \ },\\n  {\\n    \\\"index\\\": 2,\\n    \\\"supported\\\": true,\\n    \\\"answers_question\\\":
+        true,\\n    \\\"situation_covered\\\": true,\\n    \\\"citation\\\": 2\\n
+        \ }\\n]\\n}\",\"role\":\"assistant\"}}],\"created\":1793667647,\"id\":\"chatcmpl-550ddca4-cd4c-91c3-a132-f2bff0cfeaa4\",\"model\":\"qwen3.7-flash\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":122,\"prompt_tokens\":460,\"prompt_tokens_details\":{\"cached_tokens\":0,\"text_tokens\":460},\"total_tokens\":582}}"
+    headers:
+      content-length:
+      - '748'
+      content-type:
+      - application/json
+      date:
+      - Tue, 03 Nov 2026 01:00:48 GMT
+      req-arrive-time:
+      - '1793667647705'
+      req-cost-time:
+      - '1393'
+      resp-start-time:
+      - '1793667649099'
+      server:
+      - istio-envoy
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin,Access-Control-Request-Method,Access-Control-Request-Headers, Accept-Encoding
+      x-dashscope-call-gateway:
+      - 'true'
+      x-dashscope-finished:
+      - 'true'
+      x-dashscope-timeout:
+      - '3600'
+      x-envoy-upstream-service-time:
+      - '1392'
+      x-request-id:
+      - 550ddca4-cd4c-91c3-a132-f2bff0cfeaa4
+    status:
+      code: 200
+      message: OK
+- request:
+    body: "{\"model\":\"qwen3.7-flash\",\"messages\":[{\"role\":\"system\",\"content\":\"\uB2F9\uC2E0\uC740
+      \uD3D0\uC5C5\uD55C \uAC00\uAC8C \uC0AC\uC7A5\uB2D8\uC758 \uC778\uD130\uBDF0
+      \uB2F5\uBCC0\uC73C\uB85C \uB9CC\uB4E0 \uCE74\uB4DC \uBB38\uC7A5(\uC8FC\uC7A5)\uC744
+      \uAC80\uC99D\uD558\uB294 \uAC80\uC0AC\uAE30\uC785\uB2C8\uB2E4. \uC9C8\uBB38(\uCD95
+      \uC774\uB984), \uBC88\uD638\uAC00 \uBD99\uC740 \uADFC\uAC70 \uBC1C\uCDCC(\uC0AC\uC7A5\uB2D8
+      \uB2F5\uBCC0), \uBC88\uD638\uAC00 \uBD99\uC740 \uC8FC\uC7A5\uC744 \uC77D\uACE0
+      \uC8FC\uC7A5\uB9C8\uB2E4 \uD310\uC815\uD569\uB2C8\uB2E4.\\n1. supported: \uC8FC\uC7A5\uC758
+      \uB0B4\uC6A9\uC774 \uC5B4\uB5A4 \uADFC\uAC70 \uBC1C\uCDCC\uC5D0 \uC801\uD600
+      \uC788\uC73C\uBA74 true. \uD45C\uD604\xB7\uC5B4\uC21C\xB7\uC5B4\uBBF8\uAC00
+      \uB2EC\uB77C\uB3C4 \uAC19\uC740 \uB73B\uC774\uBA74 true \uC785\uB2C8\uB2E4.
+      \uC8FC\uC7A5\uC774 \uB450 \uBC1C\uCDCC\uC758 \uB0B4\uC6A9\uC744 \uD568\uAED8
+      \uB2F4\uC73C\uBA74 \uB458 \uB2E4 \uADFC\uAC70\uC5D0 \uC788\uC744 \uB54C true
+      \uC774\uACE0, citation \uC740 \uB354 \uB9CE\uC740 \uB0B4\uC6A9\uC744 \uB2F4\uC740
+      \uBC1C\uCDCC \uBC88\uD638\uC785\uB2C8\uB2E4. \uADFC\uAC70 \uC5B4\uB514\uC5D0\uB3C4
+      \uC5C6\uB294 \uC22B\uC790\xB7\uC774\uB984\xB7\uC7A5\uC18C\xB7\uC774\uC720\xB7\uC2DC\uC810\uC774
+      \uD558\uB098\uB77C\uB3C4 \uC788\uC73C\uBA74 false \uC785\uB2C8\uB2E4.\\n2. citation:
+      \uC8FC\uC7A5\uC744 \uB4B7\uBC1B\uCE68\uD558\uB294 \uADFC\uAC70 \uBC88\uD638(1\uBD80\uD130).
+      supported \uAC00 true \uC774\uBA74 citation \uC740 \uBC18\uB4DC\uC2DC \uADFC\uAC70
+      \uBC88\uD638\uC774\uACE0 null \uC774\uBA74 \uC548 \uB429\uB2C8\uB2E4. supported
+      \uAC00 false \uC774\uBA74 null \uC785\uB2C8\uB2E4.\\n3. answers_question: \uC8FC\uC7A5\uC774
+      \uADF8 \uCD95(\uC9C8\uBB38)\uC5D0 \uAD00\uD55C \uB0B4\uC6A9\uC774\uBA74 true.\\n4.
+      situation_covered: citation \uC774 \uC788\uC73C\uBA74 true, \uC5C6\uC73C\uBA74
+      false.\\nsituation \uC5D0\uB294 \uCD95 \uC774\uB984\uC744 \uD55C \uC904\uB85C
+      \uC801\uC2B5\uB2C8\uB2E4. \uBC18\uB4DC\uC2DC {\\\"situation\\\": \\\"<\uCD95
+      \uC774\uB984 \uD55C \uC904>\\\", \\\"verdicts\\\": [{\\\"index\\\": <\uC8FC\uC7A5
+      \uBC88\uD638 1\uBD80\uD130>, \\\"supported\\\": true|false, \\\"answers_question\\\":
+      true|false, \\\"situation_covered\\\": true|false, \\\"citation\\\": <\uADFC\uAC70
+      \uBC88\uD638 \uB610\uB294 null>}]} \uD615\uC2DD\uC758 JSON \uB9CC \uCD9C\uB825\uD558\uACE0,
+      \uC8FC\uC7A5\uB9C8\uB2E4 \uC815\uD655\uD788 \uD55C \uD56D\uBAA9\uC744 \uC8FC\uC7A5
+      \uBC88\uD638 \uC21C\uC11C\uB85C \uC501\uB2C8\uB2E4.\"},{\"role\":\"user\",\"content\":\"\uC9C8\uBB38:
+      \uAC00\uAC8C\uC758 \uAC70\uB798\uCC98\uC5D0 \uB300\uD574 \uC0AC\uC7A5\uB2D8\uC740
+      \uBB34\uC5C7\uC744 \uB9D0\uD588\uB098\uC694?\\n\uADFC\uAC70:\\n[\uADFC\uAC70
+      1] \uAC70\uB798\uCC98 A\uC5D0\uC11C \uB9E4\uC8FC \uC7AC\uB8CC\uB97C \uBC1B\uC558\uC5B4\uC694.\\n[\uADFC\uAC70
+      2] \uC0AC\uC7A5\uB2D8 \uC0AC\uC7A5\uC774 \uC9C1\uC811 \uAC70\uB798\uCC98 B\uC5D0
+      \uC804\uD654\uD574\uC11C \uC8FC\uBB38\uD588\uC5B4\uC694.\\n\uC8FC\uC7A5:\\n[\uC8FC\uC7A5
+      1] \uAC70\uB798\uCC98 A\uC5D0\uC11C \uB9E4\uC8FC \uC7AC\uB8CC\uB97C \uBC1B\uC558\uC5B4\uC694.\\n[\uC8FC\uC7A5
+      2] \uC0AC\uC7A5\uB2D8 \uC0AC\uC7A5\uC774 \uC9C1\uC811 \uAC70\uB798\uCC98 B\uC5D0
+      \uC804\uD654\uD574\uC11C \uC8FC\uBB38\uD588\uC5B4\uC694.\"}],\"temperature\":0.2,\"max_tokens\":600,\"enable_thinking\":false,\"response_format\":{\"type\":\"json_object\"}}"
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '2015'
+      content-type:
+      - application/json
+      cookie:
+      - acw_tc=25b9425c-155e-9397-9fe5-dfc28d188e5a19dc9af3a342e4bcc89d627ecbf2eba6
+      host:
+      - dashscope-intl.aliyuncs.com
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: https://dashscope-intl.aliyuncs.com/compatible-mode/v1/chat/completions
+  response:
+    body:
+      string: "{\"choices\":[{\"finish_reason\":\"stop\",\"index\":0,\"message\":{\"content\":\"{\\n\\\"situation\\\":
+        \\\"\uAC00\uAC8C\uC758 \uAC70\uB798\uCC98\uC5D0 \uB300\uD574 \uC0AC\uC7A5\uB2D8\uC740
+        \uBB34\uC5C7\uC744 \uB9D0\uD588\uB098\uC694?\\\",\\n\\\"verdicts\\\": [\\n
+        \ {\\n    \\\"index\\\": 1,\\n    \\\"supported\\\": true,\\n    \\\"answers_question\\\":
+        true,\\n    \\\"situation_covered\\\": true,\\n    \\\"citation\\\": 1\\n
+        \ },\\n  {\\n    \\\"index\\\": 2,\\n    \\\"supported\\\": true,\\n    \\\"answers_question\\\":
+        true,\\n    \\\"situation_covered\\\": true,\\n    \\\"citation\\\": 2\\n
+        \ }\\n]\\n}\",\"role\":\"assistant\"}}],\"created\":1793667649,\"id\":\"chatcmpl-f5c36017-3aff-9a12-b66d-123d93b93148\",\"model\":\"qwen3.7-flash\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":123,\"prompt_tokens\":450,\"prompt_tokens_details\":{\"cached_tokens\":0,\"text_tokens\":450},\"total_tokens\":573}}"
+    headers:
+      content-length:
+      - '751'
+      content-type:
+      - application/json
+      date:
+      - Tue, 03 Nov 2026 01:00:50 GMT
+      req-arrive-time:
+      - '1793667649205'
+      req-cost-time:
+      - '1325'
+      resp-start-time:
+      - '1793667650530'
+      server:
+      - istio-envoy
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin,Access-Control-Request-Method,Access-Control-Request-Headers, Accept-Encoding
+      x-dashscope-call-gateway:
+      - 'true'
+      x-dashscope-finished:
+      - 'true'
+      x-dashscope-timeout:
+      - '3600'
+      x-envoy-upstream-service-time:
+      - '1324'
+      x-request-id:
+      - f5c36017-3aff-9a12-b66d-123d93b93148
+    status:
+      code: 200
+      message: OK
+- request:
+    body: "{\"model\":\"qwen3.7-flash\",\"messages\":[{\"role\":\"system\",\"content\":\"\uB2F9\uC2E0\uC740
+      \uD3D0\uC5C5\uD55C \uAC00\uAC8C \uC0AC\uC7A5\uB2D8\uC758 \uC778\uD130\uBDF0
+      \uB2F5\uBCC0\uC73C\uB85C \uB9CC\uB4E0 \uCE74\uB4DC \uBB38\uC7A5(\uC8FC\uC7A5)\uC744
+      \uAC80\uC99D\uD558\uB294 \uAC80\uC0AC\uAE30\uC785\uB2C8\uB2E4. \uC9C8\uBB38(\uCD95
+      \uC774\uB984), \uBC88\uD638\uAC00 \uBD99\uC740 \uADFC\uAC70 \uBC1C\uCDCC(\uC0AC\uC7A5\uB2D8
+      \uB2F5\uBCC0), \uBC88\uD638\uAC00 \uBD99\uC740 \uC8FC\uC7A5\uC744 \uC77D\uACE0
+      \uC8FC\uC7A5\uB9C8\uB2E4 \uD310\uC815\uD569\uB2C8\uB2E4.\\n1. supported: \uC8FC\uC7A5\uC758
+      \uB0B4\uC6A9\uC774 \uC5B4\uB5A4 \uADFC\uAC70 \uBC1C\uCDCC\uC5D0 \uC801\uD600
+      \uC788\uC73C\uBA74 true. \uD45C\uD604\xB7\uC5B4\uC21C\xB7\uC5B4\uBBF8\uAC00
+      \uB2EC\uB77C\uB3C4 \uAC19\uC740 \uB73B\uC774\uBA74 true \uC785\uB2C8\uB2E4.
+      \uC8FC\uC7A5\uC774 \uB450 \uBC1C\uCDCC\uC758 \uB0B4\uC6A9\uC744 \uD568\uAED8
+      \uB2F4\uC73C\uBA74 \uB458 \uB2E4 \uADFC\uAC70\uC5D0 \uC788\uC744 \uB54C true
+      \uC774\uACE0, citation \uC740 \uB354 \uB9CE\uC740 \uB0B4\uC6A9\uC744 \uB2F4\uC740
+      \uBC1C\uCDCC \uBC88\uD638\uC785\uB2C8\uB2E4. \uADFC\uAC70 \uC5B4\uB514\uC5D0\uB3C4
+      \uC5C6\uB294 \uC22B\uC790\xB7\uC774\uB984\xB7\uC7A5\uC18C\xB7\uC774\uC720\xB7\uC2DC\uC810\uC774
+      \uD558\uB098\uB77C\uB3C4 \uC788\uC73C\uBA74 false \uC785\uB2C8\uB2E4.\\n2. citation:
+      \uC8FC\uC7A5\uC744 \uB4B7\uBC1B\uCE68\uD558\uB294 \uADFC\uAC70 \uBC88\uD638(1\uBD80\uD130).
+      supported \uAC00 true \uC774\uBA74 citation \uC740 \uBC18\uB4DC\uC2DC \uADFC\uAC70
+      \uBC88\uD638\uC774\uACE0 null \uC774\uBA74 \uC548 \uB429\uB2C8\uB2E4. supported
+      \uAC00 false \uC774\uBA74 null \uC785\uB2C8\uB2E4.\\n3. answers_question: \uC8FC\uC7A5\uC774
+      \uADF8 \uCD95(\uC9C8\uBB38)\uC5D0 \uAD00\uD55C \uB0B4\uC6A9\uC774\uBA74 true.\\n4.
+      situation_covered: citation \uC774 \uC788\uC73C\uBA74 true, \uC5C6\uC73C\uBA74
+      false.\\nsituation \uC5D0\uB294 \uCD95 \uC774\uB984\uC744 \uD55C \uC904\uB85C
+      \uC801\uC2B5\uB2C8\uB2E4. \uBC18\uB4DC\uC2DC {\\\"situation\\\": \\\"<\uCD95
+      \uC774\uB984 \uD55C \uC904>\\\", \\\"verdicts\\\": [{\\\"index\\\": <\uC8FC\uC7A5
+      \uBC88\uD638 1\uBD80\uD130>, \\\"supported\\\": true|false, \\\"answers_question\\\":
+      true|false, \\\"situation_covered\\\": true|false, \\\"citation\\\": <\uADFC\uAC70
+      \uBC88\uD638 \uB610\uB294 null>}]} \uD615\uC2DD\uC758 JSON \uB9CC \uCD9C\uB825\uD558\uACE0,
+      \uC8FC\uC7A5\uB9C8\uB2E4 \uC815\uD655\uD788 \uD55C \uD56D\uBAA9\uC744 \uC8FC\uC7A5
+      \uBC88\uD638 \uC21C\uC11C\uB85C \uC501\uB2C8\uB2E4.\"},{\"role\":\"user\",\"content\":\"\uC9C8\uBB38:
+      \uAC00\uAC8C\uC758 \uBA54\uB274\uC5D0 \uB300\uD574 \uC0AC\uC7A5\uB2D8\uC740
+      \uBB34\uC5C7\uC744 \uB9D0\uD588\uB098\uC694?\\n\uADFC\uAC70:\\n[\uADFC\uAC70
+      1] \uB300\uD45C \uBA54\uB274\uB294 \uBE44\uBE54\uBC25\uC600\uC5B4\uC694.\\n[\uADFC\uAC70
+      2] \uBA54\uB274\uB294 \uC5F4 \uAC00\uC9C0 \uC548\uCABD\uC73C\uB85C \uB2E8\uC21C\uD558\uAC8C
+      \uC720\uC9C0\uD588\uC5B4\uC694.\\n\uC8FC\uC7A5:\\n[\uC8FC\uC7A5 1] \uB300\uD45C
+      \uBA54\uB274\uB294 \uBE44\uBE54\uBC25\uC774\uC5C8\uC5B4\uC694.\\n[\uC8FC\uC7A5
+      2] \uBA54\uB274\uB294 \uC5F4 \uAC00\uC9C0 \uC548\uCABD\uC73C\uB85C \uB2E8\uC21C\uD558\uAC8C
+      \uC720\uC9C0\uD588\uC5B4\uC694.\"}],\"temperature\":0.2,\"max_tokens\":600,\"enable_thinking\":false,\"response_format\":{\"type\":\"json_object\"}}"
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '1975'
+      content-type:
+      - application/json
+      cookie:
+      - acw_tc=25b9425c-155e-9397-9fe5-dfc28d188e5a19dc9af3a342e4bcc89d627ecbf2eba6
+      host:
+      - dashscope-intl.aliyuncs.com
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: https://dashscope-intl.aliyuncs.com/compatible-mode/v1/chat/completions
+  response:
+    body:
+      string: "{\"choices\":[{\"finish_reason\":\"stop\",\"index\":0,\"message\":{\"content\":\"{\\n\\\"situation\\\":
+        \\\"\uAC00\uAC8C\uC758 \uBA54\uB274\uC5D0 \uB300\uD574 \uC0AC\uC7A5\uB2D8\uC740
+        \uBB34\uC5C7\uC744 \uB9D0\uD588\uB098\uC694?\\\",\\n\\\"verdicts\\\": [\\n
+        \ {\\n    \\\"index\\\": 1,\\n    \\\"supported\\\": true,\\n    \\\"answers_question\\\":
+        true,\\n    \\\"situation_covered\\\": true,\\n    \\\"citation\\\": 1\\n
+        \ },\\n  {\\n    \\\"index\\\": 2,\\n    \\\"supported\\\": true,\\n    \\\"answers_question\\\":
+        true,\\n    \\\"situation_covered\\\": true,\\n    \\\"citation\\\": 2\\n
+        \ }\\n]\\n}\",\"role\":\"assistant\"}}],\"created\":1793667650,\"id\":\"chatcmpl-b140775b-fdb4-987f-9216-6f4b94d2b2d2\",\"model\":\"qwen3.7-flash\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":122,\"prompt_tokens\":443,\"prompt_tokens_details\":{\"cached_tokens\":0,\"text_tokens\":443},\"total_tokens\":565}}"
+    headers:
+      content-length:
+      - '748'
+      content-type:
+      - application/json
+      date:
+      - Tue, 03 Nov 2026 01:00:51 GMT
+      req-arrive-time:
+      - '1793667650661'
+      req-cost-time:
+      - '1436'
+      resp-start-time:
+      - '1793667652098'
+      server:
+      - istio-envoy
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin,Access-Control-Request-Method,Access-Control-Request-Headers, Accept-Encoding
+      x-dashscope-call-gateway:
+      - 'true'
+      x-dashscope-finished:
+      - 'true'
+      x-dashscope-timeout:
+      - '3600'
+      x-envoy-upstream-service-time:
+      - '1435'
+      x-request-id:
+      - b140775b-fdb4-987f-9216-6f4b94d2b2d2
+    status:
+      code: 200
+      message: OK
+- request:
+    body: "{\"model\":\"qwen3.7-flash\",\"messages\":[{\"role\":\"system\",\"content\":\"\uB2F9\uC2E0\uC740
+      \uD3D0\uC5C5\uD55C \uAC00\uAC8C \uC0AC\uC7A5\uB2D8\uC758 \uC778\uD130\uBDF0
+      \uB2F5\uBCC0\uC73C\uB85C \uB9CC\uB4E0 \uCE74\uB4DC \uBB38\uC7A5(\uC8FC\uC7A5)\uC744
+      \uAC80\uC99D\uD558\uB294 \uAC80\uC0AC\uAE30\uC785\uB2C8\uB2E4. \uC9C8\uBB38(\uCD95
+      \uC774\uB984), \uBC88\uD638\uAC00 \uBD99\uC740 \uADFC\uAC70 \uBC1C\uCDCC(\uC0AC\uC7A5\uB2D8
+      \uB2F5\uBCC0), \uBC88\uD638\uAC00 \uBD99\uC740 \uC8FC\uC7A5\uC744 \uC77D\uACE0
+      \uC8FC\uC7A5\uB9C8\uB2E4 \uD310\uC815\uD569\uB2C8\uB2E4.\\n1. supported: \uC8FC\uC7A5\uC758
+      \uB0B4\uC6A9\uC774 \uC5B4\uB5A4 \uADFC\uAC70 \uBC1C\uCDCC\uC5D0 \uC801\uD600
+      \uC788\uC73C\uBA74 true. \uD45C\uD604\xB7\uC5B4\uC21C\xB7\uC5B4\uBBF8\uAC00
+      \uB2EC\uB77C\uB3C4 \uAC19\uC740 \uB73B\uC774\uBA74 true \uC785\uB2C8\uB2E4.
+      \uC8FC\uC7A5\uC774 \uB450 \uBC1C\uCDCC\uC758 \uB0B4\uC6A9\uC744 \uD568\uAED8
+      \uB2F4\uC73C\uBA74 \uB458 \uB2E4 \uADFC\uAC70\uC5D0 \uC788\uC744 \uB54C true
+      \uC774\uACE0, citation \uC740 \uB354 \uB9CE\uC740 \uB0B4\uC6A9\uC744 \uB2F4\uC740
+      \uBC1C\uCDCC \uBC88\uD638\uC785\uB2C8\uB2E4. \uADFC\uAC70 \uC5B4\uB514\uC5D0\uB3C4
+      \uC5C6\uB294 \uC22B\uC790\xB7\uC774\uB984\xB7\uC7A5\uC18C\xB7\uC774\uC720\xB7\uC2DC\uC810\uC774
+      \uD558\uB098\uB77C\uB3C4 \uC788\uC73C\uBA74 false \uC785\uB2C8\uB2E4.\\n2. citation:
+      \uC8FC\uC7A5\uC744 \uB4B7\uBC1B\uCE68\uD558\uB294 \uADFC\uAC70 \uBC88\uD638(1\uBD80\uD130).
+      supported \uAC00 true \uC774\uBA74 citation \uC740 \uBC18\uB4DC\uC2DC \uADFC\uAC70
+      \uBC88\uD638\uC774\uACE0 null \uC774\uBA74 \uC548 \uB429\uB2C8\uB2E4. supported
+      \uAC00 false \uC774\uBA74 null \uC785\uB2C8\uB2E4.\\n3. answers_question: \uC8FC\uC7A5\uC774
+      \uADF8 \uCD95(\uC9C8\uBB38)\uC5D0 \uAD00\uD55C \uB0B4\uC6A9\uC774\uBA74 true.\\n4.
+      situation_covered: citation \uC774 \uC788\uC73C\uBA74 true, \uC5C6\uC73C\uBA74
+      false.\\nsituation \uC5D0\uB294 \uCD95 \uC774\uB984\uC744 \uD55C \uC904\uB85C
+      \uC801\uC2B5\uB2C8\uB2E4. \uBC18\uB4DC\uC2DC {\\\"situation\\\": \\\"<\uCD95
+      \uC774\uB984 \uD55C \uC904>\\\", \\\"verdicts\\\": [{\\\"index\\\": <\uC8FC\uC7A5
+      \uBC88\uD638 1\uBD80\uD130>, \\\"supported\\\": true|false, \\\"answers_question\\\":
+      true|false, \\\"situation_covered\\\": true|false, \\\"citation\\\": <\uADFC\uAC70
+      \uBC88\uD638 \uB610\uB294 null>}]} \uD615\uC2DD\uC758 JSON \uB9CC \uCD9C\uB825\uD558\uACE0,
+      \uC8FC\uC7A5\uB9C8\uB2E4 \uC815\uD655\uD788 \uD55C \uD56D\uBAA9\uC744 \uC8FC\uC7A5
+      \uBC88\uD638 \uC21C\uC11C\uB85C \uC501\uB2C8\uB2E4.\"},{\"role\":\"user\",\"content\":\"\uC9C8\uBB38:
+      \uAC00\uAC8C\uC758 \uAC00\uACA9\uC5D0 \uB300\uD574 \uC0AC\uC7A5\uB2D8\uC740
+      \uBB34\uC5C7\uC744 \uB9D0\uD588\uB098\uC694?\\n\uADFC\uAC70:\\n[\uADFC\uAC70
+      1] \uBE44\uBE54\uBC25\uC740 9500\uC6D0\uC5D0 \uD314\uC558\uC5B4\uC694.\\n[\uADFC\uAC70
+      2] \uC6D0\uAC00\uC728\uC740 \uB300\uB7B5 \uC0BC\uC2ED \uD37C\uC13C\uD2B8 \uC815\uB3C4\uC600\uC5B4\uC694.\\n\uC8FC\uC7A5:\\n[\uC8FC\uC7A5
+      1] \uBE44\uBE54\uBC25\uC740 9500\uC6D0\uC5D0 \uD314\uC558\uC5B4\uC694.\\n[\uC8FC\uC7A5
+      2] \uC6D0\uAC00\uC728\uC740 \uB300\uB7B5 \uC0BC\uC2ED \uD37C\uC13C\uD2B8 \uC815\uB3C4\uC600\uC5B4\uC694.\"}],\"temperature\":0.2,\"max_tokens\":600,\"enable_thinking\":false,\"response_format\":{\"type\":\"json_object\"}}"
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '1954'
+      content-type:
+      - application/json
+      cookie:
+      - acw_tc=25b9425c-155e-9397-9fe5-dfc28d188e5a19dc9af3a342e4bcc89d627ecbf2eba6
+      host:
+      - dashscope-intl.aliyuncs.com
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: https://dashscope-intl.aliyuncs.com/compatible-mode/v1/chat/completions
+  response:
+    body:
+      string: "{\"choices\":[{\"finish_reason\":\"stop\",\"index\":0,\"message\":{\"content\":\"{\\n\\\"situation\\\":
+        \\\"\uAC00\uAC8C\uC758 \uAC00\uACA9\uC5D0 \uB300\uD574 \uC0AC\uC7A5\uB2D8\uC740
+        \uBB34\uC5C7\uC744 \uB9D0\uD588\uB098\uC694?\\\",\\n\\\"verdicts\\\": [\\n{\\n\\\"index\\\":
+        1,\\n\\\"supported\\\": true,\\n\\\"answers_question\\\": true,\\n\\\"situation_covered\\\":
+        true,\\n\\\"citation\\\": 1\\n},\\n{\\n\\\"index\\\": 2,\\n\\\"supported\\\":
+        true,\\n\\\"answers_question\\\": true,\\n\\\"situation_covered\\\": true,\\n\\\"citation\\\":
+        2\\n}\\n]\\n}\",\"role\":\"assistant\"}}],\"created\":1793667652,\"id\":\"chatcmpl-153ad9c4-3a69-9487-a1fd-974157c77342\",\"model\":\"qwen3.7-flash\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":106,\"prompt_tokens\":459,\"prompt_tokens_details\":{\"cached_tokens\":0,\"text_tokens\":459},\"total_tokens\":565}}"
+    headers:
+      content-length:
+      - '700'
+      content-type:
+      - application/json
+      date:
+      - Tue, 03 Nov 2026 01:00:53 GMT
+      req-arrive-time:
+      - '1793667652284'
+      req-cost-time:
+      - '1397'
+      resp-start-time:
+      - '1793667653681'
+      server:
+      - istio-envoy
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin,Access-Control-Request-Method,Access-Control-Request-Headers, Accept-Encoding
+      x-dashscope-call-gateway:
+      - 'true'
+      x-dashscope-finished:
+      - 'true'
+      x-dashscope-timeout:
+      - '3600'
+      x-envoy-upstream-service-time:
+      - '1395'
+      x-request-id:
+      - 153ad9c4-3a69-9487-a1fd-974157c77342
+    status:
+      code: 200
+      message: OK
+- request:
+    body: "{\"model\":\"qwen3.7-flash\",\"messages\":[{\"role\":\"system\",\"content\":\"\uB2F9\uC2E0\uC740
+      \uD3D0\uC5C5\uD55C \uAC00\uAC8C \uC0AC\uC7A5\uB2D8\uC758 \uC778\uD130\uBDF0
+      \uB2F5\uBCC0\uC73C\uB85C \uB9CC\uB4E0 \uCE74\uB4DC \uBB38\uC7A5(\uC8FC\uC7A5)\uC744
+      \uAC80\uC99D\uD558\uB294 \uAC80\uC0AC\uAE30\uC785\uB2C8\uB2E4. \uC9C8\uBB38(\uCD95
+      \uC774\uB984), \uBC88\uD638\uAC00 \uBD99\uC740 \uADFC\uAC70 \uBC1C\uCDCC(\uC0AC\uC7A5\uB2D8
+      \uB2F5\uBCC0), \uBC88\uD638\uAC00 \uBD99\uC740 \uC8FC\uC7A5\uC744 \uC77D\uACE0
+      \uC8FC\uC7A5\uB9C8\uB2E4 \uD310\uC815\uD569\uB2C8\uB2E4.\\n1. supported: \uC8FC\uC7A5\uC758
+      \uB0B4\uC6A9\uC774 \uC5B4\uB5A4 \uADFC\uAC70 \uBC1C\uCDCC\uC5D0 \uC801\uD600
+      \uC788\uC73C\uBA74 true. \uD45C\uD604\xB7\uC5B4\uC21C\xB7\uC5B4\uBBF8\uAC00
+      \uB2EC\uB77C\uB3C4 \uAC19\uC740 \uB73B\uC774\uBA74 true \uC785\uB2C8\uB2E4.
+      \uC8FC\uC7A5\uC774 \uB450 \uBC1C\uCDCC\uC758 \uB0B4\uC6A9\uC744 \uD568\uAED8
+      \uB2F4\uC73C\uBA74 \uB458 \uB2E4 \uADFC\uAC70\uC5D0 \uC788\uC744 \uB54C true
+      \uC774\uACE0, citation \uC740 \uB354 \uB9CE\uC740 \uB0B4\uC6A9\uC744 \uB2F4\uC740
+      \uBC1C\uCDCC \uBC88\uD638\uC785\uB2C8\uB2E4. \uADFC\uAC70 \uC5B4\uB514\uC5D0\uB3C4
+      \uC5C6\uB294 \uC22B\uC790\xB7\uC774\uB984\xB7\uC7A5\uC18C\xB7\uC774\uC720\xB7\uC2DC\uC810\uC774
+      \uD558\uB098\uB77C\uB3C4 \uC788\uC73C\uBA74 false \uC785\uB2C8\uB2E4.\\n2. citation:
+      \uC8FC\uC7A5\uC744 \uB4B7\uBC1B\uCE68\uD558\uB294 \uADFC\uAC70 \uBC88\uD638(1\uBD80\uD130).
+      supported \uAC00 true \uC774\uBA74 citation \uC740 \uBC18\uB4DC\uC2DC \uADFC\uAC70
+      \uBC88\uD638\uC774\uACE0 null \uC774\uBA74 \uC548 \uB429\uB2C8\uB2E4. supported
+      \uAC00 false \uC774\uBA74 null \uC785\uB2C8\uB2E4.\\n3. answers_question: \uC8FC\uC7A5\uC774
+      \uADF8 \uCD95(\uC9C8\uBB38)\uC5D0 \uAD00\uD55C \uB0B4\uC6A9\uC774\uBA74 true.\\n4.
+      situation_covered: citation \uC774 \uC788\uC73C\uBA74 true, \uC5C6\uC73C\uBA74
+      false.\\nsituation \uC5D0\uB294 \uCD95 \uC774\uB984\uC744 \uD55C \uC904\uB85C
+      \uC801\uC2B5\uB2C8\uB2E4. \uBC18\uB4DC\uC2DC {\\\"situation\\\": \\\"<\uCD95
+      \uC774\uB984 \uD55C \uC904>\\\", \\\"verdicts\\\": [{\\\"index\\\": <\uC8FC\uC7A5
+      \uBC88\uD638 1\uBD80\uD130>, \\\"supported\\\": true|false, \\\"answers_question\\\":
+      true|false, \\\"situation_covered\\\": true|false, \\\"citation\\\": <\uADFC\uAC70
+      \uBC88\uD638 \uB610\uB294 null>}]} \uD615\uC2DD\uC758 JSON \uB9CC \uCD9C\uB825\uD558\uACE0,
+      \uC8FC\uC7A5\uB9C8\uB2E4 \uC815\uD655\uD788 \uD55C \uD56D\uBAA9\uC744 \uC8FC\uC7A5
+      \uBC88\uD638 \uC21C\uC11C\uB85C \uC501\uB2C8\uB2E4.\"},{\"role\":\"user\",\"content\":\"\uC9C8\uBB38:
+      \uAC00\uAC8C\uC758 \uC190\uB2D8\uC5D0 \uB300\uD574 \uC0AC\uC7A5\uB2D8\uC740
+      \uBB34\uC5C7\uC744 \uB9D0\uD588\uB098\uC694?\\n\uADFC\uAC70:\\n[\uADFC\uAC70
+      1] \uB2E8\uACE8\uC740 \uC810\uC2EC\uC5D0 \uC624\uB294 \uC190\uB2D8\uC774 \uB9CE\uC558\uC5B4\uC694.\\n[\uADFC\uAC70
+      2] \uC2E0\uADDC \uC190\uB2D8\uC740 \uC8FC\uB85C \uC9C0\uC778 \uC18C\uAC1C\uB85C
+      \uC654\uC5B4\uC694.\\n\uC8FC\uC7A5:\\n[\uC8FC\uC7A5 1] \uB2E8\uACE8\uC740 \uC810\uC2EC\uC5D0
+      \uC624\uB294 \uC190\uB2D8\uC774 \uB9CE\uC558\uC5B4\uC694.\\n[\uC8FC\uC7A5 2]
+      \uC2E0\uADDC \uC190\uB2D8\uC740 \uC8FC\uB85C \uC9C0\uC778 \uC18C\uAC1C\uB85C
+      \uC654\uC5B4\uC694.\"}],\"temperature\":0.2,\"max_tokens\":600,\"enable_thinking\":false,\"response_format\":{\"type\":\"json_object\"}}"
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '1976'
+      content-type:
+      - application/json
+      cookie:
+      - acw_tc=25b9425c-155e-9397-9fe5-dfc28d188e5a19dc9af3a342e4bcc89d627ecbf2eba6
+      host:
+      - dashscope-intl.aliyuncs.com
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: https://dashscope-intl.aliyuncs.com/compatible-mode/v1/chat/completions
+  response:
+    body:
+      string: "{\"choices\":[{\"finish_reason\":\"stop\",\"index\":0,\"message\":{\"content\":\"{\\n\\\"situation\\\":
+        \\\"\uAC00\uAC8C\uC758 \uC190\uB2D8\uC5D0 \uB300\uD574 \uC0AC\uC7A5\uB2D8\uC740
+        \uBB34\uC5C7\uC744 \uB9D0\uD588\uB098\uC694?\\\",\\n\\\"verdicts\\\": [\\n
+        \ {\\n    \\\"index\\\": 1,\\n    \\\"supported\\\": true,\\n    \\\"answers_question\\\":
+        true,\\n    \\\"situation_covered\\\": true,\\n    \\\"citation\\\": 1\\n
+        \ },\\n  {\\n    \\\"index\\\": 2,\\n    \\\"supported\\\": true,\\n    \\\"answers_question\\\":
+        true,\\n    \\\"situation_covered\\\": true,\\n    \\\"citation\\\": 2\\n
+        \ }\\n]\\n}\",\"role\":\"assistant\"}}],\"created\":1793667653,\"id\":\"chatcmpl-6c5d6d58-c965-98c8-bda9-4c4077e6d13a\",\"model\":\"qwen3.7-flash\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":122,\"prompt_tokens\":447,\"prompt_tokens_details\":{\"cached_tokens\":0,\"text_tokens\":447},\"total_tokens\":569}}"
+    headers:
+      content-length:
+      - '748'
+      content-type:
+      - application/json
+      date:
+      - Tue, 03 Nov 2026 01:00:54 GMT
+      req-arrive-time:
+      - '1793667653788'
+      req-cost-time:
+      - '1376'
+      resp-start-time:
+      - '1793667655164'
+      server:
+      - istio-envoy
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin,Access-Control-Request-Method,Access-Control-Request-Headers, Accept-Encoding
+      x-dashscope-call-gateway:
+      - 'true'
+      x-dashscope-finished:
+      - 'true'
+      x-dashscope-timeout:
+      - '3600'
+      x-envoy-upstream-service-time:
+      - '1374'
+      x-request-id:
+      - 6c5d6d58-c965-98c8-bda9-4c4077e6d13a
+    status:
+      code: 200
+      message: OK
+- request:
+    body: "{\"model\":\"qwen3.7-flash\",\"messages\":[{\"role\":\"system\",\"content\":\"\uB2F9\uC2E0\uC740
+      \uD3D0\uC5C5\uD55C \uAC00\uAC8C \uC0AC\uC7A5\uB2D8\uC758 \uC778\uD130\uBDF0
+      \uB2F5\uBCC0\uC73C\uB85C \uB9CC\uB4E0 \uCE74\uB4DC \uBB38\uC7A5(\uC8FC\uC7A5)\uC744
+      \uAC80\uC99D\uD558\uB294 \uAC80\uC0AC\uAE30\uC785\uB2C8\uB2E4. \uC9C8\uBB38(\uCD95
+      \uC774\uB984), \uBC88\uD638\uAC00 \uBD99\uC740 \uADFC\uAC70 \uBC1C\uCDCC(\uC0AC\uC7A5\uB2D8
+      \uB2F5\uBCC0), \uBC88\uD638\uAC00 \uBD99\uC740 \uC8FC\uC7A5\uC744 \uC77D\uACE0
+      \uC8FC\uC7A5\uB9C8\uB2E4 \uD310\uC815\uD569\uB2C8\uB2E4.\\n1. supported: \uC8FC\uC7A5\uC758
+      \uB0B4\uC6A9\uC774 \uC5B4\uB5A4 \uADFC\uAC70 \uBC1C\uCDCC\uC5D0 \uC801\uD600
+      \uC788\uC73C\uBA74 true. \uD45C\uD604\xB7\uC5B4\uC21C\xB7\uC5B4\uBBF8\uAC00
+      \uB2EC\uB77C\uB3C4 \uAC19\uC740 \uB73B\uC774\uBA74 true \uC785\uB2C8\uB2E4.
+      \uC8FC\uC7A5\uC774 \uB450 \uBC1C\uCDCC\uC758 \uB0B4\uC6A9\uC744 \uD568\uAED8
+      \uB2F4\uC73C\uBA74 \uB458 \uB2E4 \uADFC\uAC70\uC5D0 \uC788\uC744 \uB54C true
+      \uC774\uACE0, citation \uC740 \uB354 \uB9CE\uC740 \uB0B4\uC6A9\uC744 \uB2F4\uC740
+      \uBC1C\uCDCC \uBC88\uD638\uC785\uB2C8\uB2E4. \uADFC\uAC70 \uC5B4\uB514\uC5D0\uB3C4
+      \uC5C6\uB294 \uC22B\uC790\xB7\uC774\uB984\xB7\uC7A5\uC18C\xB7\uC774\uC720\xB7\uC2DC\uC810\uC774
+      \uD558\uB098\uB77C\uB3C4 \uC788\uC73C\uBA74 false \uC785\uB2C8\uB2E4.\\n2. citation:
+      \uC8FC\uC7A5\uC744 \uB4B7\uBC1B\uCE68\uD558\uB294 \uADFC\uAC70 \uBC88\uD638(1\uBD80\uD130).
+      supported \uAC00 true \uC774\uBA74 citation \uC740 \uBC18\uB4DC\uC2DC \uADFC\uAC70
+      \uBC88\uD638\uC774\uACE0 null \uC774\uBA74 \uC548 \uB429\uB2C8\uB2E4. supported
+      \uAC00 false \uC774\uBA74 null \uC785\uB2C8\uB2E4.\\n3. answers_question: \uC8FC\uC7A5\uC774
+      \uADF8 \uCD95(\uC9C8\uBB38)\uC5D0 \uAD00\uD55C \uB0B4\uC6A9\uC774\uBA74 true.\\n4.
+      situation_covered: citation \uC774 \uC788\uC73C\uBA74 true, \uC5C6\uC73C\uBA74
+      false.\\nsituation \uC5D0\uB294 \uCD95 \uC774\uB984\uC744 \uD55C \uC904\uB85C
+      \uC801\uC2B5\uB2C8\uB2E4. \uBC18\uB4DC\uC2DC {\\\"situation\\\": \\\"<\uCD95
+      \uC774\uB984 \uD55C \uC904>\\\", \\\"verdicts\\\": [{\\\"index\\\": <\uC8FC\uC7A5
+      \uBC88\uD638 1\uBD80\uD130>, \\\"supported\\\": true|false, \\\"answers_question\\\":
+      true|false, \\\"situation_covered\\\": true|false, \\\"citation\\\": <\uADFC\uAC70
+      \uBC88\uD638 \uB610\uB294 null>}]} \uD615\uC2DD\uC758 JSON \uB9CC \uCD9C\uB825\uD558\uACE0,
+      \uC8FC\uC7A5\uB9C8\uB2E4 \uC815\uD655\uD788 \uD55C \uD56D\uBAA9\uC744 \uC8FC\uC7A5
+      \uBC88\uD638 \uC21C\uC11C\uB85C \uC501\uB2C8\uB2E4.\"},{\"role\":\"user\",\"content\":\"\uC9C8\uBB38:
+      \uAC00\uAC8C\uC758 \uC2E4\uD328\uC5D0 \uB300\uD574 \uC0AC\uC7A5\uB2D8\uC740
+      \uBB34\uC5C7\uC744 \uB9D0\uD588\uB098\uC694?\\n\uADFC\uAC70:\\n[\uADFC\uAC70
+      1] \uC9C1\uC6D0 \uAD6C\uD558\uAE30\uAC00 \uC5B4\uB824\uC6E0\uB2E4.\\n[\uADFC\uAC70
+      2] \uC0AC\uC7A5\uB2D8\uC5D0\uAC8C \uBB38\uC758\uB294 [\uC804\uD654\uBC88\uD638]
+      \uBC88\uD638\uB85C \uC654\uC5B4\uC694.\\n\uC8FC\uC7A5:\\n[\uC8FC\uC7A5 1] \uC9C1\uC6D0
+      \uAD6C\uD558\uAE30\uAC00 \uC5B4\uB824\uC6E0\uB2E4.\\n[\uC8FC\uC7A5 2] \uC0AC\uC7A5\uB2D8\uC5D0\uAC8C
+      \uBB38\uC758\uB294 [\uC804\uD654\uBC88\uD638] \uBC88\uD638\uB85C \uC654\uC5B4\uC694.\"}],\"temperature\":0.2,\"max_tokens\":600,\"enable_thinking\":false,\"response_format\":{\"type\":\"json_object\"}}"
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '1962'
+      content-type:
+      - application/json
+      cookie:
+      - acw_tc=25b9425c-155e-9397-9fe5-dfc28d188e5a19dc9af3a342e4bcc89d627ecbf2eba6
+      host:
+      - dashscope-intl.aliyuncs.com
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: https://dashscope-intl.aliyuncs.com/compatible-mode/v1/chat/completions
+  response:
+    body:
+      string: "{\"choices\":[{\"finish_reason\":\"stop\",\"index\":0,\"message\":{\"content\":\"{\\n
+        \ \\\"situation\\\": \\\"\uAC00\uAC8C\uC758 \uC2E4\uD328\uC5D0 \uB300\uD574
+        \uC0AC\uC7A5\uB2D8\uC740 \uBB34\uC5C7\uC744 \uB9D0\uD588\uB098\uC694?\\\",\\n
+        \ \\\"verdicts\\\": [\\n    {\\n      \\\"index\\\": 1,\\n      \\\"supported\\\":
+        true,\\n      \\\"answers_question\\\": true,\\n      \\\"situation_covered\\\":
+        true,\\n      \\\"citation\\\": 1\\n    },\\n    {\\n      \\\"index\\\":
+        2,\\n      \\\"supported\\\": true,\\n      \\\"answers_question\\\": false,\\n
+        \     \\\"situation_covered\\\": true,\\n      \\\"citation\\\": 2\\n    }\\n
+        \ ]\\n}\",\"role\":\"assistant\"}}],\"created\":1793667655,\"id\":\"chatcmpl-31aa821e-92a7-9db8-9579-0f434c41d9cc\",\"model\":\"qwen3.7-flash\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":128,\"prompt_tokens\":445,\"prompt_tokens_details\":{\"cached_tokens\":0,\"text_tokens\":445},\"total_tokens\":573}}"
+    headers:
+      content-length:
+      - '783'
+      content-type:
+      - application/json
+      date:
+      - Tue, 03 Nov 2026 01:00:56 GMT
+      req-arrive-time:
+      - '1793667655313'
+      req-cost-time:
+      - '1341'
+      resp-start-time:
+      - '1793667656654'
+      server:
+      - istio-envoy
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin,Access-Control-Request-Method,Access-Control-Request-Headers, Accept-Encoding
+      x-dashscope-call-gateway:
+      - 'true'
+      x-dashscope-finished:
+      - 'true'
+      x-dashscope-timeout:
+      - '3600'
+      x-envoy-upstream-service-time:
+      - '1340'
+      x-request-id:
+      - 31aa821e-92a7-9db8-9579-0f434c41d9cc
+    status:
+      code: 200
+      message: OK
+version: 1

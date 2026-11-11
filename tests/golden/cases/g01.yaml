@@ -1,0 +1,41 @@
+# synthetic anonymous interview
+id: g01
+shop:
+  name: 가나다식당
+  owner_name: 아무개
+  trade: restaurant
+  area_type: station
+  years: 8
+  closed_year: 2024
+  supplier_names:
+  - 해든푸드
+  - 새벽농산
+answers:
+  location:
+  - 가나다식당은 지하철 출구 앞 골목에 있었어요.
+  - 유동 인구는 점심에 가장 많았어요.
+  suppliers:
+  - 해든푸드에서 매주 재료를 받았어요.
+  - 아무개 사장이 직접 새벽농산에 전화해서 주문했어요.
+  menu:
+  - 대표 메뉴는 김치찌개였어요.
+  - 메뉴는 열 가지 안쪽으로 단순하게 유지했어요.
+  pricing:
+  - 김치찌개은 9000원에 팔았어요.
+  - 원가율은 대략 삼십 퍼센트 정도였어요.
+  customers:
+  - 단골은 점심에 오는 손님이 많았어요.
+  - 신규 손님은 주로 지인 소개로 왔어요.
+  failures:
+  - 임대료가 두 번 올랐다.
+  - 아무개에게 문의는 010-1111-2077 번호로 왔어요.
+expect:
+  pii_free: true
+  min_supported_ratio: 0.8
+  nonempty_axes:
+  - location
+  - suppliers
+  - menu
+  - pricing
+  - customers
+  - failures

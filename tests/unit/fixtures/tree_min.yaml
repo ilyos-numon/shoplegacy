@@ -1,0 +1,77 @@
+trade: tree_min
+title: 테스트용 최소 트리
+version: 1
+axes: [location, suppliers, menu, pricing, customers, failures]
+nodes:
+  - id: loc-01
+    axis: location
+    text: "입지 질문 1번입니다. 자세히 말씀해 주세요."
+    follow_ups:
+      - id: loc-01-f1
+        text: "입지 꼬리 질문 1번입니다."
+  - id: sup-01
+    axis: suppliers
+    text: "거래처 질문 1번입니다. 자세히 말씀해 주세요."
+    follow_ups:
+      - id: sup-01-f1
+        text: "거래처 꼬리 질문 1번입니다."
+  - id: men-01
+    axis: menu
+    text: "메뉴 질문 1번입니다. 자세히 말씀해 주세요."
+    follow_ups:
+      - id: men-01-f1
+        text: "메뉴 꼬리 질문 1번입니다."
+  - id: pri-01
+    axis: pricing
+    text: "가격 질문 1번입니다. 자세히 말씀해 주세요."
+    follow_ups:
+      - id: pri-01-f1
+        text: "가격 꼬리 질문 1번입니다."
+  - id: cus-01
+    axis: customers
+    text: "손님 질문 1번입니다. 자세히 말씀해 주세요."
+    follow_ups:
+      - id: cus-01-f1
+        text: "손님 꼬리 질문 1번입니다."
+  - id: fai-01
+    axis: failures
+    text: "실패 질문 1번입니다. 자세히 말씀해 주세요."
+    follow_ups:
+      - id: fai-01-f1
+        text: "실패 꼬리 질문 1번입니다."
+  - id: loc-02
+    axis: location
+    text: "입지 질문 2번입니다. 자세히 말씀해 주세요."
+    follow_ups:
+      - id: loc-02-f1
+        text: "입지 꼬리 질문 2번입니다."
+  - id: sup-02
+    axis: suppliers
+    text: "거래처 질문 2번입니다. 자세히 말씀해 주세요."
+    follow_ups:
+      - id: sup-02-f1
+        text: "거래처 꼬리 질문 2번입니다."
+  - id: men-02
+    axis: menu
+    text: "메뉴 질문 2번입니다. 자세히 말씀해 주세요."
+    follow_ups:
+      - id: men-02-f1
+        text: "메뉴 꼬리 질문 2번입니다."
+  - id: pri-02
+    axis: pricing
+    text: "가격 질문 2번입니다. 자세히 말씀해 주세요."
+    follow_ups:
+      - id: pri-02-f1
+        text: "가격 꼬리 질문 2번입니다."
+  - id: cus-02
+    axis: customers
+    text: "손님 질문 2번입니다. 자세히 말씀해 주세요."
+    follow_ups:
+      - id: cus-02-f1
+        text: "손님 꼬리 질문 2번입니다."
+  - id: fai-02
+    axis: failures
+    text: "실패 질문 2번입니다. 자세히 말씀해 주세요."
+    follow_ups:
+      - id: fai-02-f1
+        text: "실패 꼬리 질문 2번입니다."

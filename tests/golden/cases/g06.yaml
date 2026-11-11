@@ -1,0 +1,41 @@
+# synthetic anonymous interview
+id: g06
+shop:
+  name: 거너더베이커리
+  owner_name: 무명씨
+  trade: cafe
+  area_type: residential
+  years: 4
+  closed_year: 2024
+  supplier_names:
+  - 밀알제분
+answers:
+  location:
+  - 거너더베이커리은 아파트 단지 상가에 있었어요.
+  - 유동 인구는 오전에 가장 많았어요.
+  - 주소는 행복동 12-3 이었어요.
+  suppliers:
+  - 밀알제분에서 매주 재료를 받았어요.
+  - 무명씨 사장이 직접 밀알제분에 전화해서 주문했어요.
+  menu:
+  - 대표 메뉴는 소금빵였어요.
+  - 메뉴는 열 가지 안쪽으로 단순하게 유지했어요.
+  pricing:
+  - 소금빵은 3200원에 팔았어요.
+  - 원가율은 대략 삼십 퍼센트 정도였어요.
+  customers:
+  - 단골은 오전에 오는 손님이 많았어요.
+  - 신규 손님은 주로 지인 소개로 왔어요.
+  failures:
+  - 재료값이 계속 올랐다.
+  - 무명씨에게 문의는 010-1666-2462 번호로 왔어요.
+expect:
+  pii_free: true
+  min_supported_ratio: 0.8
+  nonempty_axes:
+  - location
+  - suppliers
+  - menu
+  - pricing
+  - customers
+  - failures
