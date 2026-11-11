@@ -1,0 +1,20 @@
+/* 가게유산 디자인 토큰 — 라이트 기본, 다크는 OS 설정 또는 <html data-theme="dark"> */
+:root{
+  --bg:#EEECE6; --surface:#FAF9F5; --surface-2:#E5E2D9; --ink:#1C1B18; --muted:#66625A; --line:#D6D2C7;
+  --accent:#2D3E62; --accent-ink:#F6F4EF; --accent-soft:#DDE2EC;
+  --seal:#AE3F2B; --ok:#46663A; --ok-soft:#DFE7D5; --warn:#94620F; --warn-soft:#F0E3C7; --bad:#9E3829; --bad-soft:#F1D9D2;
+  --hl:#F0DC97; --frame:#1C1B18; --shadow:0 30px 60px -30px rgba(28,27,24,.35);
+  --f-ui:"IBM Plex Sans KR",-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --f-story:"Gowun Batang","AppleMyungjo","Batang",serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#131417; --surface:#1B1C20; --surface-2:#25272C; --ink:#E9E6DF; --muted:#9D998F; --line:#30323A;
+  --accent:#A8B7D9; --accent-ink:#131417; --accent-soft:#283147;
+  --seal:#E2765F; --ok:#9DC08B; --ok-soft:#232E1F; --warn:#E2B266; --warn-soft:#33291A; --bad:#EC8B7A; --bad-soft:#3A221E;
+  --hl:#4B421F; --frame:#050506; --shadow:0 30px 60px -30px rgba(0,0,0,.7); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#131417; --surface:#1B1C20; --surface-2:#25272C; --ink:#E9E6DF; --muted:#9D998F; --line:#30323A;
+  --accent:#A8B7D9; --accent-ink:#131417; --accent-soft:#283147;
+  --seal:#E2765F; --ok:#9DC08B; --ok-soft:#232E1F; --warn:#E2B266; --warn-soft:#33291A; --bad:#EC8B7A; --bad-soft:#3A221E;
+  --hl:#4B421F; --frame:#050506; --shadow:0 30px 60px -30px rgba(0,0,0,.7); color-scheme:dark}

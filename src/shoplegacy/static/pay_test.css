@@ -1,0 +1,96 @@
+/* 테스트 결제 화면 전용. 결제 업체 창을 흉내 낸 아래 시트 모양. */
+
+.pay-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: calc(100vh - 160px);
+  padding-bottom: 96px;
+}
+
+.pay-sheet {
+  padding: 8px 18px 22px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.pay-grab {
+  width: 40px;
+  height: 4px;
+  margin: 2px auto 8px;
+  border-radius: 2px;
+  background: var(--line);
+}
+
+.pay-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.pay-head h1 {
+  margin: 0;
+  font-size: 1.07em;
+}
+
+.pay-back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  color: var(--muted);
+  font-size: 1.4rem;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.pay-note {
+  margin: 8px 0 0;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--surface-2);
+  font-size: 0.88em;
+}
+
+.pay-detail {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 6px 16px;
+  margin: 16px 0;
+  font-size: 0.9em;
+}
+
+.pay-detail div {
+  display: contents;
+}
+
+.pay-detail dt {
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.pay-detail dd {
+  margin: 0;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+#pay-amount {
+  font-weight: 600;
+}
+
+#pay-result {
+  min-height: 1.4em;
+  margin: 10px 0 0;
+}
+
+.pay-foot {
+  margin: 4px 0 0;
+  font-size: 0.85em;
+  text-align: center;
+}

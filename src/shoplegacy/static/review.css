@@ -1,0 +1,535 @@
+/* 카드 초안 검수 (/review/{id}) — 고치기 → 사장님 확인 → 공개 3단계, 고칠 곳, 근거·더보기 시트, 하단 남은 조건 막대. */
+
+main.rv {
+  position: relative;
+  padding-bottom: 0;
+}
+
+.rv-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.rv-title {
+  font-size: 1.5rem;
+  margin: 10px 0 2px;
+}
+
+.rv-mask-note {
+  font-size: 0.85em;
+  margin: 6px 0 0;
+}
+
+.llm-badge {
+  font-size: 0.8em;
+  color: var(--muted);
+}
+
+.llm-badge.llm-warn {
+  color: var(--bad);
+  font-weight: 600;
+}
+
+.llm-warning {
+  margin: 14px 0 0;
+  padding: 12px 14px;
+  border: 1px solid var(--bad);
+  border-radius: 12px;
+  background: var(--bad-soft);
+  color: var(--bad);
+  font-weight: 600;
+}
+
+/* 3단계 탭 */
+.steps {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  margin-top: 16px;
+  padding: 4px;
+  border-radius: 12px;
+  background: var(--surface-2);
+}
+
+.steps {
+  scroll-margin-top: 64px;
+}
+
+.steps button {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  min-height: 44px;
+  margin: 0;
+  padding: 8px 4px;
+  border: 0;
+  border-radius: 9px;
+  background: none;
+  color: var(--muted);
+  font-size: 0.87em;
+  font-weight: 500;
+}
+
+.steps button.on {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.steps .slider {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 4px;
+  width: calc((100% - 16px) / 3);
+  border-radius: 9px;
+  background: var(--surface);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+  transition: transform 0.35s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.steps[data-at="1"] .slider {
+  transform: translateX(calc(100% + 4px));
+}
+
+.steps[data-at="2"] .slider {
+  transform: translateX(calc(200% + 8px));
+}
+
+.steps .n,
+.rv-pane-h .n {
+  font-family: var(--f-mono);
+  font-size: 0.85em;
+}
+
+.steps .dotok {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ok);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .steps .slider {
+    transition: none;
+  }
+}
+
+/* 단계 화면: 휴대폰은 탭 하나씩, 넓은 화면은 세 단계를 차례로 모두 보여 준다 */
+.rv-pane {
+  margin-top: 16px;
+}
+
+.rv-pane-h {
+  display: none;
+}
+
+@media (max-width: 899px) {
+  .rv-pane.is-off {
+    display: none;
+  }
+}
+
+@media (min-width: 900px) {
+  .rv-pane + .rv-pane {
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+  }
+
+  .rv-pane-h {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    font-size: 1.1rem;
+    scroll-margin-top: 72px;
+  }
+
+  .rv-pane {
+    scroll-margin-top: 72px;
+  }
+}
+
+/* 고칠 곳 */
+.fixlist {
+  display: grid;
+  gap: 6px;
+}
+
+.fixlist .eyebrow {
+  margin: 0 0 2px;
+}
+
+.fixlist button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 48px;
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--bad-soft);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--bad-soft) 55%, var(--surface));
+  color: var(--ink);
+  font-size: 0.88em;
+  font-weight: 500;
+  text-align: left;
+}
+
+.fixlist button span:last-child {
+  color: var(--bad);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.fixlist .fix-ok {
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--ok-soft);
+  color: var(--ok);
+  font-size: 0.9em;
+  font-weight: 600;
+}
+
+.rv-support {
+  min-height: 32px;
+  margin: 12px 0 4px;
+  padding: 4px 12px;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+/* 주제별 문장 블록 */
+.axis {
+  border-top: 1px solid var(--line);
+  padding: 14px 0;
+  border-radius: 6px;
+}
+
+.axis-h {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 44px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  text-align: left;
+}
+
+.axis-h b {
+  font-weight: 600;
+}
+
+.axis-h .r {
+  color: var(--muted);
+  font-size: 0.78em;
+  font-variant-numeric: tabular-nums;
+}
+
+.axis-h .r.need {
+  color: var(--bad);
+}
+
+.axis-body {
+  display: grid;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.axis-body textarea {
+  font-family: var(--f-story);
+  font-size: 1em;
+}
+
+.axis .evidence-list {
+  margin: 0;
+}
+
+.axis .evidence-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  align-items: start;
+  margin: 0;
+  padding: 6px 0;
+  font-size: 0.87em;
+}
+
+.axis .evidence-claim {
+  color: var(--muted);
+}
+
+.axis .evidence-badge {
+  order: 2;
+  min-height: 28px;
+  padding: 2px 10px;
+  border: 0;
+  font-size: 0.8rem;
+}
+
+.axis .evidence-badge.badge-reviewer {
+  background: var(--surface-2);
+  color: var(--muted);
+}
+
+/* 사장님 확인 */
+.rv-decision {
+  margin: 0;
+}
+
+.owner-decision {
+  margin: 4px 0 0;
+  font-weight: 600;
+}
+
+.owner-decision.decision-approve {
+  color: var(--ok);
+}
+
+.owner-decision.decision-request_changes {
+  color: var(--bad);
+}
+
+.rv-link-result {
+  gap: 8px;
+}
+
+.linkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--surface-2);
+  font-family: var(--f-mono);
+  font-size: 0.78em;
+  word-break: break-all;
+}
+
+.linkbox .owner-link-url {
+  flex: 1;
+}
+
+.linkbox-copy {
+  flex: none;
+  min-height: 36px;
+  margin: 0;
+  padding: 4px 10px;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font-family: var(--f-ui);
+  white-space: nowrap;
+}
+
+#owner-links .eyebrow {
+  margin: 8px 0 4px;
+}
+
+#owner-links ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#owner-links li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  border-top: 1px solid var(--line);
+  font-size: 0.9em;
+}
+
+.owner-link-state {
+  font-weight: 600;
+}
+
+.owner-link-state.state-active {
+  color: var(--ok);
+}
+
+.owner-link-state.state-revoked,
+.owner-link-state.state-expired {
+  color: var(--muted);
+}
+
+.owner-link-revoke {
+  min-height: 36px;
+  margin: 0 0 0 auto;
+  padding: 4px 12px;
+  font-size: 0.9em;
+}
+
+/* 공개 */
+.gate {
+  margin: 0 0 14px;
+  padding: 14px 16px;
+}
+
+.gate ul {
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 0;
+}
+
+.gate li {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 10px;
+  align-items: start;
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+}
+
+.gate li:first-child {
+  border-top: 0;
+}
+
+.gate .ic {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  margin-top: 3px;
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.gate .ic.ok {
+  background: var(--ok);
+  color: var(--surface);
+}
+
+.gate .ic.no {
+  background: var(--bad-soft);
+  color: var(--bad);
+}
+
+.rv-public {
+  margin: 0 0 14px;
+}
+
+.rv-next {
+  gap: 8px;
+}
+
+/* 하단 막대: 아래 메뉴 바로 위에 붙는다 */
+.rv-foot {
+  position: sticky;
+  bottom: calc(69px + env(safe-area-inset-bottom, 0px));
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 20px -20px 0;
+  padding: 12px 20px 14px;
+  border-top: 1px solid var(--line);
+  background: var(--bg);
+}
+
+/* .wrap 의 좌우 여백이 480px 이하에서 16px 이라 음수 여백도 맞춘다 (가로 넘침 방지). */
+@media (max-width: 480px) {
+  .rv-foot {
+    margin: 20px -16px 0;
+    padding: 12px 16px 14px;
+  }
+}
+
+.rv-foot #message,
+.rv-foot #error {
+  margin: 0;
+  font-size: 0.88em;
+}
+
+.gatebar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88em;
+}
+
+.gatebar button {
+  min-height: 36px;
+  margin: 0;
+  padding: 4px 0;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.rv-foot-row {
+  display: flex;
+  gap: 10px;
+}
+
+.rv-foot-row .btn {
+  flex: 1;
+  width: auto;
+}
+
+.rv-foot-row .rv-more {
+  flex: none;
+  width: 52px;
+  padding: 0;
+}
+
+#reject-btn {
+  color: var(--bad);
+}
+
+/* 근거 시트 */
+.rv-sources {
+  gap: 12px;
+}
+
+.rv-src-focus {
+  gap: 8px;
+}
+
+.rv-src-focus .quote {
+  margin: 0;
+}
+
+.rv-src-focus p {
+  margin: 0;
+}
+
+.rv-sources .source-list {
+  margin: 0;
+}
+
+.rv-more-body {
+  gap: 12px;
+}
+
+.rv-more-body .hint {
+  margin: -4px 0 0;
+  font-size: 0.85em;
+}
+
+/* 공개 도장: 화면 가운데에 찍힌다 */
+.rv-stamp {
+  position: fixed;
+  top: 38%;
+  left: 50%;
+  margin-left: -58px;
+  z-index: 70;
+}

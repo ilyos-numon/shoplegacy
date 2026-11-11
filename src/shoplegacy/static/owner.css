@@ -1,0 +1,167 @@
+/* 사장님 확인 화면: 셸 없이 이야기 → 질문 → 64px 버튼 2개. 글씨는 크게. */
+.owner-page {
+  font-size: 1.25rem;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  padding-top: 20px;
+  padding-bottom: 72px;
+}
+
+.owner-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.owner-top .brand {
+  margin: 0;
+  font-family: var(--f-story);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--muted);
+}
+
+.owner-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.owner-tools button {
+  margin: 0;
+  padding: 8px 14px;
+  font-size: 0.8em;
+  font-weight: 500;
+}
+
+.owner-tools button[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+
+.owner-title {
+  margin-top: 20px;
+  font-family: var(--f-story);
+  font-weight: 700;
+  font-size: 1.6em;
+  line-height: 1.4;
+}
+
+.owner-page .lead {
+  font-size: 0.95em;
+  color: var(--muted);
+}
+
+.owner-status {
+  font-size: 1em;
+}
+
+.owner-trade {
+  margin: 8px 0 0;
+  font-size: 0.8em;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+/* 이야기: 바탕체, 주제 이름은 작은 소제목 */
+.owner-card .story section {
+  margin-top: 22px;
+}
+
+.owner-card .story h2 {
+  margin: 0 0 4px;
+  font-family: var(--f-ui);
+  font-size: 0.72em;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+}
+
+.owner-card .story .body {
+  margin: 0;
+  white-space: pre-wrap;
+  font-size: 1em;
+}
+
+.owner-card .story .body.empty {
+  color: var(--muted);
+}
+
+.owner-card .hint {
+  margin-top: 20px;
+  font-size: 0.85em;
+}
+
+/* 질문과 큰 버튼 */
+.owner-decide {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.owner-ask {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.owner-ask h2 {
+  margin: 0 0 4px;
+  font-size: 1.1em;
+}
+
+.owner-choice[aria-pressed="true"] {
+  box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px var(--accent);
+}
+
+.owner-choice.sec[aria-pressed="true"] {
+  border-color: var(--accent);
+}
+
+.owner-comment-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.owner-comment-wrap[hidden] {
+  display: none;
+}
+
+.owner-comment-wrap label {
+  margin: 0;
+  font-size: 0.85em;
+}
+
+.owner-page textarea {
+  font-size: 1em;
+  font-family: var(--f-ui);
+}
+
+#owner-submit {
+  margin-top: 8px;
+}
+
+/* 보낸 뒤: 인사 + 확인 도장 */
+.owner-end {
+  position: relative;
+  margin-top: 28px;
+}
+
+.owner-result {
+  margin: 0;
+  padding: 28px 8px;
+  font-family: var(--f-story);
+  font-size: 1.15em;
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.owner-end .stamp {
+  top: -36px;
+  right: 4px;
+}

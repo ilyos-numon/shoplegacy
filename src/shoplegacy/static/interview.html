@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>가게유산 · 인터뷰</title>
+  <link rel="stylesheet" href="/static/tokens.css">
+  <link rel="stylesheet" href="/static/fonts.css">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/shell.css">
+  <link rel="stylesheet" href="/static/interview.css">
+</head>
+<body data-chrome="staff">
+  <main id="page" class="wrap" data-screen="home">
+    <section id="interview-view" aria-labelledby="iv-title">
+      <h1 id="iv-title" class="sr-only">사장님 인터뷰</h1>
+      <div class="iv-top" data-stagger>
+        <div>
+          <p class="eyebrow">사장님 인터뷰</p>
+          <p class="iv-round"><span id="session-number">인터뷰</span></p>
+          <p class="hint">오늘 답변 <strong id="items-today">0</strong>개</p>
+        </div>
+        <div class="timer" role="timer" aria-label="남은 시간">
+          <svg viewBox="0 0 62 62" aria-hidden="true">
+            <circle class="timer-track" cx="31" cy="31" r="27" fill="none" stroke-width="4"/>
+            <circle id="timer-arc" class="timer-arc" cx="31" cy="31" r="27" fill="none" stroke-width="4" stroke-linecap="round" stroke-dasharray="169.6" stroke-dashoffset="0"/>
+          </svg>
+          <span class="t" id="remaining">--:--</span>
+        </div>
+      </div>
+
+      <div class="axes" id="axes" role="list" aria-label="여섯 주제 진행" data-stagger></div>
+
+      <div class="qcard" id="qcard" data-stagger>
+        <p id="axis-label" class="ax"></p>
+        <h2 class="q" id="question-text" aria-live="polite">질문을 불러오는 중입니다...</h2>
+        <div class="tools">
+          <button id="large-type-toggle" type="button" aria-pressed="false" aria-label="글씨 크게">글씨 크게</button>
+          <button id="tts-btn" type="button" aria-label="질문 읽어주기">질문 읽어주기</button>
+        </div>
+      </div>
+
+      <div class="mic-zone" data-stagger>
+        <button id="mic-btn" class="mic" type="button" aria-pressed="false">
+          <span class="ring" aria-hidden="true"></span><span class="ring" aria-hidden="true"></span>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M5.5 11a6.5 6.5 0 0013 0M12 17.5V21" stroke="currentColor" stroke-width="1.8"/></svg>
+          <span class="sr-only" id="mic-label">마이크로 말하기</span>
+        </button>
+        <span id="mic-status" role="status">눌러서 사장님 말씀을 받아 적어요</span>
+        <div id="live-transcript" class="live" aria-live="polite"></div>
+
+        <button id="alt-input-btn" class="alt-link" type="button" aria-expanded="false" aria-controls="alt-input">녹음 파일 올리기 · 직접 입력</button>
+        <div id="alt-input" class="alt-input" hidden>
+          <label for="audio-file">녹음 파일 올리기 (선택)</label>
+          <input id="audio-file" name="audio-file" type="file" accept="audio/*,.wav,.mp3,.m4a,.webm,.ogg,.txt,text/plain">
+          <button id="transcribe-btn" type="button" class="btn sec">녹음을 글로 옮기기</button>
+          <p id="stt-job-status" class="info" role="status"></p>
+
+          <label for="answer-text">사장님 답변</label>
+          <textarea id="answer-text" name="answer-text" rows="5" maxlength="10000" placeholder="받아 적은 글을 고치거나 직접 입력해 주세요."></textarea>
+        </div>
+      </div>
+
+      <p id="message" class="info" role="status" hidden></p>
+      <p id="error" class="error" role="alert" hidden></p>
+      <p><a id="review-link" hidden></a></p>
+
+      <div class="iv-actions">
+        <button id="submit-btn" type="button" class="btn">답변 보내기</button>
+        <button id="end-btn" type="button" class="btn quiet">인터뷰 마치고 카드 만들기</button>
+      </div>
+    </section>
+
+    <section id="build" class="gen" hidden aria-labelledby="build-title">
+      <div data-stagger>
+        <p class="eyebrow">카드 초안</p>
+        <h2 id="build-title">답변을 정리하고 있어요</h2>
+        <p class="sub">보통 30초 안에 끝나요. 끝나면 검수 화면으로 넘어가요.</p>
+      </div>
+      <ol id="gen-steps" aria-live="polite" data-stagger>
+        <li data-step="collect"><span class="ck" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2l2.4 2.3 4.6-5" stroke="currentColor" stroke-width="1.8"/></svg></span><span>주제별로 답변 모으기</span></li>
+        <li data-step="mask"><span class="ck" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2l2.4 2.3 4.6-5" stroke="currentColor" stroke-width="1.8"/></svg></span><span>상호·성함·거래처 가리기</span></li>
+        <li data-step="write"><span class="ck" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2l2.4 2.3 4.6-5" stroke="currentColor" stroke-width="1.8"/></svg></span><span>사장님 말투로 문장 정리</span></li>
+        <li data-step="evidence"><span class="ck" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2l2.4 2.3 4.6-5" stroke="currentColor" stroke-width="1.8"/></svg></span><span>문장마다 근거 답변 찾기</span></li>
+      </ol>
+    </section>
+  </main>
+  <script nonce="__CSP_NONCE__" src="/static/vendor/gsap.min.js"></script>
+  <script nonce="__CSP_NONCE__" src="/static/motion.js"></script>
+  <script nonce="__CSP_NONCE__" src="/static/auth.js"></script>
+  <script nonce="__CSP_NONCE__" src="/static/shell.js"></script>
+  <script nonce="__CSP_NONCE__" src="/static/a11y.js"></script>
+  <script nonce="__CSP_NONCE__" src="/static/interview.js"></script>
+</body>
+</html>

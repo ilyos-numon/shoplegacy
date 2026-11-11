@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>가게유산 · 기관 설정</title>
+  <link rel="stylesheet" href="/static/tokens.css">
+  <link rel="stylesheet" href="/static/fonts.css">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/shell.css">
+  <link rel="stylesheet" href="/static/settings.css">
+</head>
+<body data-chrome="staff">
+  <main id="page" class="wrap org-page" data-screen="dashboard">
+    <h1 class="org-title">기관</h1>
+    <nav class="subtabs" id="org-subtabs" aria-label="기관 메뉴">
+      <a href="/dashboard">대시보드</a>
+      <a href="/members">구성원</a>
+      <a href="/settings" aria-current="page">설정</a>
+      <a href="/billing" data-only="owner">요금제</a>
+    </nav>
+
+    <p class="err" id="settings-error" role="alert" hidden></p>
+
+    <section class="settings-block" aria-labelledby="org-name-title" data-stagger>
+      <h2 id="org-name-title" class="eyebrow">기관 이름</h2>
+      <div class="fld">
+        <label for="settings-org-name" class="sr-only">기관 이름</label>
+        <input class="inp" id="settings-org-name" type="text" readonly aria-describedby="org-name-hint">
+      </div>
+      <p class="hint" id="org-name-hint">기관 이름은 지금 화면에서 바꿀 수 없어요.</p>
+    </section>
+
+    <section class="settings-block" aria-labelledby="retention-title" data-stagger>
+      <h2 id="retention-title" class="eyebrow">기록 보관 기간</h2>
+      <p class="hint">이 기간이 지난 인터뷰 기록은 자동으로 지워요. 30일 이상으로 정할 수 있고, 기관 소유자만 바꿀 수 있어요.</p>
+      <div class="retention-row">
+        <label for="retention-days" class="sr-only">보관 기간(일)</label>
+        <input class="inp" id="retention-days" type="number" min="30" step="1" inputmode="numeric" disabled>
+        <span aria-hidden="true">일</span>
+        <button id="retention-save" type="button" class="btn sec" aria-label="보관 기간 저장" disabled>저장</button>
+      </div>
+      <p id="retention-note" class="hint" role="status"></p>
+      <p id="retention-msg" class="info" role="status" hidden></p>
+    </section>
+
+    <section class="settings-block" aria-labelledby="approval-title" data-stagger>
+      <h2 id="approval-title" class="eyebrow">공개 조건</h2>
+      <div class="setting-row">
+        <label class="switch" for="require-approval">
+          <input type="checkbox" id="require-approval" disabled aria-describedby="approval-hint">
+          <b>사장님 승인 후에만 공개</b>
+        </label>
+        <p class="hint" id="approval-hint">켜져 있으면 사장님 승인이 있어야 카드를 공개할 수 있어요. 서버 설정으로 정해져 있어요.</p>
+      </div>
+    </section>
+  </main>
+  <script nonce="__CSP_NONCE__" src="/static/vendor/gsap.min.js"></script>
+  <script nonce="__CSP_NONCE__" src="/static/motion.js"></script>
+  <script nonce="__CSP_NONCE__" src="/static/auth.js"></script>
+  <script nonce="__CSP_NONCE__" src="/static/shell.js"></script>
+  <script nonce="__CSP_NONCE__" src="/static/settings.js"></script>
+</body>
+</html>

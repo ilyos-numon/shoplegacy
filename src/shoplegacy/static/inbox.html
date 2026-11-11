@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>가게유산 · 검수함</title>
+  <link rel="stylesheet" href="/static/tokens.css">
+  <link rel="stylesheet" href="/static/fonts.css">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/shell.css">
+  <link rel="stylesheet" href="/static/inbox.css">
+</head>
+<body data-chrome="staff">
+  <main id="page" class="wrap inbox" data-screen="inbox">
+    <h1 class="inbox-title">검수함</h1>
+    <p class="sub">손볼 카드부터 상태별로 모아 봤어요.</p>
+
+    <div class="filters" id="inbox-filter" role="group" aria-label="카드 상태">
+      <div class="pills">
+        <button type="button" data-f="all" aria-pressed="true">전체<span class="n" data-count="all"></span></button>
+        <button type="button" data-f="draft" aria-pressed="false">초안<span class="n" data-count="draft"></span></button>
+        <button type="button" data-f="wait" aria-pressed="false">사장님 답 대기<span class="n" data-count="wait"></span></button>
+        <button type="button" data-f="hold" aria-pressed="false">보류<span class="n" data-count="hold"></span></button>
+        <button type="button" data-f="pub" aria-pressed="false">공개<span class="n" data-count="pub"></span></button>
+      </div>
+    </div>
+
+    <p class="err" id="inbox-error" role="alert" hidden></p>
+    <p class="hint" id="inbox-loading">카드를 불러오는 중이에요.</p>
+    <ul id="inbox-list" class="inbox-list" aria-live="polite"></ul>
+    <p class="hint inbox-empty" id="inbox-empty" hidden>이 상태의 카드가 없어요.</p>
+  </main>
+
+  <script nonce="__CSP_NONCE__" src="/static/vendor/gsap.min.js"></script>
+  <script nonce="__CSP_NONCE__" src="/static/motion.js"></script>
+  <script nonce="__CSP_NONCE__" src="/static/labels.js"></script>
+  <script nonce="__CSP_NONCE__" src="/static/auth.js"></script>
+  <script nonce="__CSP_NONCE__" src="/static/shell.js"></script>
+  <script nonce="__CSP_NONCE__" src="/static/inbox.js"></script>
+</body>
+</html>

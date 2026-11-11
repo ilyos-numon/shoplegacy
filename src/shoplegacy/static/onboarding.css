@@ -1,0 +1,31 @@
+/* onboarding: 버튼은 화면 아래에 고정 */
+.onboarding {
+  max-width: 420px;
+  padding-top: 40px;
+  padding-bottom: 120px;
+}
+
+.ob-title {
+  margin: 4px 0 6px;
+  font-family: var(--f-story);
+  font-size: 1.5rem;
+}
+
+.onboarding .stack {
+  margin-top: 24px;
+}
+
+.sf {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 12px 20px calc(12px + env(safe-area-inset-bottom));
+  background: var(--bg);
+  border-top: 1px solid var(--line);
+}
+
+.sf .btn {
+  max-width: 380px;
+  margin: 0 auto;
+}

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>가게유산 · 공개 카드 목록</title>
+  <link rel="stylesheet" href="/static/tokens.css">
+  <link rel="stylesheet" href="/static/fonts.css">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/shell.css">
+  <link rel="stylesheet" href="/static/cards.css">
+</head>
+<body data-chrome="public">
+  <main id="page" class="wrap cards" data-screen="cards">
+    <h1 class="cards-title">문을 닫은 가게들이 남긴 이야기</h1>
+    <p class="sub">사장님들이 말로 들려준 장사 이야기예요. 업종, 동네 유형, 지역으로 골라 보세요.</p>
+
+    <div class="filters" id="card-filters" role="group" aria-label="카드 고르기">
+      <span class="chip-select">
+        <select id="filter-trade" name="trade" aria-label="업종">
+          <option value="">모든 업종</option>
+          <option value="restaurant">식당</option>
+          <option value="cafe">카페</option>
+        </select>
+      </span>
+      <span class="chip-select">
+        <select id="filter-area" name="area_type" aria-label="동네 유형">
+          <option value="">모든 동네</option>
+          <option value="residential">주택가</option>
+          <option value="station">역세권</option>
+          <option value="office">오피스가</option>
+          <option value="other">기타</option>
+        </select>
+      </span>
+      <span class="chip-select">
+        <select id="filter-sido" name="sido" aria-label="시·도">
+          <option value="">모든 시·도</option>
+        </select>
+      </span>
+      <button type="button" class="chip-btn" id="region-btn" aria-haspopup="dialog" aria-controls="sheet-region" aria-pressed="false">지역·검색</button>
+    </div>
+
+    <p class="hint cards-count"><span id="result-count" role="status"></span></p>
+    <p id="list-error" class="err" role="alert" hidden></p>
+    <p id="empty" class="hint cards-empty" hidden>조건에 맞는 카드가 아직 없어요.</p>
+    <div id="card-list"></div>
+  </main>
+
+  <div class="sheet" id="sheet-region" hidden role="dialog" aria-modal="true" aria-label="지역으로 찾기">
+    <div class="sh-h"><h2>지역으로 찾기</h2>
+      <button type="button" class="sheet-close" data-close aria-label="닫기">×</button></div>
+    <div class="stack">
+      <label class="fld"><span>시·군·구 <small>(시·도를 먼저 골라 주세요)</small></span>
+        <select class="inp" id="filter-sigungu" name="sigungu" disabled>
+          <option value="">전체</option>
+        </select></label>
+      <label class="fld"><span>지역 이름 검색</span>
+        <input class="inp" id="filter-q" name="q" type="text" enterkeyhint="search" maxlength="50" placeholder="예: 마포"></label>
+      <button id="search-btn" type="button" class="btn">찾기</button>
+    </div>
+  </div>
+
+  <script nonce="__CSP_NONCE__" src="/static/vendor/gsap.min.js"></script>
+  <script nonce="__CSP_NONCE__" src="/static/motion.js"></script>
+  <script nonce="__CSP_NONCE__" src="/static/labels.js"></script>
+  <script nonce="__CSP_NONCE__" src="/static/auth.js"></script>
+  <script nonce="__CSP_NONCE__" src="/static/shell.js"></script>
+  <script nonce="__CSP_NONCE__" src="/static/cards.js"></script>
+</body>
+</html>

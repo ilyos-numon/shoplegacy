@@ -1,0 +1,7 @@
+GSAP 3.12.5 (gsap.min.js)
+Copyright 2024, GreenSock. All rights reserved.
+
+GSAP is distributed free of charge under the GreenSock Standard License.
+Terms: https://gsap.com/standard-license
+
+This file is copied unmodified from design/gageyusan-redesign/prototype/vendor/gsap.min.js.

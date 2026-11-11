@@ -1,0 +1,51 @@
+/* 기관 설정 화면 전용. 공통 클래스(.subtabs .btn .inp .fld .switch .eyebrow .hint .info .err)는 style.css 에 있다. */
+
+.settings-block {
+  margin-top: 20px;
+  padding-top: 4px;
+}
+
+.settings-block .hint {
+  margin: 6px 0 0;
+}
+
+#settings-org-name[readonly] {
+  background: var(--surface-2);
+  color: var(--ink);
+}
+
+.retention-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.retention-row .inp {
+  max-width: 120px;
+}
+
+.retention-row .btn {
+  width: auto;
+  margin-left: auto;
+}
+
+.setting-row {
+  padding: 14px 0;
+  border-top: 1px solid var(--line);
+}
+
+.setting-row .switch {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  flex-direction: row-reverse;
+}
+
+.setting-row .switch b {
+  font-weight: 600;
+}
+
+.setting-row .switch input:disabled {
+  cursor: not-allowed;
+}

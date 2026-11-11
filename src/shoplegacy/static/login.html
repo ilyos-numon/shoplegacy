@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>가게유산 · 로그인</title>
+  <link rel="stylesheet" href="/static/tokens.css">
+  <link rel="stylesheet" href="/static/fonts.css">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/login.css">
+</head>
+<body data-chrome="none">
+  <main id="page" class="wrap login" data-screen="login">
+    <div class="login-mark" aria-hidden="true">遺</div>
+    <h1 class="login-title">가게유산</h1>
+    <p class="sub">문 닫는 가게의 노하우를 카드로 남겨요.</p>
+
+    <form id="login-form" class="stack" novalidate>
+      <label class="fld"><span>이메일</span>
+        <input class="inp" id="email" name="email" type="text" inputmode="email" autocomplete="email" required maxlength="200" placeholder="예: owner@example.com"></label>
+      <button id="send-link" type="submit" class="btn">로그인 링크 받기</button>
+      <p class="hint" id="login-hint">비밀번호 없이, 메일로 받은 링크를 누르면 로그인돼요.</p>
+    </form>
+    <div class="mailbox" id="mailbox" hidden>
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="2.5" y="4.5" width="15" height="11" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M3 5.5l7 5 7-5" stroke="currentColor" stroke-width="1.4"/></svg>
+      <div><p id="login-message" role="status"></p><p class="mail-sub" id="mail-sub" hidden></p></div>
+    </div>
+    <button id="logout" type="button" class="btn btn-sec" hidden>로그아웃</button>
+  </main>
+  <script nonce="__CSP_NONCE__" src="/static/vendor/gsap.min.js"></script>
+  <script nonce="__CSP_NONCE__" src="/static/motion.js"></script>
+  <script nonce="__CSP_NONCE__" src="/static/auth.js"></script>
+  <script nonce="__CSP_NONCE__">
+  (function () {
+    "use strict";
+
+    var CDN_FAIL = "외부 스크립트를 불러오지 못했습니다";
+    var form = document.getElementById("login-form");
+    var emailEl = document.getElementById("email");
+    var sendBtn = document.getElementById("send-link");
+    var msgEl = document.getElementById("login-message");
+    var mailbox = document.getElementById("mailbox");
+    var mailSub = document.getElementById("mail-sub");
+    var logoutBtn = document.getElementById("logout");
+
+    function nextPath() {
+      var next = new URLSearchParams(window.location.search).get("next") || "/";
+      // Only same-site paths: never redirect to another origin.
+      if (next.charAt(0) !== "/" || next.charAt(1) === "/" || next.charAt(1) === "\\") {
+        return "/";
+      }
+      return next;
+    }
+
+    // Supabase refuses a repeat request for the same address (about 60s apart) and
+    // caps emails per hour; tell the user which one instead of a generic failure.
+    function sendError(error) {
+      var code = error.code || "";
+      var text = error.message || "";
+      var wait = /after (\d+) seconds?/.exec(text);
+      if (wait) {
+        return "같은 주소로는 " + wait[1] + "초 뒤에 다시 보낼 수 있어요. 앞서 받은 메일의 링크도 그대로 쓸 수 있어요.";
+      }
+      if (error.status === 429 || code.indexOf("rate_limit") !== -1) {
+        return "메일을 너무 자주 보냈어요. 잠시 뒤 다시 시도하거나, 앞서 받은 메일의 링크를 눌러 주세요.";
+      }
+      if (code === "email_address_not_authorized") {
+        return "이 주소로는 아직 메일을 보낼 수 없어요. 다른 주소로 시도해 주세요.";
+      }
+      return "로그인 링크를 보내지 못했습니다. 잠시 후 다시 시도해 주세요." + (code || error.status ? " (" + (code || error.status) + ")" : "");
+    }
+
+    function say(text, isError) {
+      msgEl.textContent = text;
+      mailbox.hidden = text === "";
+      mailbox.className = isError ? "mailbox is-error" : "mailbox";
+      mailSub.hidden = true;
+    }
+
+    logoutBtn.addEventListener("click", function () {
+      window.slAuth.logout();
+    });
+
+    window.slAuth.getToken().then(function (token) {
+      if (token) {
+        logoutBtn.hidden = false;
+        say("이미 로그인되어 있습니다.", false);
+      }
+    });
+
+    form.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      var email = emailEl.value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        say("이메일 주소를 다시 확인해 주세요.", true);
+        return;
+      }
+      sendBtn.disabled = true;
+      say("보내는 중입니다…", false);
+      window.slAuth.getClient()
+        .then(function (client) {
+          if (!client) {
+            throw new Error(CDN_FAIL);
+          }
+          return client.auth.signInWithOtp({
+            email: email,
+            options: { emailRedirectTo: window.location.origin + nextPath() }
+          });
+        })
+        .then(function (result) {
+          if (result && result.error) {
+            throw new Error(sendError(result.error));
+          }
+          say("메일함에서 로그인 링크를 눌러 주세요.", false);
+          mailSub.textContent = email + " 로 보냈어요. 메일이 안 보이면 스팸함도 확인해 주세요.";
+          mailSub.hidden = false;
+          if (window.gsap) {
+            window.gsap.from(mailbox, { y: -8, opacity: 0, duration: 0.3, clearProps: "all" });
+          }
+        })
+        .catch(function (err) {
+          say(err && err.message ? err.message : CDN_FAIL, true);
+        })
+        .then(function () {
+          sendBtn.disabled = false;
+        });
+    });
+
+    if (window.GYMotion) {
+      window.GYMotion.enterPage();
+    }
+
+    // Tell the user up front when the auth library cannot load.
+    window.slAuth.getClient().then(function (client) {
+      if (!client) {
+        say(CDN_FAIL, true);
+      }
+    });
+  })();
+  </script>
+</body>
+</html>

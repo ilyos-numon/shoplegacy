@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>가게유산 · 사장님 확인</title>
+  <link rel="stylesheet" href="/static/tokens.css">
+  <link rel="stylesheet" href="/static/fonts.css">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/owner.css">
+</head>
+<body data-chrome="none">
+  <main id="owner" class="wrap owner-page" data-screen="owner">
+    <div class="owner-top">
+      <p class="brand">가게유산</p>
+      <div class="owner-tools">
+        <button id="large-type-toggle" type="button" aria-pressed="false" aria-label="글씨 크게">글씨 크게</button>
+        <button id="tts-btn" type="button" aria-label="읽어주기" disabled>읽어주기</button>
+      </div>
+    </div>
+
+    <h1 class="owner-title">사장님, 가게 이야기를 확인해 주세요</h1>
+    <p class="lead">인터뷰에서 들려주신 이야기를 정리했어요. 고칠 곳이 있으면 말씀만 남겨 주세요. 글은 담당자가 고쳐요.</p>
+
+    <p id="owner-loading" class="owner-status" role="status">내용을 불러오는 중이에요...</p>
+    <p id="owner-error" class="error owner-status" role="alert" hidden></p>
+
+    <article id="owner-card" class="owner-card" hidden>
+      <p id="owner-trade" class="owner-trade"></p>
+      <div id="owner-story" class="story">
+        <section data-axis="location"><h2>입지</h2><p class="body"></p></section>
+        <section data-axis="suppliers"><h2>거래처</h2><p class="body"></p></section>
+        <section data-axis="menu"><h2>메뉴</h2><p class="body"></p></section>
+        <section data-axis="pricing"><h2>가격</h2><p class="body"></p></section>
+        <section data-axis="customers"><h2>손님</h2><p class="body"></p></section>
+        <section data-axis="failures"><h2>실패</h2><p class="body"></p></section>
+      </div>
+      <p id="owner-expires" class="hint"></p>
+    </article>
+
+    <section id="owner-decide" class="owner-decide" aria-labelledby="owner-decide-title" hidden>
+      <div id="owner-ask" class="owner-ask">
+        <h2 id="owner-decide-title">이 내용, 괜찮으세요?</h2>
+        <button id="owner-approve" type="button" class="btn xl owner-choice" aria-pressed="false">이대로 괜찮아요</button>
+        <button id="owner-changes" type="button" class="btn xl sec owner-choice" aria-pressed="false" aria-controls="owner-comment-wrap">고칠 게 있어요</button>
+        <div id="owner-comment-wrap" class="owner-comment-wrap" hidden>
+          <label for="owner-comment">어느 부분이 다른지 편하게 적어 주세요 (500자까지, 안 적어도 돼요)</label>
+          <textarea id="owner-comment" class="inp" name="owner-comment" rows="4" maxlength="500" placeholder="예: 메뉴 가격이 조금 달라요"></textarea>
+        </div>
+        <button id="owner-submit" type="button" class="btn xl" aria-label="보내기">보내기</button>
+      </div>
+    </section>
+
+    <div class="owner-end">
+      <p id="owner-result" class="owner-result" role="status" hidden></p>
+      <div class="stamp" id="stamp" aria-hidden="true"></div>
+    </div>
+  </main>
+  <script nonce="__CSP_NONCE__" src="/static/vendor/gsap.min.js"></script>
+  <script nonce="__CSP_NONCE__" src="/static/motion.js"></script>
+  <script nonce="__CSP_NONCE__" src="/static/labels.js"></script>
+  <script nonce="__CSP_NONCE__" src="/static/a11y.js"></script>
+  <script nonce="__CSP_NONCE__" src="/static/owner.js"></script>
+</body>
+</html>

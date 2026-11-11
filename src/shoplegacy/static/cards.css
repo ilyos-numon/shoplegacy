@@ -1,0 +1,135 @@
+/* 공개 카드 목록: 가로 칩 필터 + 지역 시트, 바탕체 발췌. */
+.cards {
+  padding-bottom: 120px;
+  word-break: keep-all;
+}
+
+.cards-title {
+  margin: 4px 0 6px;
+  font-family: var(--f-story);
+  font-weight: 700;
+  font-size: 1.55rem;
+  line-height: 1.4;
+}
+
+/* 가로로 넘기는 칩 줄 */
+.filters {
+  display: flex;
+  gap: 6px;
+  margin: 14px -20px 0;
+  padding: 2px 20px 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+/* .wrap 의 좌우 여백이 480px 이하에서 16px 이라 음수 여백도 맞춘다. 칩은 이 줄 안에서만 가로로 넘긴다. */
+@media (max-width: 480px) {
+  .filters {
+    margin: 14px -16px 0;
+    padding: 2px 16px 4px;
+  }
+}
+
+.filters::-webkit-scrollbar {
+  display: none;
+}
+
+.chip-select {
+  position: relative;
+  flex: none;
+}
+
+.chip-select select,
+.chip-btn {
+  min-height: 44px;
+  margin: 0;
+  padding: 7px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.93em;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.chip-select select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 30px;
+}
+
+.chip-select::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 13px;
+  width: 6px;
+  height: 6px;
+  margin-top: -5px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
+  pointer-events: none;
+}
+
+.chip-btn {
+  flex: none;
+}
+
+.chip-btn[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+
+.cards-count {
+  margin: 14px 0 0;
+}
+
+.cards-empty {
+  margin-top: 18px;
+}
+
+/* 카드 한 장 */
+#card-list {
+  margin-top: 6px;
+}
+
+.cards .card-item {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 18px 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+  background: none;
+}
+
+.cards .card-item .card-tags {
+  margin: 0;
+  font-size: 0.8em;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.cards .card-excerpt {
+  margin: 0;
+  font-family: var(--f-story);
+  font-size: 1.1em;
+  line-height: 1.65;
+}
+
+.cards .card-link {
+  justify-self: start;
+  font-size: 0.88em;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.cards .card-link::after {
+  content: " →";
+}

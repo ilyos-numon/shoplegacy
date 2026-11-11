@@ -1,0 +1,154 @@
+/* 요금제 화면 전용. 공통 클래스(.subtabs .meter .panel .btn .grid2 .eyebrow)는 style.css 에 있다. */
+
+/* 현재 요금제 + 사용량 막대 */
+.plan-panel {
+  margin-top: 16px;
+}
+
+.plan-head {
+  justify-content: space-between;
+}
+
+.plan-name {
+  font-size: 1.15em;
+  font-weight: 600;
+}
+
+.plan-head .hint {
+  font-size: 0.85em;
+}
+
+.usage {
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.meter > i > b {
+  transform: scaleX(0);
+}
+
+.limit-msg {
+  margin: 14px 0 0;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--surface-2);
+  font-size: 0.88em;
+}
+
+.limit-msg.warn {
+  background: var(--warn-soft);
+}
+
+#plan-contact {
+  margin: 10px 0 0;
+  font-size: 0.85em;
+}
+
+/* 청구서·자동결제 */
+.bill-block h2.eyebrow {
+  margin: 22px 0 8px;
+}
+
+.bill-block > .hint {
+  margin: 0 0 8px;
+  font-size: 0.85em;
+}
+
+.table-scroll {
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.table-scroll[hidden] {
+  display: none;
+}
+
+.invoice-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8em;
+}
+
+.invoice-table th,
+.invoice-table td {
+  padding: 10px 4px;
+  border-top: 1px solid var(--line);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.invoice-table thead th {
+  border-top: 0;
+  color: var(--muted);
+  font-size: 0.85em;
+  font-weight: 500;
+  word-break: keep-all;
+}
+
+.invoice-table td {
+  white-space: nowrap;
+}
+
+.invoice-table .num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.invoice-table .invoice-status,
+.invoice-table .invoice-plan {
+  white-space: nowrap;
+}
+
+.invoice-table .invoice-pay {
+  width: auto;
+  min-height: 38px;
+  margin: 0;
+  padding: 0 12px;
+  white-space: nowrap;
+}
+
+.widget-panel h3 {
+  margin: 0 0 8px;
+  font-size: 1em;
+}
+
+.widget-panel .btn {
+  margin-top: 12px;
+}
+
+.inv-list {
+  margin: 0;
+}
+
+.inv-list div {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4px 10px;
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+  font-size: 0.9em;
+}
+
+.inv-list dt {
+  color: var(--muted);
+}
+
+.inv-list dd {
+  margin: 0;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.autopay-plan-fld {
+  margin: 12px 0 6px;
+}
+
+.autopay-actions {
+  margin-top: 12px;
+}
+
+.autopay-actions [hidden] {
+  display: none;
+}

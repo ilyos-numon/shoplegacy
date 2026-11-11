@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>가게유산 · 요금제</title>
+  <link rel="stylesheet" href="/static/tokens.css">
+  <link rel="stylesheet" href="/static/fonts.css">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/shell.css">
+  <link rel="stylesheet" href="/static/billing.css">
+</head>
+<body data-chrome="staff">
+  <main id="page" class="wrap org-page" data-screen="dashboard">
+    <h1 class="org-title">기관</h1>
+    <nav class="subtabs" id="org-subtabs" aria-label="기관 메뉴">
+      <a href="/dashboard">대시보드</a>
+      <a href="/members">구성원</a>
+      <a href="/settings">설정</a>
+      <a href="/billing" data-only="owner" aria-current="page">요금제</a>
+    </nav>
+
+    <p id="billing-error" class="err" role="alert" hidden></p>
+
+    <section class="panel plan-panel" aria-labelledby="plan-title" data-stagger>
+      <h2 id="plan-title" class="sr-only">현재 요금제</h2>
+      <div class="row plan-head">
+        <b id="plan-name" class="plan-name">-</b>
+        <span class="hint">기준 달 <span id="plan-period">-</span></span>
+      </div>
+      <div class="stack usage" aria-label="사용량 / 한도" role="group">
+        <div class="meter" id="meter-shops">
+          <div class="row"><span>참여 가게</span><span id="usage-shops">-</span></div>
+          <i aria-hidden="true"><b id="usage-shops-bar"></b></i>
+        </div>
+        <div class="meter" id="meter-llm">
+          <div class="row"><span>이번 달 AI 사용</span><span id="usage-llm">-</span></div>
+          <i aria-hidden="true"><b id="usage-llm-bar"></b></i>
+        </div>
+        <div class="meter" id="meter-members">
+          <div class="row"><span>구성원</span><span id="usage-members">-</span></div>
+          <i aria-hidden="true"><b id="usage-members-bar"></b></i>
+        </div>
+      </div>
+      <p id="plan-limit" class="limit-msg" role="status" hidden></p>
+      <p id="plan-contact" class="hint">요금제 변경은 계약·세금계산서 문의로 진행해요. 담당자에게 연락해 주세요.</p>
+    </section>
+
+    <section class="bill-block" aria-labelledby="invoice-title" data-stagger>
+      <h2 id="invoice-title" class="eyebrow">청구서</h2>
+      <p id="billing-message" class="info" role="status" hidden></p>
+      <div class="table-scroll" id="invoice-scroll" role="region" aria-label="청구서 목록" tabindex="0" hidden>
+        <table id="invoice-table" class="invoice-table" hidden>
+          <caption class="sr-only">청구서 목록</caption>
+          <thead>
+            <tr>
+              <th scope="col">요금제</th>
+              <th scope="col">기간</th>
+              <th scope="col" class="num">금액</th>
+              <th scope="col">상태</th>
+              <th scope="col">세금계산서</th>
+              <th scope="col">결제</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p id="invoice-empty" class="hint" hidden>발행된 청구서가 없어요</p>
+      <div id="widget-panel" class="panel widget-panel" hidden>
+        <h3 id="widget-title">카드 결제</h3>
+        <div id="payment-method" role="group" aria-labelledby="widget-title"></div>
+        <div id="agreement" role="group" aria-label="결제 약관 동의"></div>
+        <button id="widget-pay" type="button" class="btn" aria-label="청구서 결제하기" disabled>결제하기</button>
+      </div>
+    </section>
+
+    <section id="autopay" class="bill-block" aria-labelledby="autopay-title" data-stagger>
+      <h2 id="autopay-title" class="eyebrow">자동결제</h2>
+      <p class="hint">카드를 등록하면 매달 정해진 날에 요금이 자동으로 결제돼요. 기관 소유자만 등록하거나 중지할 수 있어요.</p>
+      <dl class="inv-list" aria-label="자동결제 정보">
+        <div>
+          <dt>상태</dt>
+          <dd id="autopay-status">-</dd>
+        </div>
+        <div>
+          <dt>등록된 카드</dt>
+          <dd id="autopay-card">-</dd>
+        </div>
+        <div>
+          <dt>다음 결제일</dt>
+          <dd id="autopay-next">-</dd>
+        </div>
+      </dl>
+      <label class="fld autopay-plan-fld" for="autopay-plan"><span>자동결제 요금제</span></label>
+      <select id="autopay-plan" class="inp" disabled>
+        <option value="pilot">시범 사업</option>
+        <option value="org">기관</option>
+      </select>
+      <div class="grid2 autopay-actions">
+        <button id="autopay-register" type="button" class="btn sec" aria-label="자동결제 카드 등록" disabled>카드 등록</button>
+        <button id="autopay-stop" type="button" class="btn quiet btn-danger" aria-label="자동결제 중지" hidden disabled>자동결제 중지</button>
+      </div>
+      <p id="autopay-message" class="info" role="status" hidden></p>
+    </section>
+  </main>
+  <script nonce="__CSP_NONCE__" src="/static/vendor/gsap.min.js"></script>
+  <script nonce="__CSP_NONCE__" src="/static/motion.js"></script>
+  <script nonce="__CSP_NONCE__" src="/static/auth.js"></script>
+  <script nonce="__CSP_NONCE__" src="/static/shell.js"></script>
+  <script nonce="__CSP_NONCE__" src="/static/billing.js"></script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>가게유산 · 카드 초안 검수</title>
+  <link rel="stylesheet" href="/static/tokens.css">
+  <link rel="stylesheet" href="/static/fonts.css">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/shell.css">
+  <link rel="stylesheet" href="/static/review.css">
+</head>
+<body data-chrome="staff">
+  <main id="page" class="wrap rv" data-screen="inbox">
+    <div class="rv-head">
+      <strong id="card-status" class="pill draft">불러오는 중</strong>
+      <span id="llm-badge" class="llm-badge" hidden></span>
+    </div>
+    <h1 class="rv-title">카드 초안 검수</h1>
+    <p id="card-meta" class="hint"></p>
+    <p class="hint rv-mask-note">상호·성함·주소·거래처는 자동으로 가려졌어요. 어색한 문장과 남은 식별 정보를 고친 뒤 저장해 주세요.</p>
+
+    <p id="llm-warning" class="llm-warning" role="alert" hidden></p>
+
+    <div class="steps" id="rv-steps" role="tablist" aria-label="검수 단계" data-at="0">
+      <span class="slider" aria-hidden="true"></span>
+      <button type="button" role="tab" id="rv-tab-edit" data-tab="edit" aria-controls="rv-pane-edit" aria-selected="true" class="on"><span class="n" aria-hidden="true">1</span>고치기</button>
+      <button type="button" role="tab" id="rv-tab-owner" data-tab="owner" aria-controls="rv-pane-owner" aria-selected="false" tabindex="-1"><span class="n" aria-hidden="true">2</span>사장님 확인</button>
+      <button type="button" role="tab" id="rv-tab-publish" data-tab="publish" aria-controls="rv-pane-publish" aria-selected="false" tabindex="-1"><span class="n" aria-hidden="true">3</span>공개</button>
+    </div>
+
+    <section class="rv-pane" id="rv-pane-edit" data-pane="edit" role="tabpanel" aria-labelledby="rv-tab-edit">
+      <h2 class="rv-pane-h"><span class="n">1</span>고치기</h2>
+      <div id="fixlist" class="fixlist" aria-live="polite"></div>
+      <button type="button" id="support-summary" class="chip rv-support" aria-haspopup="dialog" aria-controls="sheet-source">근거 확인 중</button>
+
+      <form id="review-form" novalidate>
+        <div class="axis" id="rv-axis-location">
+          <button type="button" class="axis-h" aria-expanded="true" aria-controls="rv-body-location"><b>입지</b><span class="r" data-axis-ratio="location"></span></button>
+          <div class="axis-body" id="rv-body-location">
+            <label for="axis-location" class="sr-only">입지 문장</label>
+            <textarea class="inp" id="axis-location" name="location" data-axis="location" rows="4" maxlength="5000"></textarea>
+            <ul class="evidence-list" data-evidence-axis="location" aria-label="입지 문장별 근거"></ul>
+          </div>
+        </div>
+
+        <div class="axis" id="rv-axis-suppliers">
+          <button type="button" class="axis-h" aria-expanded="true" aria-controls="rv-body-suppliers"><b>거래처</b><span class="r" data-axis-ratio="suppliers"></span></button>
+          <div class="axis-body" id="rv-body-suppliers">
+            <label for="axis-suppliers" class="sr-only">거래처 문장</label>
+            <textarea class="inp" id="axis-suppliers" name="suppliers" data-axis="suppliers" rows="4" maxlength="5000"></textarea>
+            <ul class="evidence-list" data-evidence-axis="suppliers" aria-label="거래처 문장별 근거"></ul>
+          </div>
+        </div>
+
+        <div class="axis" id="rv-axis-menu">
+          <button type="button" class="axis-h" aria-expanded="true" aria-controls="rv-body-menu"><b>메뉴</b><span class="r" data-axis-ratio="menu"></span></button>
+          <div class="axis-body" id="rv-body-menu">
+            <label for="axis-menu" class="sr-only">메뉴 문장</label>
+            <textarea class="inp" id="axis-menu" name="menu" data-axis="menu" rows="4" maxlength="5000"></textarea>
+            <ul class="evidence-list" data-evidence-axis="menu" aria-label="메뉴 문장별 근거"></ul>
+          </div>
+        </div>
+
+        <div class="axis" id="rv-axis-pricing">
+          <button type="button" class="axis-h" aria-expanded="true" aria-controls="rv-body-pricing"><b>가격</b><span class="r" data-axis-ratio="pricing"></span></button>
+          <div class="axis-body" id="rv-body-pricing">
+            <label for="axis-pricing" class="sr-only">가격 문장</label>
+            <textarea class="inp" id="axis-pricing" name="pricing" data-axis="pricing" rows="4" maxlength="5000"></textarea>
+            <ul class="evidence-list" data-evidence-axis="pricing" aria-label="가격 문장별 근거"></ul>
+          </div>
+        </div>
+
+        <div class="axis" id="rv-axis-customers">
+          <button type="button" class="axis-h" aria-expanded="true" aria-controls="rv-body-customers"><b>손님</b><span class="r" data-axis-ratio="customers"></span></button>
+          <div class="axis-body" id="rv-body-customers">
+            <label for="axis-customers" class="sr-only">손님 문장</label>
+            <textarea class="inp" id="axis-customers" name="customers" data-axis="customers" rows="4" maxlength="5000"></textarea>
+            <ul class="evidence-list" data-evidence-axis="customers" aria-label="손님 문장별 근거"></ul>
+          </div>
+        </div>
+
+        <div class="axis" id="rv-axis-failures">
+          <button type="button" class="axis-h" aria-expanded="true" aria-controls="rv-body-failures"><b>실패</b><span class="r" data-axis-ratio="failures"></span></button>
+          <div class="axis-body" id="rv-body-failures">
+            <label for="axis-failures" class="sr-only">실패 문장</label>
+            <textarea class="inp" id="axis-failures" name="failures" data-axis="failures" rows="4" maxlength="5000"></textarea>
+            <ul class="evidence-list" data-evidence-axis="failures" aria-label="실패 문장별 근거"></ul>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <section class="rv-pane is-off" id="rv-pane-owner" data-pane="owner" role="tabpanel" aria-labelledby="rv-tab-owner">
+      <h2 class="rv-pane-h"><span class="n">2</span>사장님 확인</h2>
+      <div id="owner-panel" class="stack">
+        <div class="panel rv-decision">
+          <p class="eyebrow">사장님 답</p>
+          <p id="owner-decision" class="owner-decision decision-none" aria-live="polite">사장님 검토 전</p>
+          <p id="owner-decision-meta" class="hint" hidden></p>
+        </div>
+        <p class="hint">사장님께 카드를 보여 드릴 링크를 만들어요. 휴대전화 번호를 적으면 문자로 보내고, 비워 두면 링크만 만들어요.</p>
+        <label class="fld" for="owner-phone"><span>사장님 휴대전화 <small>(선택)</small></span>
+          <input class="inp" id="owner-phone" type="tel" inputmode="tel" maxlength="40" autocomplete="off" placeholder="010-0000-0000">
+        </label>
+        <button id="owner-link-btn" type="button" class="btn">사장님 확인 링크 만들기</button>
+        <p id="owner-link-error" class="err" role="alert" hidden></p>
+        <div id="owner-link-result" class="stack rv-link-result" hidden>
+          <p id="owner-link-note" class="hint" role="status"></p>
+          <div class="linkbox">
+            <span id="owner-link-url" class="owner-link-url"></span>
+            <button id="owner-link-copy" type="button" class="linkbox-copy" hidden>링크 복사</button>
+          </div>
+          <p id="owner-link-expires" class="hint"></p>
+        </div>
+        <div id="owner-links">
+          <p class="eyebrow">보낸 링크</p>
+          <p id="owner-links-empty" class="hint">아직 만든 링크가 없어요.</p>
+          <p id="owner-links-error" class="err" role="alert" hidden></p>
+          <ul aria-live="polite"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="rv-pane is-off" id="rv-pane-publish" data-pane="publish" role="tabpanel" aria-labelledby="rv-tab-publish">
+      <h2 class="rv-pane-h"><span class="n">3</span>공개</h2>
+      <div class="gate panel">
+        <p class="eyebrow">공개 전 확인</p>
+        <ul id="quality-reasons" aria-live="polite"></ul>
+      </div>
+      <div class="gate panel" id="warnings-box">
+        <p class="eyebrow">가림 처리 확인</p>
+        <ul id="warnings" aria-live="polite"></ul>
+      </div>
+      <p id="public-link" class="rv-public" hidden><a id="public-link-a" class="btn sec" href="#">공개된 카드 보기</a></p>
+      <section id="next-actions" class="panel" aria-labelledby="next-actions-title" hidden>
+        <h3 id="next-actions-title">다음 행동</h3>
+        <div class="stack rv-next">
+          <button id="next-round-btn" type="button" class="btn">같은 가게 다음 회차 시작</button>
+          <a id="cards-link" class="btn sec" href="/cards">카드 목록 보기</a>
+        </div>
+        <p id="next-round-note" class="hint" role="status"></p>
+      </section>
+    </section>
+
+    <div class="rv-foot" id="rv-foot">
+      <p id="message" class="info" role="status" hidden></p>
+      <p id="error" class="err" role="alert" hidden></p>
+      <div class="gatebar"><span id="gate-text">공개 기준을 확인하는 중이에요</span><button type="button" id="gate-go" hidden>보기</button></div>
+      <div class="rv-foot-row">
+        <button type="button" id="more-btn" class="btn sec rv-more" aria-label="다른 처리: 보류·반려·다시 쓰기" aria-haspopup="dialog" aria-controls="sheet-more">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor" aria-hidden="true"><circle cx="4" cy="9" r="1.5"/><circle cx="9" cy="9" r="1.5"/><circle cx="14" cy="9" r="1.5"/></svg>
+        </button>
+        <button id="save-btn" type="button" class="btn sec">수정 내용 저장</button>
+        <button id="publish-btn" type="button" class="btn">공개하기</button>
+      </div>
+    </div>
+
+    <div class="stamp rv-stamp" id="stamp" aria-hidden="true"></div>
+  </main>
+
+  <div class="sheet" id="sheet-source" hidden role="dialog" aria-modal="true" aria-label="근거 답변">
+    <div class="sh-h"><b id="src-title">원 답변 (가림 처리됨)</b><button type="button" class="sheet-close" data-close aria-label="닫기">×</button></div>
+    <div id="sources-panel" class="stack rv-sources">
+      <div id="src-focus" class="stack rv-src-focus" hidden></div>
+      <p id="sources-empty" class="hint">답변을 불러오는 중이에요.</p>
+      <ul id="sources-list" class="source-list"></ul>
+    </div>
+  </div>
+
+  <div class="sheet" id="sheet-more" hidden role="dialog" aria-modal="true" aria-label="다른 처리">
+    <div class="sh-h"><b>다른 처리</b><button type="button" class="sheet-close" data-close aria-label="닫기">×</button></div>
+    <div class="stack rv-more-body">
+      <label class="fld" for="status-note"><span>검수 메모 <small>(선택)</small></span>
+        <input class="inp" id="status-note" type="text" maxlength="1000" placeholder="보류·반려·공개 이유를 남겨 두세요">
+      </label>
+      <p id="current-note" class="hint" hidden></p>
+      <button id="regenerate-btn" type="button" class="btn sec">답변으로 다시 쓰기</button>
+      <p class="hint">다시 쓰기는 지금 고친 문장을 지우고 원 답변으로 초안을 새로 만들어요.</p>
+      <div class="grid2">
+        <button id="hold-btn" type="button" class="btn sec">보류</button>
+        <button id="reject-btn" type="button" class="btn sec btn-danger">반려</button>
+      </div>
+      <button id="unpublish-btn" type="button" class="btn sec" hidden>공개 취소</button>
+    </div>
+  </div>
+
+  <script nonce="__CSP_NONCE__" src="/static/vendor/gsap.min.js"></script>
+  <script nonce="__CSP_NONCE__" src="/static/motion.js"></script>
+  <script nonce="__CSP_NONCE__" src="/static/labels.js"></script>
+  <script nonce="__CSP_NONCE__" src="/static/auth.js"></script>
+  <script nonce="__CSP_NONCE__" src="/static/shell.js"></script>
+  <script nonce="__CSP_NONCE__" src="/static/review.js"></script>
+</body>
+</html>

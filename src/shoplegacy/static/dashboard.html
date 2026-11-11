@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>가게유산 · 기관 대시보드</title>
+  <link rel="stylesheet" href="/static/tokens.css">
+  <link rel="stylesheet" href="/static/fonts.css">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/shell.css">
+  <link rel="stylesheet" href="/static/dashboard.css">
+</head>
+<body data-chrome="staff">
+  <main id="page" class="wrap org-page" data-screen="dashboard">
+    <h1 class="org-title">기관</h1>
+    <nav class="subtabs" id="org-subtabs" aria-label="기관 메뉴">
+      <a href="/dashboard" aria-current="page">대시보드</a>
+      <a href="/members">구성원</a>
+      <a href="/settings">설정</a>
+      <a href="/billing" data-only="owner">요금제</a>
+    </nav>
+
+    <section class="dash-period" aria-labelledby="period-title" data-stagger>
+      <h2 id="period-title" class="eyebrow">기간</h2>
+      <div class="pills" id="dash-range" role="group" aria-labelledby="period-title">
+        <button type="button" data-days="30" aria-pressed="true">최근 30일</button>
+        <button type="button" data-days="90" aria-pressed="false">90일</button>
+        <button type="button" data-days="custom" aria-pressed="false" aria-controls="dash-custom">직접</button>
+      </div>
+      <div id="dash-custom" class="dash-custom" hidden>
+        <div class="filter-field">
+          <label for="dash-from">시작일</label>
+          <input id="dash-from" type="date" name="from">
+        </div>
+        <div class="filter-field">
+          <label for="dash-to">종료일</label>
+          <input id="dash-to" type="date" name="to">
+        </div>
+        <button id="dash-apply" type="button" class="btn" aria-label="고른 기간으로 보기">보기</button>
+      </div>
+      <p id="dash-period" class="hint" role="status"></p>
+    </section>
+
+    <p id="dash-error" class="err" role="alert" hidden></p>
+
+    <section class="stats" aria-label="요약 숫자" data-stagger>
+      <div><b id="stat-shops">-</b><span>참여 가게</span></div>
+      <div><b id="stat-interviews">-</b><span>인터뷰</span></div>
+      <div><b id="stat-published">-</b><span>공개 카드</span></div>
+    </section>
+
+    <section class="dash-block" data-stagger>
+      <table id="status-table" class="hbar-table">
+        <caption class="eyebrow">카드 상태</caption>
+        <thead class="sr-only">
+          <tr>
+            <th scope="col">상태</th>
+            <th scope="col">카드 수</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <section class="dash-block" data-stagger>
+      <table id="consent-table" class="hbar-table consent">
+        <caption class="eyebrow">동의 현황 <span class="cap-note">(동의 / 철회)</span></caption>
+        <thead class="sr-only">
+          <tr>
+            <th scope="col">동의 항목</th>
+            <th scope="col">동의</th>
+            <th scope="col">철회</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <section class="dash-block" aria-labelledby="export-title" data-stagger>
+      <h2 id="export-title" class="eyebrow">보고서 내려받기</h2>
+      <div class="grid2">
+        <a id="export-csv" class="btn sec" href="#" aria-label="CSV 파일로 보고서 내려받기">CSV 받기</a>
+        <a id="export-xlsx" class="btn sec" href="#" aria-label="엑셀 파일로 보고서 내려받기">엑셀 받기</a>
+      </div>
+      <p class="hint">위에서 고른 기간의 숫자를 파일로 받아요.</p>
+    </section>
+  </main>
+  <script nonce="__CSP_NONCE__" src="/static/vendor/gsap.min.js"></script>
+  <script nonce="__CSP_NONCE__" src="/static/motion.js"></script>
+  <script nonce="__CSP_NONCE__" src="/static/auth.js"></script>
+  <script nonce="__CSP_NONCE__" src="/static/shell.js"></script>
+  <script nonce="__CSP_NONCE__" src="/static/dashboard.js"></script>
+</body>
+</html>

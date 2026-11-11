@@ -1,0 +1,119 @@
+/* 가게 유산 카드: 기록 카드형 서지 정보 + 바탕체 이야기, 이모지 없는 의견 버튼. */
+.card-page {
+  padding-bottom: 120px;
+  word-break: keep-all;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 0.93em;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.archive {
+  position: relative;
+  margin-top: 6px;
+  padding: 20px 18px 12px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--surface);
+}
+
+.archive-title {
+  margin: 0 0 12px;
+  font-family: var(--f-story);
+  font-weight: 700;
+  font-size: 1.45rem;
+}
+
+.archive .bib {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 14px;
+  margin: 0;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.85em;
+}
+
+.archive .bib dt {
+  color: var(--muted);
+}
+
+.archive .bib dd {
+  margin: 0;
+}
+
+.archive .bib .evidence-summary {
+  margin: 0;
+}
+
+.archive .story section {
+  margin-top: 22px;
+}
+
+.archive .story section:last-child {
+  margin-bottom: 10px;
+}
+
+.archive .story h2 {
+  margin: 0 0 4px;
+  font-family: var(--f-ui);
+  font-size: 0.8em;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+}
+
+.archive .story .body {
+  margin: 0;
+  white-space: pre-wrap;
+  font-size: 1.05em;
+}
+
+.archive .story .body.empty {
+  color: var(--muted);
+}
+
+/* 의견 */
+.card-feedback {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.card-feedback h2 {
+  margin: 0;
+  font-size: 1em;
+}
+
+.fb {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.card-feedback p {
+  margin: 0;
+}
+
+/* 담당자 전용 */
+.staff-extra {
+  margin-top: 24px;
+}
+
+.staff-extra .eyebrow {
+  margin: 0 0 10px;
+}
+
+.staff-extra .stack {
+  gap: 8px;
+}
+
+.staff-extra #next-round-note {
+  margin: 8px 0 0;
+}

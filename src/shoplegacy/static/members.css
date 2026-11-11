@@ -1,0 +1,109 @@
+/* 구성원 화면 전용. 공통 클래스(.subtabs .btn .inp .fld .eyebrow .hint .err)는 style.css 에 있다. */
+
+.member-add-box {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.member-add-box .hint {
+  margin: 0;
+}
+
+.member-add-fields {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.member-add-fields .fld > label {
+  font-size: 0.87em;
+  font-weight: 500;
+}
+
+@media (min-width: 560px) {
+  .member-add-fields {
+    grid-template-columns: 1fr 160px;
+  }
+}
+
+.member-list {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+}
+
+.mem {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+}
+
+.mem .av {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--surface-2);
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+}
+
+.mem .who {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.mem .member-email {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.mem .member-role-label {
+  margin: 0;
+}
+
+.mem .member-remove {
+  width: auto;
+  min-height: 40px;
+  padding: 0 12px;
+}
+
+/* 내보내기 인라인 확인: 행 아래 줄 전체를 쓴다. */
+.mem .member-confirm {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.mem .member-confirm-ask {
+  flex: 1 1 100%;
+  font-weight: 600;
+}
+
+.mem .member-confirm .btn {
+  flex: 1;
+  width: auto;
+  min-height: 44px;
+}
+
+.mem .member-remove-confirm {
+  background: var(--bad);
+  border-color: var(--bad);
+  color: var(--bg);
+}
+
+.member-add-box .eyebrow {
+  margin: 0;
+}
+
+.member-list-box {
+  margin-top: 28px;
+}

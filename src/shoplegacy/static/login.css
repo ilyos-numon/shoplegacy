@@ -1,0 +1,64 @@
+/* login: 이메일 한 칸, 보낸 뒤 같은 자리에 메일함 안내가 펼쳐진다 */
+.login {
+  max-width: 420px;
+  padding-top: 16px;
+}
+
+.login-mark {
+  width: 56px;
+  height: 56px;
+  margin: 40px 0 24px;
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-family: var(--f-story);
+  font-weight: 700;
+  font-size: 28px;
+}
+
+.login-title {
+  margin: 0 0 6px;
+  font-family: var(--f-story);
+  font-size: 1.7rem;
+}
+
+.login .stack {
+  margin-top: 28px;
+}
+
+.mailbox {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-top: 16px;
+  padding: 14px;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  color: var(--ink);
+  font-size: 0.93em;
+}
+
+.mailbox p {
+  margin: 0;
+}
+
+.mailbox svg {
+  flex: none;
+  margin-top: 2px;
+}
+
+.mailbox .mail-sub {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 0.9em;
+}
+
+.mailbox.is-error {
+  background: var(--surface-2);
+  color: var(--bad);
+}
+
+.login #logout {
+  margin-top: 16px;
+}

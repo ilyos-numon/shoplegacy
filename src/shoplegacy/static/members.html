@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>가게유산 · 구성원</title>
+  <link rel="stylesheet" href="/static/tokens.css">
+  <link rel="stylesheet" href="/static/fonts.css">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/shell.css">
+  <link rel="stylesheet" href="/static/members.css">
+</head>
+<body data-chrome="staff">
+  <main id="page" class="wrap org-page" data-screen="dashboard">
+    <h1 class="org-title">기관</h1>
+    <nav class="subtabs" id="org-subtabs" aria-label="기관 메뉴">
+      <a href="/dashboard">대시보드</a>
+      <a href="/members" aria-current="page">구성원</a>
+      <a href="/settings">설정</a>
+      <a href="/billing" data-only="owner">요금제</a>
+    </nav>
+
+    <p class="err" id="members-error" role="alert" hidden></p>
+
+    <section class="member-add-box" id="member-add-box" aria-labelledby="member-add-title" data-stagger>
+      <h2 id="member-add-title" class="eyebrow">구성원 추가</h2>
+      <p class="hint">한 번이라도 로그인한 적 있는 이메일만 추가할 수 있어요.</p>
+      <div class="member-add-fields">
+        <div class="fld">
+          <label for="member-email">이메일 주소</label>
+          <input class="inp" id="member-email" type="email" autocomplete="off" inputmode="email" placeholder="name@example.org">
+        </div>
+        <div class="fld">
+          <label for="member-role">역할</label>
+          <select class="inp" id="member-role">
+            <option value="interviewer">인터뷰어</option>
+            <option value="reviewer" selected>검토자</option>
+            <option value="admin">관리자</option>
+            <option value="owner">소유자</option>
+          </select>
+        </div>
+      </div>
+      <button type="button" class="btn" id="member-add">추가</button>
+      <p class="err" id="member-error" role="alert" hidden></p>
+    </section>
+
+    <section class="member-list-box" aria-labelledby="member-list-title" data-stagger>
+      <h2 id="member-list-title" class="eyebrow">구성원 <span id="member-count"></span></h2>
+      <p class="hint" id="members-loading">구성원을 불러오는 중이에요.</p>
+      <ul id="member-list" class="member-list" aria-live="polite"></ul>
+    </section>
+  </main>
+  <script nonce="__CSP_NONCE__" src="/static/vendor/gsap.min.js"></script>
+  <script nonce="__CSP_NONCE__" src="/static/motion.js"></script>
+  <script nonce="__CSP_NONCE__" src="/static/auth.js"></script>
+  <script nonce="__CSP_NONCE__" src="/static/shell.js"></script>
+  <script nonce="__CSP_NONCE__" src="/static/members.js"></script>
+</body>
+</html>

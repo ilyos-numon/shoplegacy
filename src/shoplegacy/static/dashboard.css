@@ -1,0 +1,143 @@
+/* 기관 대시보드 전용. 공통 클래스(.subtabs .pills .btn .grid2 .eyebrow)는 style.css 에 있다. */
+
+.dash-period h2.eyebrow,
+.dash-block h2.eyebrow {
+  margin: 18px 0 8px;
+}
+
+.dash-custom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 10px;
+  align-items: end;
+  margin-top: 12px;
+}
+
+.dash-custom[hidden] {
+  display: none;
+}
+
+.dash-custom .filter-field label {
+  margin: 0 0 6px;
+  font-size: 0.85em;
+}
+
+.dash-custom .btn {
+  grid-column: 1 / -1;
+  margin-top: 10px;
+}
+
+#dash-period {
+  margin: 8px 0 0;
+  font-size: 0.85em;
+}
+
+/* 요약 숫자 */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.stats div {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.stats b {
+  display: block;
+  font-size: 1.7em;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+
+.stats span {
+  font-size: 0.78em;
+  color: var(--muted);
+}
+
+/* 가로 막대 표 (카드 상태·동의 현황) */
+.dash-block {
+  margin-top: 6px;
+}
+
+.hbar-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85em;
+}
+
+.hbar-table caption {
+  text-align: left;
+  margin: 18px 0 6px;
+}
+
+.cap-note {
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.hbar-table th,
+.hbar-table td {
+  padding: 5px 0;
+  font-weight: 400;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.hbar-table tbody th {
+  width: 100%;
+}
+
+.hbar-row {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 8px;
+  align-items: center;
+}
+
+.hbar-row i {
+  display: block;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--surface-2);
+  overflow: hidden;
+}
+
+.hbar-row i b {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.hbar-table td.num {
+  min-width: 38px;
+  padding-left: 8px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.hbar-table.consent td.revoked {
+  min-width: 28px;
+}
+
+.hbar-table.consent td.revoked::before {
+  content: "/ ";
+}
+
+.dash-block .grid2 .btn {
+  min-height: 48px;
+}
+
+.dash-block .hint {
+  margin: 8px 0 0;
+  font-size: 0.85em;
+}

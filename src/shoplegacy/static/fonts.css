@@ -1,0 +1,11 @@
+/* 자체 호스팅 글꼴 (SIL Open Font License 1.1 — fonts/OFL-*.txt)
+   출처: https://github.com/google/fonts/tree/main/ofl/ibmplexsanskr  (IBMPlexSansKR-Regular.ttf, IBMPlexSansKR-SemiBold.ttf)
+         https://github.com/google/fonts/tree/main/ofl/gowunbatang    (GowunBatang-Regular.ttf)
+         https://github.com/google/fonts/tree/main/ofl/ibmplexmono    (IBMPlexMono-Regular.ttf)
+   서브셋: pyftsubset --unicodes="U+0020-007E,U+00A0-00FF,U+2000-206F,U+3000-303F,U+3131-318E,U+AC00-D7A3,U+FF01-FF60"
+           --flavor=woff2 --layout-features='*'
+   6개 굵기 서브셋 합계가 2048 KB 를 넘어 Regular + IBM Plex Sans KR SemiBold(600, 제목·버튼용)만 둔다 (그 밖의 굵은 글씨는 브라우저 합성). */
+@font-face{font-family:"IBM Plex Sans KR";font-style:normal;font-weight:400;font-display:swap;src:url("/static/fonts/ibm-plex-sans-kr-400.woff2") format("woff2")}
+@font-face{font-family:"IBM Plex Sans KR";font-style:normal;font-weight:600;font-display:swap;src:url("/static/fonts/ibm-plex-sans-kr-600.woff2") format("woff2")}
+@font-face{font-family:"Gowun Batang";font-style:normal;font-weight:400;font-display:swap;src:url("/static/fonts/gowun-batang-400.woff2") format("woff2")}
+@font-face{font-family:"IBM Plex Mono";font-style:normal;font-weight:400;font-display:swap;src:url("/static/fonts/ibm-plex-mono-400.woff2") format("woff2")}

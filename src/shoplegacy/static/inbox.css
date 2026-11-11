@@ -1,0 +1,101 @@
+/* 검수함 화면 전용. .pills .pill .meter .hint .err 는 style.css 공통. */
+
+.inbox {
+  padding-bottom: 110px;
+}
+
+.inbox-title {
+  margin: 6px 0 4px;
+  font-size: 1.5rem;
+}
+
+#inbox-filter {
+  margin: 14px 0 8px;
+  overflow-x: auto;
+}
+
+#inbox-filter .pills {
+  flex-wrap: nowrap;
+}
+
+#inbox-filter button {
+  white-space: nowrap;
+}
+
+#inbox-filter .n:not(:empty) {
+  margin-left: 5px;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.75;
+}
+
+.inbox-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.inbox-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 6px 10px;
+  align-items: center;
+  width: 100%;
+  min-height: 44px;
+  margin: 0;
+  padding: 14px 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.inbox-item:hover .code,
+.inbox-item:focus-visible .code {
+  color: var(--accent);
+}
+
+.inbox-item .head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.inbox-item .code {
+  font-weight: 600;
+}
+
+.inbox-item .when {
+  font-size: 0.82em;
+}
+
+.inbox-item .tags {
+  grid-column: 1 / -1;
+  margin: 0;
+}
+
+.inbox-item .meter {
+  grid-column: 1 / -1;
+}
+
+.inbox-item .meter .row {
+  display: flex;
+  color: var(--muted);
+}
+
+.inbox-item .meter > i > b {
+  transform: scaleX(0);
+}
+
+.inbox-empty {
+  padding: 24px 0;
+}
+
+/* --warn on --warn-soft is 4.1:1 at this size; the label keeps the warm chip but uses ink text. */
+.inbox-item .pill.wait {
+  color: var(--ink);
+}

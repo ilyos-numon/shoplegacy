@@ -1,0 +1,302 @@
+/* 인터뷰 화면 — tokens.css 변수만 쓴다. 공통 클래스가 없는 부분만 여기에 둔다. */
+.iv-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.iv-top p {
+  margin: 0;
+}
+
+.iv-round {
+  font-weight: 600;
+}
+
+.timer {
+  position: relative;
+  width: 62px;
+  height: 62px;
+  flex: none;
+}
+
+.timer svg {
+  width: 62px;
+  height: 62px;
+  transform: rotate(-90deg);
+}
+
+.timer-track {
+  stroke: var(--line);
+}
+
+.timer-arc {
+  stroke: var(--accent);
+  transition: stroke-dashoffset 0.9s linear;
+}
+
+.timer.low .timer-arc {
+  stroke: var(--warn);
+}
+
+.timer .t {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--f-mono);
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.axes {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 4px;
+  margin-top: 14px;
+}
+
+.axes > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 0.72em;
+  color: var(--muted);
+  text-align: center;
+}
+
+.axes i {
+  display: block;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--line);
+  position: relative;
+  overflow: hidden;
+}
+
+.axes i b {
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.axes > div.cur {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.qcard {
+  margin-top: 18px;
+  min-height: 150px;
+}
+
+.qcard .ax {
+  margin: 0;
+  font-size: 0.8em;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+  min-height: 1.4em;
+}
+
+.qcard .q {
+  font-family: var(--f-story);
+  font-size: 1.42em;
+  line-height: 1.5;
+  margin: 6px 0 0;
+  font-weight: 700;
+  letter-spacing: 0;
+  word-break: keep-all;
+}
+
+.qcard .tools {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.qcard .tools button {
+  min-height: 36px;
+  margin: 0;
+  padding: 4px 12px;
+  font-size: 0.85em;
+  font-weight: 500;
+  border-radius: 999px;
+}
+
+.qcard .tools button[aria-pressed="true"] {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+
+.mic-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.mic {
+  position: relative;
+  width: 88px;
+  height: 88px;
+  min-height: 88px;
+  margin: 0;
+  padding: 0;
+  border-radius: 50%;
+  border: 0;
+  background: var(--accent);
+  color: var(--accent-ink);
+  display: grid;
+  place-items: center;
+}
+
+.mic svg {
+  width: 30px;
+  height: 30px;
+}
+
+.mic .ring {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.mic.rec {
+  background: var(--seal);
+}
+
+.mic.rec .ring {
+  border-color: var(--seal);
+}
+
+#mic-status {
+  font-size: 0.9em;
+  color: var(--muted);
+  min-height: 1.5em;
+  text-align: center;
+}
+
+.live {
+  width: 100%;
+  min-height: 72px;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px dashed var(--line);
+  padding: 12px;
+  font-size: 0.95em;
+  color: var(--ink);
+}
+
+.live p {
+  margin: 0 0 4px;
+}
+
+.live:empty::before {
+  content: "말씀하시는 내용이 여기에 적혀요";
+  color: var(--muted);
+}
+
+.alt-link {
+  min-height: 40px;
+  margin: 0;
+  padding: 4px 8px;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font-size: 0.88em;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.alt-input {
+  width: 100%;
+}
+
+.alt-input label:first-child {
+  margin-top: 0;
+}
+
+.alt-input .btn {
+  margin-top: 10px;
+}
+
+.iv-actions {
+  display: grid;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.gen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 28px;
+  min-height: 60vh;
+  padding: 0 8px;
+}
+
+.gen h2 {
+  margin: 4px 0 6px;
+}
+
+.gen p {
+  margin: 0;
+}
+
+.gen ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+}
+
+.gen li {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  color: var(--muted);
+}
+
+.gen li .ck {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1.5px solid var(--line);
+  display: grid;
+  place-items: center;
+  flex: none;
+}
+
+.gen li .ck svg {
+  width: 12px;
+  height: 12px;
+  opacity: 0;
+}
+
+.gen li.on {
+  color: var(--ink);
+}
+
+.gen li.on .ck {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+
+.gen li.on .ck svg {
+  opacity: 1;
+}
+
+html.large-type .qcard .q {
+  font-size: 1.7em;
+}
