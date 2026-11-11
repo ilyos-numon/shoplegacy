@@ -1,0 +1,55 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-error.log*
+.next/
+.turbo/
+coverage/
+
+# Editors
+.idea/
+.vscode/
+
+# Logs / data
+*.log
+data/
+.ai/tasks/*/logs/
+.ai/tasks/*/screenshots/*.png
+.ai/tasks/*/.toolcount
+.ai/tasks/*/.*.lock
+.ai/tasks/*/.dev.pid
+.ai/tasks/*/.base-*
+.ai/headless-*.log
+.ai/.headless-session
+.claude/settings.local.json
+out/
+test-results/
+playwright-report/
+*.pyc
+supabase/.temp/
+tests/e2e/screenshots/*
+!tests/e2e/screenshots/.gitkeep
+backups/
+!src/shoplegacy/data/
+eval-diagnose/
