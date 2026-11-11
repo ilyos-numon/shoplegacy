@@ -46,6 +46,13 @@ select count(*) from procrastinate_jobs;
 
 `supabase/seed.sql` 은 로컬 전용입니다. 운영에는 적용하지 않습니다 (`db push` 는 seed 를 넣지 않습니다).
 
+### 통합 DB(`shoplegacy` 스키마)를 쓸 때
+
+여러 앱이 한 Supabase 프로젝트를 나눠 쓰는 통합 DB 에서는 shoplegacy 표가 `shoplegacy` 스키마에 있고, 앱은 `shoplegacy_app` 역할의 search_path 로 그 스키마를 찾습니다 (코드의 SQL 에는 스키마 한정자가 없습니다).
+
+- [ ] `apply-env.sh` 를 `--skip-migrate` 로 돌립니다. 권한 확인(0/6)과 `supabase db push`(1/6)만 건너뛰고, `shoplegacy_app` 비밀번호·비밀 6개·Cloud Run 반영·`/readyz` 확인은 그대로 합니다.
+- [ ] 통합 프로젝트에서는 `supabase db push` 를 bid-radar 폴더에서만 합니다. 이 저장소에서 통합 프로젝트로 `db push` 하지 않습니다.
+
 ## 4. 앱 접속 계정 (`shoplegacy_app`)
 
 마이그레이션은 이 역할을 고정된 기본 비밀번호로 만듭니다. `apply-env.sh` 2/6 단계가 바로 새 무작위 비밀번호로 바꾸고 세션 풀러 주소로 `SHOPLEGACY_DATABASE_URL` 을 만들어 Secret Manager 에 넣습니다. 수동으로 할 때는:

@@ -73,7 +73,7 @@ def _purge(dry_run: bool) -> list[str]:
         with psycopg.connect(dsn) as conn:
             try:
                 rows = conn.execute(
-                    "SELECT * FROM public.purge_expired_shops(%s)", (now,)
+                    "SELECT * FROM purge_expired_shops(%s)", (now,)
                 ).fetchall()
             finally:
                 conn.rollback()
@@ -89,16 +89,16 @@ def _set_plan(org_id: str, plan: str) -> str:
     """Set the org's plan and audit it; returns the previous plan."""
     with psycopg.connect(_database_url()) as conn, conn.transaction():
         row = conn.execute(
-            "SELECT plan FROM public.orgs WHERE org_id::text = %s FOR UPDATE", (org_id,)
+            "SELECT plan FROM orgs WHERE org_id::text = %s FOR UPDATE", (org_id,)
         ).fetchone()
         if row is None:
             raise SystemExit(
                 f"org {org_id} not found (or this DSN cannot see it: use the database owner)"
             )
         before = str(row[0])
-        conn.execute("UPDATE public.orgs SET plan = %s WHERE org_id::text = %s", (plan, org_id))
+        conn.execute("UPDATE orgs SET plan = %s WHERE org_id::text = %s", (plan, org_id))
         conn.execute(
-            "INSERT INTO public.audit_log (org_id, action, table_name, row_id, new_json) "
+            "INSERT INTO audit_log (org_id, action, table_name, row_id, new_json) "
             "VALUES (%s, 'org.plan', 'orgs', %s, %s)",
             (org_id, org_id, Jsonb({"from": before, "to": plan})),
         )
@@ -144,7 +144,7 @@ def _mark_paid(invoice_id: str, method: str, memo: str | None) -> None:
     if memo is not None:
         with psycopg.connect(dsn) as conn, conn.transaction():
             conn.execute(
-                "UPDATE public.invoices SET memo = %s WHERE invoice_id = %s", (memo, invoice_id)
+                "UPDATE invoices SET memo = %s WHERE invoice_id = %s", (memo, invoice_id)
             )
 
 

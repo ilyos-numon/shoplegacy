@@ -7,19 +7,22 @@
 # 첫 배포와 env·비밀 변경 때 쓴다. 코드 변경 배포는 GitHub Actions(.github/workflows/deploy.yml)가 이미지만 바꾼다.
 # 값은 화면에 출력하지 않는다. 여러 번 돌려도 된다 (비어 있는 JWT·피드백·개인정보 키 비밀은 버전이 없을 때만 만든다).
 #
-# 사용: [ENV_FILE=.env.production] [IMAGE=<이미지 주소>] bash deploy/gcp/apply-env.sh [--skip-db] [--dry-run]
+# 사용: [ENV_FILE=.env.production] [IMAGE=<이미지 주소>] bash deploy/gcp/apply-env.sh [--skip-db] [--skip-migrate] [--dry-run]
 #   --skip-db  권한 확인·마이그레이션·shoplegacy_app 비밀번호를 건너뛰고 기존 SHOPLEGACY_DATABASE_URL 비밀을 그대로 쓴다
+#   --skip-migrate  권한 확인과 supabase db push 만 건너뛴다 (통합 DB 의 shoplegacy 스키마처럼 마이그레이션을 다른 곳에서 할 때). 비밀번호·비밀·배포·확인은 그대로
 #   --dry-run  외부 명령(supabase·psql·gcloud·curl)을 실행하지 않고 할 일만 출력
 # 이미지: IMAGE 환경변수, 없으면 지금 서비스가 쓰는 이미지. 둘 다 없으면 이미지를 먼저 push 하라고 안내하고 끝낸다.
 set -euo pipefail
 
 SKIP_DB=0
+SKIP_MIGRATE=0
 DRY_RUN=0
 for arg in "$@"; do
   case "$arg" in
     --skip-db) SKIP_DB=1 ;;
+    --skip-migrate) SKIP_MIGRATE=1 ;;
     --dry-run) DRY_RUN=1 ;;
-    -h|--help) sed -n '2,13p' "$0"; exit 0 ;;
+    -h|--help) sed -n '2,14p' "$0"; exit 0 ;;
     *) echo "unknown option: $arg" >&2; exit 2 ;;
   esac
 done
@@ -117,6 +120,8 @@ echo "SHOPLEGACY_PUBLIC_BASE_URL: $BASE_URL"
 echo "0/6 마이그레이션 권한 확인 (anon·authenticated 역할 관리 권한)"
 if [ "$SKIP_DB" -eq 1 ]; then
   echo "  · --skip-db: 건너뜀"
+elif [ "$SKIP_MIGRATE" -eq 1 ]; then
+  echo "  · --skip-migrate: 건너뜀"
 elif [ "$DRY_RUN" -eq 1 ]; then
   echo "+ psql <SUPABASE_POOLER_URL> -Atc \"select pg_has_role(current_user,'anon','MEMBER WITH ADMIN OPTION') and pg_has_role(current_user,'authenticated','MEMBER WITH ADMIN OPTION')\"  → t 기대"
 else
@@ -133,6 +138,8 @@ fi
 echo "1/6 Supabase 마이그레이션 (스키마·RLS·작업 대기열)"
 if [ "$SKIP_DB" -eq 1 ]; then
   echo "  · --skip-db: 건너뜀"
+elif [ "$SKIP_MIGRATE" -eq 1 ]; then
+  echo "  · --skip-migrate: 건너뜀 (통합 DB 는 마이그레이션을 따로 적용)"
 else
   echo "+ supabase db push --db-url <SUPABASE_POOLER_URL> --yes"
   if [ "$DRY_RUN" -eq 0 ]; then

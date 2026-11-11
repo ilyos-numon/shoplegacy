@@ -617,7 +617,7 @@ class Store:
         # auth.users is not readable by the app role; the SECURITY DEFINER helper
         # resolves emails, and only for orgs the caller belongs to.
         rows = self._fetch(
-            "SELECT user_id::text, email, role FROM public.org_member_emails(%s)",
+            "SELECT user_id::text, email, role FROM org_member_emails(%s)",
             (org_id,),
         )
         return [MemberRow(r[0], r[1], _role(r[2])) for r in rows]
@@ -683,7 +683,7 @@ class Store:
         return OrgRow(*row)
 
     def user_id_by_email(self, email: str) -> str | None:
-        rows = self._fetch("SELECT public.user_id_by_email(%s)::text", (email,))
+        rows = self._fetch("SELECT user_id_by_email(%s)::text", (email,))
         return rows[0][0] if rows else None
 
     # shops
@@ -846,7 +846,7 @@ class Store:
     def purge_expired(self, now: datetime) -> list[str]:
         """Delete shops whose retention ended before ``now``; returns their ids."""
         with self._app_tx() as conn:
-            rows = conn.execute("SELECT * FROM public.purge_expired_shops(%s)", (now,)).fetchall()
+            rows = conn.execute("SELECT * FROM purge_expired_shops(%s)", (now,)).fetchall()
         return [str(r[0]) for r in rows]
 
     def public_card_tags(self, shop_id: str) -> tuple[str, AreaType, int, int, str | None] | None:
@@ -854,7 +854,7 @@ class Store:
         published card."""
         rows = self._fetch(
             "SELECT trade, area_type, years, closed_year, region_sigungu "
-            "FROM public.public_card_tags_v2(%s)",
+            "FROM public_card_tags_v2(%s)",
             (shop_id,),
         )
         if not rows:
@@ -866,7 +866,7 @@ class Store:
         """(region_code, sido, sigungu) of a published card; None if not published."""
         rows = self._fetch(
             "SELECT region_code, region_sido, region_sigungu "
-            "FROM public.published_card_regions() WHERE card_id = %s",
+            "FROM published_card_regions() WHERE card_id = %s",
             (card_id,),
         )
         if not rows:
@@ -1037,7 +1037,7 @@ class Store:
         if region_code or q:
             if status == "published":
                 sql += (
-                    " AND card_id IN (SELECT r.card_id FROM public.published_card_regions() r"
+                    " AND card_id IN (SELECT r.card_id FROM published_card_regions() r"
                     " WHERE true"
                 )
             else:
@@ -1171,14 +1171,14 @@ class Store:
             raise ParentNotFoundError(f"published card {card_id} not found") from None
 
     def feedback_counts(self, card_id: str) -> FeedbackCounts:
-        rows = self._fetch("SELECT up, down FROM public.card_feedback_counts(%s)", (card_id,))
+        rows = self._fetch("SELECT up, down FROM card_feedback_counts(%s)", (card_id,))
         return FeedbackCounts(int(rows[0][0]), int(rows[0][1])) if rows else FeedbackCounts(0, 0)
 
     # owner reviews
     def owner_card_view(self, card_id: str) -> dict[str, Any] | None:
         """Card for the shop owner's review page. Bypasses RLS: verify the link first."""
         with self._tx(ANON) as conn:
-            row = conn.execute("SELECT public.owner_card_view(%s)", (card_id,)).fetchone()
+            row = conn.execute("SELECT owner_card_view(%s)", (card_id,)).fetchone()
         if row is None or row[0] is None:
             return None
         view: dict[str, Any] = row[0]
@@ -1189,7 +1189,7 @@ class Store:
         try:
             with self._tx(ANON) as conn:
                 conn.execute(
-                    "SELECT public.owner_review_insert(%s, %s, %s, %s, %s, %s)",
+                    "SELECT owner_review_insert(%s, %s, %s, %s, %s, %s)",
                     (
                         row.review_id,
                         row.card_id,
@@ -1231,7 +1231,7 @@ class Store:
 
     def llm_usage_month(self, org_id: str, month: date) -> LlmUsageSummary:
         rows = self._fetch(
-            "SELECT calls, tokens_in, tokens_out, fallbacks FROM public.llm_usage_month(%s, %s)",
+            "SELECT calls, tokens_in, tokens_out, fallbacks FROM llm_usage_month(%s, %s)",
             (org_id, month),
         )
         if not rows:
@@ -1401,7 +1401,7 @@ class Store:
         """queued -> running for the worker; None if missing or already taken."""
         with self._app_tx() as conn:
             row = conn.execute(
-                f"SELECT {_STT_JOB_COLUMNS} FROM public.stt_job_claim(%s)", (job_id,)
+                f"SELECT {_STT_JOB_COLUMNS} FROM stt_job_claim(%s)", (job_id,)
             ).fetchone()
         if row is None or row[0] is None:
             return None
@@ -1412,13 +1412,13 @@ class Store:
     ) -> None:
         with self._app_tx() as conn:
             conn.execute(
-                "SELECT public.stt_job_finish(%s, %s, %s, %s)",
+                "SELECT stt_job_finish(%s, %s, %s, %s)",
                 (job_id, self._enc(text), duration_s, provider),
             )
 
     def stt_job_fail(self, job_id: str, error: str) -> None:
         with self._app_tx() as conn:
-            conn.execute("SELECT public.stt_job_fail(%s, %s)", (job_id, error[:300]))
+            conn.execute("SELECT stt_job_fail(%s, %s)", (job_id, error[:300]))
 
     # invoices
     def list_invoices(self, org_id: str) -> list[InvoiceRow]:
@@ -1439,7 +1439,7 @@ class Store:
         """Invoice by the payment provider's order id, with no user (webhooks)."""
         with self._app_tx() as conn:
             row = conn.execute(
-                f"SELECT {_INVOICE_COLUMNS} FROM public.invoice_by_order(%s)", (order_id,)
+                f"SELECT {_INVOICE_COLUMNS} FROM invoice_by_order(%s)", (order_id,)
             ).fetchone()
         if row is None or row[0] is None:
             return None
@@ -1456,7 +1456,7 @@ class Store:
     ) -> InvoiceRow:
         with self._app_tx() as conn:
             row = conn.execute(
-                f"SELECT {_INVOICE_COLUMNS} FROM public.invoice_issue(%s, %s, %s, %s, %s, %s, %s)",
+                f"SELECT {_INVOICE_COLUMNS} FROM invoice_issue(%s, %s, %s, %s, %s, %s, %s)",
                 (str(uuid.uuid4()), org_id, plan, period_start, period_end, amount_krw, memo),
             ).fetchone()
         assert row is not None
@@ -1475,7 +1475,7 @@ class Store:
         try:
             with self._app_tx() as conn:
                 row = conn.execute(
-                    f"SELECT {_INVOICE_COLUMNS} FROM public.invoice_mark_paid(%s, %s, %s, %s, %s)",
+                    f"SELECT {_INVOICE_COLUMNS} FROM invoice_mark_paid(%s, %s, %s, %s, %s)",
                     (invoice_id, method, provider, payment_key, paid_at),
                 ).fetchone()
         except errors.RaiseException as exc:
@@ -1492,11 +1492,11 @@ class Store:
         try:
             with self._app_tx() as conn:
                 row = conn.execute(
-                    "SELECT status FROM public.invoice_by_order(%s)", (f"sl-{invoice_id}",)
+                    "SELECT status FROM invoice_by_order(%s)", (f"sl-{invoice_id}",)
                 ).fetchone()
                 if row is not None and row[0] == "refunded":
                     raise InvoiceNotPayableError("invoice_refunded")
-                conn.execute("SELECT public.invoice_void(%s)", (invoice_id,))
+                conn.execute("SELECT invoice_void(%s)", (invoice_id,))
         except errors.RaiseException as exc:
             if _raised(exc, "invoice_paid"):
                 raise InvoiceNotPayableError("invoice_paid") from None
@@ -1509,7 +1509,7 @@ class Store:
         try:
             with self._app_tx() as conn:
                 row = conn.execute(
-                    f"SELECT {_INVOICE_COLUMNS} FROM public.invoice_refund(%s, %s, %s)",
+                    f"SELECT {_INVOICE_COLUMNS} FROM invoice_refund(%s, %s, %s)",
                     (invoice_id, reason, refunded_at),
                 ).fetchone()
         except errors.RaiseException as exc:
@@ -1526,7 +1526,7 @@ class Store:
         try:
             with self._app_tx() as conn:
                 row = conn.execute(
-                    f"SELECT {_INVOICE_COLUMNS} FROM public.invoice_mark_tax(%s, %s, %s)",
+                    f"SELECT {_INVOICE_COLUMNS} FROM invoice_mark_tax(%s, %s, %s)",
                     (invoice_id, ref, issued_at),
                 ).fetchone()
         except errors.RaiseException as exc:
@@ -1559,7 +1559,7 @@ class Store:
     def get_billing_key(self, org_id: str) -> BillingKeyRow | None:
         with self._app_tx() as conn:
             row = conn.execute(
-                f"SELECT {_BILLING_KEY_COLUMNS} FROM public.billing_keys WHERE org_id = %s",
+                f"SELECT {_BILLING_KEY_COLUMNS} FROM billing_keys WHERE org_id = %s",
                 (org_id,),
             ).fetchone()
         return None if row is None else self._billing_key_from(row)
@@ -1568,7 +1568,7 @@ class Store:
         """Stores (or replaces) the org's billing key; it becomes active with no failures."""
         with self._app_tx() as conn:
             got = conn.execute(
-                f"SELECT {_BILLING_KEY_COLUMNS} FROM public.billing_key_set("
+                f"SELECT {_BILLING_KEY_COLUMNS} FROM billing_key_set("
                 "%s, %s, %s, %s, %s, %s, %s, %s, %s)",
                 (
                     row.org_id,
@@ -1588,7 +1588,7 @@ class Store:
     def stop_billing_key(self, org_id: str) -> None:
         try:
             with self._app_tx() as conn:
-                conn.execute("SELECT public.billing_key_stop(%s)", (org_id,))
+                conn.execute("SELECT billing_key_stop(%s)", (org_id,))
         except errors.RaiseException as exc:
             if _raised(exc, "billing_key_not_found"):
                 raise BillingKeyNotFoundError(f"billing key for {org_id} not found") from None
@@ -1597,14 +1597,14 @@ class Store:
     def billing_keys_due(self, today: date) -> list[BillingKeyRow]:
         with self._app_tx() as conn:
             rows = conn.execute(
-                f"SELECT {_BILLING_KEY_COLUMNS} FROM public.billing_keys_due(%s)", (today,)
+                f"SELECT {_BILLING_KEY_COLUMNS} FROM billing_keys_due(%s)", (today,)
             ).fetchall()
         return [self._billing_key_from(r) for r in rows]
 
     def advance_billing_key(self, org_id: str, next_charge_on: date) -> None:
         try:
             with self._app_tx() as conn:
-                conn.execute("SELECT public.billing_key_advance(%s, %s)", (org_id, next_charge_on))
+                conn.execute("SELECT billing_key_advance(%s, %s)", (org_id, next_charge_on))
         except errors.RaiseException as exc:
             if _raised(exc, "billing_key_not_found"):
                 raise BillingKeyNotFoundError(f"billing key for {org_id} not found") from None
@@ -1614,7 +1614,7 @@ class Store:
         """One more declined charge; the third in a row stops the key. Returns the count."""
         try:
             with self._app_tx() as conn:
-                row = conn.execute("SELECT public.billing_key_fail(%s)", (org_id,)).fetchone()
+                row = conn.execute("SELECT billing_key_fail(%s)", (org_id,)).fetchone()
         except errors.RaiseException as exc:
             if _raised(exc, "billing_key_not_found"):
                 raise BillingKeyNotFoundError(f"billing key for {org_id} not found") from None
@@ -1671,5 +1671,5 @@ class Store:
 
     def owner_link_state(self, token_id: str) -> str:
         """'revoked' | 'expired' | 'active' | 'unknown' (no row), for any principal."""
-        rows = self._fetch("SELECT public.owner_link_state(%s)", (token_id,))
+        rows = self._fetch("SELECT owner_link_state(%s)", (token_id,))
         return str(rows[0][0]) if rows else "unknown"
