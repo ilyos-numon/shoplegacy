@@ -1,0 +1,137 @@
+# Cloud Run 서비스 (Knative Service 형식). 적용: gcloud run services replace deploy/gcp/service.yaml --region=asia-northeast3
+# 전체 설정은 deploy/gcp/apply-env.sh 가 ${IMAGE}·<PROJECT_ID>·<도메인>·<project-ref> 와 평문 값을 채워 적용한다 (deploy/README.md). 자동 배포는 이미지만 바꾼다.
+# <도메인> 은 별도 도메인이 아니라 Cloud Run 서비스 URL 의 호스트다. 도메인 매핑·부하분산기는 쓰지 않는다.
+# 비밀 6개는 Secret Manager 에서 읽는다 (비밀 이름 = 환경변수 이름, 버전 latest). 목록은 deploy/env.production.example 의 SECRET 구역과 같아야 한다.
+# 비용: 요청이 없으면 인스턴스 0 (minScale 0), 최대 1 (maxScale 1), 요청 처리 중에만 CPU (cpu-throttling true).
+# 작업 대기열(procrastinate)은 앱 안 스레드 워커(SHOPLEGACY_STT_WORKER=thread)가 처리한다. 상주 워커·예약 실행 없음.
+# /health 는 시작 확인(startupProbe) 전용, 외부 확인은 /readyz (DB 까지 확인).
+# scripts/check_deploy.py 가 이 주석 아래 값을 검사한다.
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: shoplegacy
+  labels:
+    cloud.googleapis.com/location: asia-northeast3
+  annotations:
+    run.googleapis.com/ingress: all
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/minScale: "0"
+        autoscaling.knative.dev/maxScale: "1"
+        run.googleapis.com/cpu-throttling: "true"
+        run.googleapis.com/startup-cpu-boost: "true"
+    spec:
+      serviceAccountName: shoplegacy-run@<PROJECT_ID>.iam.gserviceaccount.com
+      containerConcurrency: 20
+      # 실시간 받아쓰기 최대 600초(SHOPLEGACY_STT_STREAM_MAX_SECONDS) + 여유
+      timeoutSeconds: 660
+      containers:
+        - image: "${IMAGE}"
+          ports:
+            - name: http1
+              containerPort: 8830
+          resources:
+            limits:
+              cpu: "1"
+              memory: 512Mi
+          startupProbe:
+            httpGet:
+              path: /health
+              port: 8830
+            periodSeconds: 5
+            failureThreshold: 12
+          env:
+            - name: SHOPLEGACY_PUBLIC_BASE_URL
+              value: "https://<도메인>"
+            - name: SHOPLEGACY_PROVIDER
+              value: "qwen"
+            - name: SHOPLEGACY_LLM_BASE_URL
+              value: "https://dashscope-intl.aliyuncs.com/compatible-mode/v1"
+            - name: SHOPLEGACY_LLM_MODEL
+              value: "qwen3.7-flash"
+            - name: SHOPLEGACY_LLM_TIMEOUT
+              value: "20"
+            - name: SHOPLEGACY_STT_PROVIDER
+              value: "fake"
+            - name: SHOPLEGACY_STT_WORKER
+              value: "thread"
+            - name: SHOPLEGACY_STT_MAX_BYTES
+              value: "26214400"
+            - name: SHOPLEGACY_STT_STREAM_MAX_SECONDS
+              value: "600"
+            - name: SHOPLEGACY_STT_STREAM_MAX_CONCURRENT
+              value: "2"
+            - name: SHOPLEGACY_JWKS_URL
+              value: "https://<project-ref>.supabase.co/auth/v1/.well-known/jwks.json"
+            - name: SHOPLEGACY_JWT_AUDIENCE
+              value: "authenticated"
+            - name: SHOPLEGACY_SUPABASE_URL
+              value: "https://<project-ref>.supabase.co"
+            - name: SHOPLEGACY_SUPABASE_ANON_KEY
+              value: ""
+            - name: SHOPLEGACY_TRUSTED_PROXIES
+              value: "*"
+            - name: SHOPLEGACY_LOG_FORMAT
+              value: "json"
+            - name: SHOPLEGACY_SENTRY_DSN
+              value: ""
+            - name: SHOPLEGACY_REQUIRE_CONSENT
+              value: "true"
+            - name: SHOPLEGACY_RATE_LIMIT
+              value: "60/minute"
+            - name: SHOPLEGACY_CSP_REPORT_ONLY
+              value: "false"
+            - name: SHOPLEGACY_BILLING_PROVIDER
+              value: "fake"
+            - name: SHOPLEGACY_TOSS_CLIENT_KEY
+              value: ""
+            - name: SHOPLEGACY_SMS_PROVIDER
+              value: "log"
+            - name: SHOPLEGACY_NER
+              value: "none"
+            - name: SHOPLEGACY_DATA_DIR
+              value: "/app/data"
+            - name: SHOPLEGACY_AUDIO_STORE
+              value: "file:///app/data/audio"
+            - name: SHOPLEGACY_SESSION_SECONDS
+              value: "1200"
+            - name: SHOPLEGACY_SESSIONS_PLANNED
+              value: "5"
+            - name: SHOPLEGACY_OWNER_LINK_TTL_HOURS
+              value: "72"
+            - name: SHOPLEGACY_REQUIRE_OWNER_APPROVAL
+              value: "false"
+            - name: SHOPLEGACY_RETENTION_DAYS
+              value: "1095"
+            - name: SHOPLEGACY_DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: SHOPLEGACY_DATABASE_URL
+                  key: latest
+            - name: SHOPLEGACY_JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: SHOPLEGACY_JWT_SECRET
+                  key: latest
+            - name: SHOPLEGACY_FEEDBACK_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: SHOPLEGACY_FEEDBACK_SECRET
+                  key: latest
+            - name: SHOPLEGACY_PII_KEYS
+              valueFrom:
+                secretKeyRef:
+                  name: SHOPLEGACY_PII_KEYS
+                  key: latest
+            - name: SHOPLEGACY_LLM_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: SHOPLEGACY_LLM_API_KEY
+                  key: latest
+            - name: SHOPLEGACY_TOSS_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: SHOPLEGACY_TOSS_SECRET_KEY
+                  key: latest

@@ -1,0 +1,132 @@
+name: deploy
+
+# main 에 push 되어 ci 가 성공하면 자동 배포. 수동 실행(workflow_dispatch)도 된다.
+# 이미지만 바꾼다: 평문 env·비밀·스케일 설정은 deploy/gcp/apply-env.sh 가 정한 그대로 둔다.
+on:
+  workflow_run:
+    workflows: ["ci"]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "이미지에 들어가는 파일이 바뀌지 않았어도 배포"
+        type: boolean
+        default: true
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  deploy:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push')
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      GCP_PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
+      GCP_REGION: ${{ vars.GCP_REGION }}
+      ARTIFACT_REPO: ${{ vars.ARTIFACT_REPO }}
+      SERVICE: shoplegacy
+      DEPLOY_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
+      FORCE: ${{ github.event_name == 'workflow_dispatch' && inputs.force }}
+    steps:
+      # pyproject.toml takes handoff from the sibling path ../handoff, so both
+      # repositories are checked out side by side (same layout as ci.yml).
+      - uses: actions/checkout@v4
+        with:
+          path: shoplegacy
+          ref: ${{ env.DEPLOY_SHA }}
+          fetch-depth: 0
+
+      # Same pinned handoff commit as ci.yml (the one uv.lock was built with).
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository_owner }}/handoff
+          path: handoff
+          ref: 2a6082d9d2a3bb74d153e76b533c730062d0c578
+          token: ${{ secrets.HANDOFF_REPO_TOKEN || github.token }}
+
+      - name: Check required variables
+        run: |
+          missing=""
+          for name in GCP_PROJECT_ID GCP_REGION ARTIFACT_REPO; do
+            [ -n "${!name}" ] || missing="$missing $name"
+          done
+          if [ -n "$missing" ]; then
+            echo "::error::GitHub vars missing:$missing (deploy/README.md 5단계)"
+            exit 1
+          fi
+          echo "IMAGE=${GCP_REGION}-docker.pkg.dev/${GCP_PROJECT_ID}/${ARTIFACT_REPO}/${SERVICE}:${DEPLOY_SHA}" >> "$GITHUB_ENV"
+
+      - id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ vars.GCP_WIF_PROVIDER }}
+          service_account: ${{ vars.GCP_DEPLOY_SA }}
+          token_format: access_token
+
+      - uses: google-github-actions/setup-gcloud@v2
+
+      # 지금 서비스 이미지 태그(커밋)와 비교해 이미지에 들어가는 파일(Dockerfile 이 COPY 하는 것)이 그대로면 건너뛴다.
+      # 문서·테스트만 바뀐 커밋은 배포하지 않는다. 비교할 커밋을 찾지 못하면 배포한다.
+      - id: changes
+        name: Check image inputs changed
+        run: |
+          if [ "$FORCE" = "true" ]; then echo "deploy=true" >> "$GITHUB_OUTPUT"; exit 0; fi
+          current="$(gcloud run services describe "$SERVICE" --region="$GCP_REGION" --project="$GCP_PROJECT_ID" \
+            --format='value(spec.template.spec.containers[0].image)' 2>/dev/null || true)"
+          prev="${current##*:}"
+          if [ -z "$current" ] || [ "$prev" = "$current" ] || ! git -C shoplegacy cat-file -e "${prev}^{commit}" 2>/dev/null; then
+            echo "current image tag is not a known commit; deploying"
+            echo "deploy=true" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          changed="$(git -C shoplegacy diff --name-only "$prev" "$DEPLOY_SHA" -- Dockerfile pyproject.toml uv.lock README.md src)"
+          if [ -n "$changed" ]; then
+            printf 'image inputs changed since %s:\n%s\n' "$prev" "$changed"
+            echo "deploy=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "no image input changed since $prev; skipping deploy"
+            echo "deploy=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - if: steps.changes.outputs.deploy == 'true'
+        uses: docker/setup-buildx-action@v3
+
+      - if: steps.changes.outputs.deploy == 'true'
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ vars.GCP_REGION }}-docker.pkg.dev
+          username: oauth2accesstoken
+          password: ${{ steps.auth.outputs.access_token }}
+
+      - if: steps.changes.outputs.deploy == 'true'
+        uses: docker/build-push-action@v6
+        with:
+          # Build context is the workspace root (shoplegacy/ + handoff/), see Dockerfile header.
+          context: .
+          file: shoplegacy/Dockerfile
+          platforms: linux/amd64
+          push: true
+          tags: ${{ env.IMAGE }}
+
+      - id: deploy
+        if: steps.changes.outputs.deploy == 'true'
+        uses: google-github-actions/deploy-cloudrun@v2
+        with:
+          service: ${{ env.SERVICE }}
+          image: ${{ env.IMAGE }}
+          region: ${{ vars.GCP_REGION }}
+          project_id: ${{ vars.GCP_PROJECT_ID }}
+
+      - name: Health check
+        if: steps.changes.outputs.deploy == 'true'
+        env:
+          SERVICE_URL: ${{ steps.deploy.outputs.url }}
+        run: curl -sf --retry 6 --retry-delay 10 --retry-all-errors "${SERVICE_URL}/readyz"

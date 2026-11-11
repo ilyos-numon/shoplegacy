@@ -1,0 +1,107 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 2s
+          --health-timeout 3s
+          --health-retries 30
+
+    env:
+      # Admin DSN for the pytest-postgresql template DB (tests/conftest.py).
+      SHOPLEGACY_TEST_PG_DSN: postgresql://postgres:postgres@localhost:5432/postgres
+      PGPASSWORD: postgres
+      # Test-only Fernet key for PII encryption in CI; never used outside tests.
+      SHOPLEGACY_PII_KEYS: EDQtyP_rU71j3FpCkZrIvkyGlO9DRF57rhBQgXUrIDk=
+
+    defaults:
+      run:
+        working-directory: shoplegacy
+
+    steps:
+      # pyproject.toml takes handoff from the sibling path ../handoff, so both
+      # repositories are checked out side by side under the workspace.
+      - uses: actions/checkout@v4
+        with:
+          path: shoplegacy
+
+      # Set the HANDOFF_REPO_TOKEN secret (read-only, contents:read on handoff)
+      # if the handoff repository is private; a public one works with the
+      # default token. Pin `ref:` to the handoff commit the lock file was built with.
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository_owner }}/handoff
+          path: handoff
+          ref: 2a6082d9d2a3bb74d153e76b533c730062d0c578
+          token: ${{ secrets.HANDOFF_REPO_TOKEN || github.token }}
+
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.13.0"
+          python-version: "3.12"
+          enable-cache: true
+          cache-dependency-glob: shoplegacy/uv.lock
+
+      - name: Apply auth stub and migrations
+        # Smoke-checks the SQL against a clean server. The pg and E2E tests build
+        # their own template DB from the same files.
+        run: |
+          psql -v ON_ERROR_STOP=1 -h localhost -U postgres -d postgres -f tests/pg/auth_stub.sql
+          for f in $(ls supabase/migrations/*.sql | sort); do
+            echo "applying $f"
+            psql -v ON_ERROR_STOP=1 -h localhost -U postgres -d postgres -f "$f"
+          done
+
+      - name: Install
+        run: uv sync --frozen
+
+      - name: Lint
+        run: uv run ruff check src tests
+
+      - name: Typecheck
+        run: uv run mypy src
+
+      - name: Unit tests
+        run: uv run pytest tests/unit -q
+
+      - name: Postgres RLS tests
+        run: uv run pytest tests/pg -q
+
+      - name: Golden set
+        run: uv run pytest tests/golden -q
+
+      - name: Install Playwright Chromium
+        run: uv run playwright install --with-deps chromium
+
+      - name: E2E tests
+        env:
+          ILLY_SHOT_DIR: ${{ github.workspace }}/screenshots
+        run: uv run pytest tests/e2e -q
+
+      - name: Upload screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-screenshots
+          path: screenshots
+          if-no-files-found: ignore

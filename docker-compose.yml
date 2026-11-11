@@ -1,0 +1,85 @@
+# Local stack: the app plus a plain Postgres with the schema applied at first start.
+#   docker compose up --build     -> app on http://localhost:8831, Postgres on localhost:56340
+#   docker compose down -v        -> stop and drop the database volume
+#
+# Database image: postgres:17 rather than supabase/postgres. The app only needs
+# what tests/pg/auth_stub.sql provides (anon/authenticated roles, auth.users,
+# auth.uid()/auth.role()), which is the same stand-in the pg and E2E tests use;
+# major version 17 matches the local Supabase stack, and the image is a fraction
+# of the size. Point SHOPLEGACY_DATABASE_URL at a real Supabase project instead
+# when you need Supabase Auth.
+#
+# The defaults below are for local use only. Override them through the shell or
+# a .env file next to this compose file; never reuse them anywhere shared.
+
+name: shoplegacy
+
+services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${SHOPLEGACY_DB_PASSWORD:-postgres}
+      POSTGRES_DB: postgres
+    ports:
+      - "56340:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+      - ./tests/pg/auth_stub.sql:/docker-entrypoint-initdb.d/00_auth_stub.sql:ro
+      - ./supabase/migrations:/migrations:ro
+    configs:
+      # Runs after 00_auth_stub.sql (initdb.d is processed in name order) and
+      # applies every migration in file-name order.
+      - source: apply-migrations
+        target: /docker-entrypoint-initdb.d/10_migrations.sh
+    healthcheck:
+      # -h forces TCP, so it stays unhealthy while initdb runs on the socket only.
+      test: ["CMD-SHELL", "pg_isready -h localhost -U postgres -d postgres"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+  app:
+    build:
+      # Workspace root: the image needs the sibling ../handoff path dependency.
+      context: ..
+      dockerfile: shoplegacy/Dockerfile
+    image: shoplegacy:dev
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8831:8830"
+    environment:
+      # shoplegacy_app is the RLS-bound login role created by the schema migration.
+      SHOPLEGACY_DATABASE_URL: ${SHOPLEGACY_COMPOSE_DATABASE_URL:-postgresql://shoplegacy_app:shoplegacy_app@db:5432/postgres}
+      SHOPLEGACY_JWT_SECRET: ${SHOPLEGACY_JWT_SECRET:-local-dev-only-jwt-secret}
+      SHOPLEGACY_JWKS_URL: ${SHOPLEGACY_JWKS_URL:-}
+      SHOPLEGACY_JWT_AUDIENCE: ${SHOPLEGACY_JWT_AUDIENCE:-authenticated}
+      SHOPLEGACY_SUPABASE_URL: ${SHOPLEGACY_SUPABASE_URL:-}
+      SHOPLEGACY_SUPABASE_ANON_KEY: ${SHOPLEGACY_SUPABASE_ANON_KEY:-}
+      SHOPLEGACY_PROVIDER: ${SHOPLEGACY_PROVIDER:-fake}
+      SHOPLEGACY_STT_PROVIDER: ${SHOPLEGACY_STT_PROVIDER:-fake}
+      SHOPLEGACY_LLM_API_KEY: ${SHOPLEGACY_LLM_API_KEY:-}
+      SHOPLEGACY_REQUIRE_CONSENT: ${SHOPLEGACY_REQUIRE_CONSENT:-true}
+      SHOPLEGACY_LOG_FORMAT: ${SHOPLEGACY_LOG_FORMAT:-json}
+      SHOPLEGACY_SENTRY_DSN: ${SHOPLEGACY_SENTRY_DSN:-}
+      SHOPLEGACY_STT_WORKER: ${SHOPLEGACY_STT_WORKER:-thread}
+      SHOPLEGACY_BILLING_PROVIDER: ${SHOPLEGACY_BILLING_PROVIDER:-fake}
+      SHOPLEGACY_FEEDBACK_SECRET: ${SHOPLEGACY_FEEDBACK_SECRET:-}
+    volumes:
+      - app-data:/app/data
+
+configs:
+  apply-migrations:
+    content: |
+      #!/bin/sh
+      # Sourced by the entrypoint (not executable), which already runs with set -e.
+      for f in $$(ls /migrations/*.sql | sort); do
+        echo "applying $$f"
+        psql -v ON_ERROR_STOP=1 --username "$$POSTGRES_USER" --dbname "$$POSTGRES_DB" -f "$$f"
+      done
+
+volumes:
+  db-data:
+  app-data:
